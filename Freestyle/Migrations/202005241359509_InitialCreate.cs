@@ -15,6 +15,7 @@
                         Title = c.String(),
                         ReleaseDate = c.DateTime(nullable: false),
                         Artist_Id = c.Int(),
+                        Artitst_Name = c.String()
                     })
                 .PrimaryKey(t => t.Id)
                 .ForeignKey("dbo.Artist", t => t.Artist_Id)

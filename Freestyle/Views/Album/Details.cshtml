@@ -1,43 +1,64 @@
-﻿@model Freestyle.Models.Album
+﻿@using Freestyle.Models
+@model Freestyle.Models.Album
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = @Model.Title;
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Details</h2>
-
-<div>
-    <h4>Album</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Title)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Title)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Artist)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Artist)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.ReleaseDate)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.ReleaseDate)
-        </dd>
-
-    </dl>
+<div class="row">
+    <div class="col-md-4">
+        <section id="img"></section>
+        <hr/>
+        <section id="albumStats">
+            <h2>@Model.avgScore</h2>
+            <div id="ratingStars"></div>
+            <div class="row"></div>
+        </section>
+        <section id="writeReview">
+            <h3>Write a Review</h3>
+            @Html.Partial("Review/WriteReviewPartial");
+        </section>
+    </div>
+    <div class="col-md-8">
+        <section id="title">
+            <h1>
+                @Html.ActionLink(@Model.Title, "Details", "Album", new { id = @Model.Id }, null) by
+                @Html.ActionLink(@Model.Artist, "Details", "Artist", new { id = @Model.ArtistId }, null)
+            </h1>
+            <h5>Released on: @Model.ReleaseDate.Date</h5>
+        </section>
+        <hr/>
+        <section id="bio"></section>
+        <section>
+            <h3>Track List</h3>
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th>Track Name</th>
+                    <th>Length</th>
+                </tr>
+                </thead>
+                <tbody id ="tracklist">
+                </tbody>
+                <tfoot id="totalDuration"></tfoot>
+            </table>
+        </section>
+    </div>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+
+<br />
+
+@section Scripts
+{
+    <script>
+        $(document).ready(function () {
+            var title = "@Model.Title";
+            var artistName = "@Model.Artist";
+
+            getAlbumInfo(title, artistName);
+
+            addStars(@Model.avgScore);
+        });
+    </script>
+}

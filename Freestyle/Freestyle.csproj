@@ -137,6 +137,14 @@
     <Compile Include="Migrations\202005241359509_InitialCreate.designer.cs">
       <DependentUpon>202005241359509_InitialCreate.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202005252135359_AlbumModelChange.cs" />
+    <Compile Include="Migrations\202005252135359_AlbumModelChange.designer.cs">
+      <DependentUpon>202005252135359_AlbumModelChange.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202005252235080_AlbumModelChange1.cs" />
+    <Compile Include="Migrations\202005252235080_AlbumModelChange1.designer.cs">
+      <DependentUpon>202005252235080_AlbumModelChange1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Album.cs" />
     <Compile Include="Models\Artist.cs" />
@@ -192,10 +200,10 @@
     <Content Include="Views\Album\Index.cshtml" />
     <Content Include="Views\Shared\Guest\GuestPartialNav.cshtml" />
     <Content Include="Views\Shared\User\UserPartialNav.cshtml" />
+    <Content Include="Views\Review\WriteReviewPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Reviews\" />
     <Folder Include="Views\Users\" />
   </ItemGroup>
   <ItemGroup>
@@ -214,6 +222,12 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202005241359509_InitialCreate.resx">
       <DependentUpon>202005241359509_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202005252135359_AlbumModelChange.resx">
+      <DependentUpon>202005252135359_AlbumModelChange.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202005252235080_AlbumModelChange1.resx">
+      <DependentUpon>202005252235080_AlbumModelChange1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

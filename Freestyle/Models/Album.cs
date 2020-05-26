@@ -9,7 +9,9 @@ namespace Freestyle.Models
     {
         public int Id { get; set; }
         public string Title { get; set; }
-        public Artist Artist { get; set; }
+        public string Artist { get; set; }
+        public int ArtistId { get; set; }
         public DateTime ReleaseDate { get; set; }
+        public double avgScore { get; set; }
     }
 }

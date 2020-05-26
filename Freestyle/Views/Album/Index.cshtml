@@ -5,12 +5,13 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
+<br/>
+<h2>Albums</h2>
 
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
-<table class="table">
+<table class="table table-striped">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.Title)
@@ -27,17 +28,16 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.Title)
+            @Html.ActionLink(item.Title, "Details", "Album", new {id=item.Id}, null)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Artist)
+            @* @Html.ActionLink(item.Artist, "ShowArtist", "Artist", item.Artist, null) *@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.ReleaseDate)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
             @Html.ActionLink("Delete", "Delete", new { id=item.Id })
         </td>
     </tr>

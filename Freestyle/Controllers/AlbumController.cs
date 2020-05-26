@@ -36,6 +36,7 @@ namespace Freestyle.Controllers
             return View(album);
         }
 
+
         // GET: Album/Create
         public ActionResult Create()
         {
