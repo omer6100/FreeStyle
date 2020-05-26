@@ -7,13 +7,13 @@ namespace Freestyle.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.4.4")]
-    public sealed partial class AlbumModelChange1 : IMigrationMetadata
+    public sealed partial class InitialData : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(AlbumModelChange1));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(InitialData));
         
         string IMigrationMetadata.Id
         {
-            get { return "202005252235080_AlbumModelChange1"; }
+            get { return "202005260439574_InitialData"; }
         }
         
         string IMigrationMetadata.Source

@@ -1,0 +1,40 @@
+﻿@model IEnumerable<Freestyle.Models.Album>
+
+<section>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Artist)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ReleaseDate)
+            </th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.ActionLink(item.Title, "Details", "Album", new { id = item.Id }, null)
+                </td>
+                <td>
+                    @Html.ActionLink(item.Artist, "Details", "Artist", new{ id = item.ArtistId}, null)
+                </td>
+                <td>
+                    @item.ReleaseDate.ToString("d")
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                </td>
+            </tr>
+        }
+
+    </table>
+</section>

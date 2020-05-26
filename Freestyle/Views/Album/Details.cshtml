@@ -2,7 +2,7 @@
 @model Freestyle.Models.Album
 
 @{
-    ViewBag.Title = @Model.Title;
+    ViewBag.Title = @Model.Title + " by " + @Model.Artist;
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -10,15 +10,20 @@
     <div class="col-md-4">
         <section id="img"></section>
         <hr/>
-        <section id="albumStats">
-            <h2>@Model.avgScore</h2>
-            <div id="ratingStars"></div>
-            <div class="row"></div>
+        <section id="score-slider">
+            <h2 class="rating-avg"></h2>
+            <div class="progress">
+                <div class="progress-bar" id="score-progress"></div>
+            </div>
         </section>
-        <section id="writeReview">
-            <h3>Write a Review</h3>
-            @Html.Partial("Review/WriteReviewPartial");
+        <section id="review-stats">
+            <h4>Statistics</h4>
         </section>
+        <section id="write-review">
+            <h4>Write a Review</h4>
+            @* @Html.Partial("Review/WriteReviewPartial"); *@
+        </section>
+
     </div>
     <div class="col-md-8">
         <section id="title">
@@ -26,7 +31,7 @@
                 @Html.ActionLink(@Model.Title, "Details", "Album", new { id = @Model.Id }, null) by
                 @Html.ActionLink(@Model.Artist, "Details", "Artist", new { id = @Model.ArtistId }, null)
             </h1>
-            <h5>Released on: @Model.ReleaseDate.Date</h5>
+            <h5>Released on @Model.ReleaseDate.ToString("D")</h5>
         </section>
         <hr/>
         <section id="bio"></section>
@@ -47,18 +52,21 @@
     </div>
 </div>
 
-<br />
 
 @section Scripts
 {
     <script>
+        $(".rating-avg").append((Math.round(@Model.AvgScore * 100) / 100).toFixed(1));
+    </script>
+    <script>
+        var scorePercent = @Model.AvgScore * 10;
+        $("#score-progress").attr("style", "width:" + scorePercent + "%");
+    </script>
+    <script>
         $(document).ready(function () {
             var title = "@Model.Title";
             var artistName = "@Model.Artist";
-
             getAlbumInfo(title, artistName);
-
-            addStars(@Model.avgScore);
         });
     </script>
 }

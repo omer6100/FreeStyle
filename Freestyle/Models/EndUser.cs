@@ -5,7 +5,7 @@ using System.Web;
 
 namespace Freestyle.Models
 {
-    public class User
+    public class EndUser
     {
         public int Id { get; set; }
         public string Username { get; set; }

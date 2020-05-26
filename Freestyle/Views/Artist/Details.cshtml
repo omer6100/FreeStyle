@@ -1,0 +1,58 @@
+﻿@model Freestyle.Models.Artist
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="row">
+    <div class="col-md-4">
+        <section id="img">
+        </section>
+        <hr />
+        <section id="score-slider">
+            <h2 class="rating-avg"></h2>
+            <div class="progress">
+                <div class="progress-bar" id="score-progress"></div>
+            </div>
+        </section>
+        <section id="review-stats">
+            <h4>Statistics</h4>
+        </section>
+
+    </div>
+    <div class="col-md-8">
+        <section id="title">
+            <h1>
+                @Html.ActionLink(@Model.Name, "Details", "Artist", @Model.Id, null)
+            </h1>
+        </section>
+        <hr/>
+        <section id="bio"></section>
+        <section>
+            <h3>Discography</h3>
+            @Html.Action("GetDiscog", Model.Id)
+        </section>
+    </div>
+</div>
+
+
+@section Scripts
+{
+    <script>
+        $(".rating-avg").append((Math.round(@Model.AvgScore * 100) / 100).toFixed(1));
+    </script>
+    <script>
+        var scorePercent = @Model.AvgScore * 10;
+        $("#score-progress").attr("style", "width:" + scorePercent + "%");
+    </script>
+    <script>
+        $(document).ready(function () {
+            var artistName = "@Model.Name";
+            getArtistInfo(artistName);
+            
+        });
+    </script>
+}
+

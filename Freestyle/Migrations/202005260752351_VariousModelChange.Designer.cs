@@ -7,13 +7,13 @@ namespace Freestyle.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.4.4")]
-    public sealed partial class InitialCreate : IMigrationMetadata
+    public sealed partial class VariousModelChange : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(InitialCreate));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(VariousModelChange));
         
         string IMigrationMetadata.Id
         {
-            get { return "202005241359509_InitialCreate"; }
+            get { return "202005260752351_VariousModelChange"; }
         }
         
         string IMigrationMetadata.Source

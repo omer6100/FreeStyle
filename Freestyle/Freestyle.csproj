@@ -127,29 +127,31 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Contexts\AlbumContext.cs" />
+    <Compile Include="Contexts\MusicContext.cs" />
     <Compile Include="Controllers\AlbumController.cs" />
+    <Compile Include="Controllers\ArtistController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="DAL\DbInitializer.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202005241359509_InitialCreate.cs" />
-    <Compile Include="Migrations\202005241359509_InitialCreate.designer.cs">
-      <DependentUpon>202005241359509_InitialCreate.cs</DependentUpon>
+    <Compile Include="Migrations\202005260439574_InitialData.cs" />
+    <Compile Include="Migrations\202005260439574_InitialData.designer.cs">
+      <DependentUpon>202005260439574_InitialData.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202005252135359_AlbumModelChange.cs" />
-    <Compile Include="Migrations\202005252135359_AlbumModelChange.designer.cs">
-      <DependentUpon>202005252135359_AlbumModelChange.cs</DependentUpon>
+    <Compile Include="Migrations\202005260511423_InitialData1.cs" />
+    <Compile Include="Migrations\202005260511423_InitialData1.designer.cs">
+      <DependentUpon>202005260511423_InitialData1.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202005252235080_AlbumModelChange1.cs" />
-    <Compile Include="Migrations\202005252235080_AlbumModelChange1.designer.cs">
-      <DependentUpon>202005252235080_AlbumModelChange1.cs</DependentUpon>
+    <Compile Include="Migrations\202005260752351_VariousModelChange.cs" />
+    <Compile Include="Migrations\202005260752351_VariousModelChange.designer.cs">
+      <DependentUpon>202005260752351_VariousModelChange.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Album.cs" />
     <Compile Include="Models\Artist.cs" />
     <Compile Include="Models\Review.cs" />
-    <Compile Include="Models\User.cs" />
+    <Compile Include="Models\EndUser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -191,8 +193,7 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Album\Album.cshtml" />
-    <Content Include="Views\Artists\Artist.cshtml" />
+    <Content Include="Views\Artist\Artist.cshtml" />
     <Content Include="Views\Album\Create.cshtml" />
     <Content Include="Views\Album\Delete.cshtml" />
     <Content Include="Views\Album\Details.cshtml" />
@@ -201,6 +202,13 @@
     <Content Include="Views\Shared\Guest\GuestPartialNav.cshtml" />
     <Content Include="Views\Shared\User\UserPartialNav.cshtml" />
     <Content Include="Views\Review\WriteReviewPartial.cshtml" />
+    <Content Include="Views\Artist\Create.cshtml" />
+    <Content Include="Views\Artist\Delete.cshtml" />
+    <Content Include="Views\Artist\Details.cshtml" />
+    <Content Include="Views\Artist\Edit.cshtml" />
+    <Content Include="Views\Artist\Index.cshtml" />
+    <Content Include="Views\Shared\TableHeaderPartial.cshtml" />
+    <Content Include="Views\Shared\AlbumTablePartialView.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -220,14 +228,14 @@
     <Content Include="Scripts\jquery-3.3.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202005241359509_InitialCreate.resx">
-      <DependentUpon>202005241359509_InitialCreate.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202005260439574_InitialData.resx">
+      <DependentUpon>202005260439574_InitialData.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202005252135359_AlbumModelChange.resx">
-      <DependentUpon>202005252135359_AlbumModelChange.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202005260511423_InitialData1.resx">
+      <DependentUpon>202005260511423_InitialData1.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202005252235080_AlbumModelChange1.resx">
-      <DependentUpon>202005252235080_AlbumModelChange1.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202005260752351_VariousModelChange.resx">
+      <DependentUpon>202005260752351_VariousModelChange.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

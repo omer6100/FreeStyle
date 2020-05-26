@@ -3,16 +3,16 @@
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class AlbumModelChange1 : DbMigration
+    public partial class VariousModelChange : DbMigration
     {
         public override void Up()
         {
-            AddColumn("dbo.Album", "ArtistId", c => c.Int(nullable: false));
+            AddColumn("dbo.Artist", "AvgScore", c => c.Double(nullable: false));
         }
         
         public override void Down()
         {
-            DropColumn("dbo.Album", "ArtistId");
+            DropColumn("dbo.Artist", "AvgScore");
         }
     }
 }

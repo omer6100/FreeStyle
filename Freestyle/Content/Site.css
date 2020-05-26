@@ -30,5 +30,12 @@ textarea {
 }
 
 section {
+    margin-top: 10px;
     margin-bottom: 25px;
 }
+
+.rating-avg {
+    font-size: 64px;
+    text-align: center;
+}
+

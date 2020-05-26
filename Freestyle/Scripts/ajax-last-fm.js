@@ -1,8 +1,8 @@
-﻿var key = "e178f40cea3ee8e7deaaa8b69128089f";
+﻿var LastFmKey = "e178f40cea3ee8e7deaaa8b69128089f";
 
 function getAlbumInfo(title, artist) {
     $.getJSON(
-        "https://ws.audioscrobbler.com/2.0/?method=album.getinfo&api_key=" + key + "&artist=" + artist + "&album=" + title + "&autocorrect=1&format=json",
+        "https://ws.audioscrobbler.com/2.0/?method=album.getinfo&api_key=" + LastFmKey + "&artist=" + artist + "&album=" + title + "&autocorrect=1&format=json",
         function(json) {
             var alt = json.album.name.split(" ").join("") + "AlbumArt";
             var src = json.album.image[4]["#text"];
@@ -27,17 +27,24 @@ function getAlbumInfo(title, artist) {
         });
 }
 
-function getArtist(name) {
-    $.getJSON("https://ws.audioscrobbler.com/2.0/?method=artist.gettopalbums&artist=" + name + "&api_key="+ key+"&autocorrect=1&limit=1&format=json",
+function getArtistInfo(name) {
+    $.getJSON("https://ws.audioscrobbler.com/2.0/?method=artist.gettopalbums&artist=" + name + "&api_key="+ LastFmKey+"&autocorrect=1&limit=10&format=json",
         function (json) {
-
-            var alt = json.topalbums.album[0].name.split(" ").join("");
-            var src = json.topalbums.album[0].image[3]["#text"];
+            var i = Math.floor(Math.random() * 10) % 10;
+            var src = json.topalbums.album[i].image[3]["#text"];
+            var alt = name + "Picture";
 
             $("#img").html("<img alt = " + alt + " src = " + src + ">");
 
-            $("#info").html("<h2><b>" +json.topalbums.album[0].artist.name + "</b></h2>");
+        });
 
+    $.getJSON("https://ws.audioscrobbler.com/2.0/?method=artist.getinfo&artist=" +
+            name +
+            "&api_key=" +
+            LastFmKey +
+            "&autocorrect=1&format=json",
+        function(json) {
+            $("#bio").html(json.artist.bio.summary);
         });
 }
 
@@ -50,14 +57,14 @@ function strPadLeft(string, padding, length) {
     return (new Array(length + 1).join(padding) + string).slice(-length);
 }
 
-function addStars(rating) {
-    var starCount = Math.flor(rating);
-
-    for (var i = 0; i < 5; i++) {
-        if (i < starCount) {
-            $("#ratingStars").append("<span class='glyphicon glyphicon-star'></span>");
-        } else {
-            $("#ratingStars").append("<span class='glyphicon glyphicon-star-empty'></span>");
-        }
-    }
-}
+//function addStars(rating) {
+//    var starCount = Math.floor(rating);
+//
+//    for (var i = 0; i < 5; i++) {
+//        if (i < starCount) {
+//            $("#ratingStars").append("<span class='glyphicon glyphicon-star'></span>");
+//        } else {
+//            $("#ratingStars").append("<span class='glyphicon glyphicon-star-empty'></span>");
+//        }
+//    }
+//}

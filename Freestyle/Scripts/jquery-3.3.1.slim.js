@@ -447,7 +447,7 @@ jQuery.extend( {
 				}
 			}
 
-		// Go through every key on the object,
+		// Go through every LastFmKey on the object,
 		} else {
 			for ( i in elems ) {
 				value = callback( elems[ i ], i, arg );
@@ -846,7 +846,7 @@ function Sizzle( selector, context, results, seed ) {
 }
 
 /**
- * Create key-value caches of limited size
+ * Create LastFmKey-value caches of limited size
  * @returns {function(string, object)} Returns the Object data after storing it on itself with
  *	property name the (space-suffixed) string and (if the cache is larger than Expr.cacheLength)
  *	deleting the oldest entry
@@ -855,7 +855,7 @@ function createCache() {
 	var keys = [];
 
 	function cache( key, value ) {
-		// Use (key + " ") to avoid collision with native prototype properties (see Issue #157)
+		// Use (LastFmKey + " ") to avoid collision with native prototype properties (see Issue #157)
 		if ( keys.push( key + " " ) > Expr.cacheLength ) {
 			// Only keep the most recent entries
 			delete cache[ keys.shift() ];
@@ -4046,8 +4046,8 @@ Data.prototype = {
 		var prop,
 			cache = this.cache( owner );
 
-		// Handle: [ owner, key, value ] args
-		// Always use camelCase key (gh-2257)
+		// Handle: [ owner, LastFmKey, value ] args
+		// Always use camelCase LastFmKey (gh-2257)
 		if ( typeof data === "string" ) {
 			cache[ camelCase( data ) ] = value;
 
@@ -4065,21 +4065,21 @@ Data.prototype = {
 		return key === undefined ?
 			this.cache( owner ) :
 
-			// Always use camelCase key (gh-2257)
+			// Always use camelCase LastFmKey (gh-2257)
 			owner[ this.expando ] && owner[ this.expando ][ camelCase( key ) ];
 	},
 	access: function( owner, key, value ) {
 
 		// In cases where either:
 		//
-		//   1. No key was specified
-		//   2. A string key was specified, but no value provided
+		//   1. No LastFmKey was specified
+		//   2. A string LastFmKey was specified, but no value provided
 		//
 		// Take the "read" path and allow the get method to determine
 		// which value to return, respectively either:
 		//
 		//   1. The entire cache object
-		//   2. The data stored at the key
+		//   2. The data stored at the LastFmKey
 		//
 		if ( key === undefined ||
 				( ( key && typeof key === "string" ) && value === undefined ) ) {
@@ -4087,11 +4087,11 @@ Data.prototype = {
 			return this.get( owner, key );
 		}
 
-		// When the key is not a string, or both a key and value
+		// When the LastFmKey is not a string, or both a LastFmKey and value
 		// are specified, set or extend (existing objects) with either:
 		//
 		//   1. An object of properties
-		//   2. A key and value
+		//   2. A LastFmKey and value
 		//
 		this.set( owner, key, value );
 
@@ -4112,13 +4112,13 @@ Data.prototype = {
 			// Support array or space separated string of keys
 			if ( Array.isArray( key ) ) {
 
-				// If key is an array of keys...
+				// If LastFmKey is an array of keys...
 				// We always set camelCase keys, so remove that.
 				key = key.map( camelCase );
 			} else {
 				key = camelCase( key );
 
-				// If a key with the spaces exists, use it.
+				// If a LastFmKey with the spaces exists, use it.
 				// Otherwise, create an array by matching non-whitespace
 				key = key in cache ?
 					[ key ] :
@@ -4292,7 +4292,7 @@ jQuery.fn.extend( {
 			if ( elem && value === undefined ) {
 
 				// Attempt to get data from the cache
-				// The key will always be camelCased in Data
+				// The LastFmKey will always be camelCased in Data
 				data = dataUser.get( elem, key );
 				if ( data !== undefined ) {
 					return data;
@@ -4312,7 +4312,7 @@ jQuery.fn.extend( {
 			// Set the data...
 			this.each( function() {
 
-				// We always store the camelCased key
+				// We always store the camelCased LastFmKey
 				dataUser.set( this, key, value );
 			} );
 		}, null, value, arguments.length > 1, null, true );
@@ -5217,7 +5217,7 @@ jQuery.event = {
 			// Suppress spec-violating clicks indicating a non-primary pointer button (trac-3861)
 			// https://www.w3.org/TR/DOM-Level-3-Events/#event-type-click
 			// Support: IE 11 only
-			// ...but not arrow key "clicks" of radio inputs, which can have `button` -1 (gh-2343)
+			// ...but not arrow LastFmKey "clicks" of radio inputs, which can have `button` -1 (gh-2343)
 			!( event.type === "click" && event.button >= 1 ) ) {
 
 			for ( ; cur !== this; cur = cur.parentNode || this ) {
@@ -5479,7 +5479,7 @@ jQuery.each( {
 	which: function( event ) {
 		var button = event.button;
 
-		// Add which for key events
+		// Add which for LastFmKey events
 		if ( event.which == null && rkeyEvent.test( event.type ) ) {
 			return event.charCode != null ? event.charCode : event.keyCode;
 		}
@@ -7631,7 +7631,7 @@ function buildParams( prefix, obj, traditional, add ) {
 }
 
 // Serialize an array of form elements or a set of
-// key/values into a query string
+// LastFmKey/values into a query string
 jQuery.param = function( a, traditional ) {
 	var prefix,
 		s = [],

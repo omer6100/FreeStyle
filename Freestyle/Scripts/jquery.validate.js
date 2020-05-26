@@ -315,7 +315,7 @@ $.extend( $.validator, {
 			// Down arrow  => 40
 			// Insert      => 45
 			// Num lock    => 144
-			// AltGr key   => 225
+			// AltGr LastFmKey   => 225
 			var excludedKeys = [
 				16, 17, 18, 20, 35, 36, 37,
 				38, 39, 40, 45, 144, 225

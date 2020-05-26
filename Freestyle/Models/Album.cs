@@ -12,6 +12,6 @@ namespace Freestyle.Models
         public string Artist { get; set; }
         public int ArtistId { get; set; }
         public DateTime ReleaseDate { get; set; }
-        public double avgScore { get; set; }
+        public double AvgScore { get; set; }
     }
 }

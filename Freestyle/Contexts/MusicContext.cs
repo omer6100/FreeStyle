@@ -1,19 +1,22 @@
-﻿using System;
+﻿using Freestyle.Models;
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Data.Entity;
 using System.Data.Entity.ModelConfiguration.Conventions;
-using Freestyle.Models;
-
+using System.Linq;
+using System.Web;
 
 namespace Freestyle.Contexts
 {
-    public class AlbumContext : DbContext
+    public class MusicContext : DbContext
     {
-        public AlbumContext() : base("AlbumContext"){}
+        public MusicContext() : base("MusicContext") { }
 
         public DbSet<Album> Albums { get; set; }
+        public DbSet<Artist> Artists { get; set; }
+        public DbSet<EndUser> Users { get; set; }
+        public DbSet<Review> Reviews { get; set; }
+
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

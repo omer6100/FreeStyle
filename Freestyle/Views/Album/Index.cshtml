@@ -1,46 +1,15 @@
 ﻿@model IEnumerable<Freestyle.Models.Album>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Albums";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<br/>
-<h2>Albums</h2>
+@Html.Partial("TableHeaderPartial")
+
+@Html.Partial("AlbumTablePartialView", Model)
 
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
-<table class="table table-striped">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Title)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Artist)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ReleaseDate)
-        </th>
-        <th></th>
-    </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.ActionLink(item.Title, "Details", "Album", new {id=item.Id}, null)
-        </td>
-        <td>
-            @* @Html.ActionLink(item.Artist, "ShowArtist", "Artist", item.Artist, null) *@
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ReleaseDate)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
-        </td>
-    </tr>
-}
-
-</table>
