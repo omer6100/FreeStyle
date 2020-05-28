@@ -48,16 +48,50 @@ namespace Freestyle.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Title,Artist,ReleaseDate")] Album album)
+        public ActionResult Create([Bind(Include = "Title,Artist,ReleaseDate")] Album album)
         {
             if (ModelState.IsValid)
             {
-                db.Albums.Add(album);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                var existingAlbum = db.Albums.Where(a => a.Title == album.Title && a.Artist == album.Artist)
+                    .Select(a => new {a.Id}).SingleOrDefault();
+
+                if (existingAlbum == null)
+                {
+                    var existingArtist = db.Artists.Where(a => a.Name == album.Artist).
+                        Select(a => new {a.Id}).SingleOrDefault();
+
+                    if (existingArtist == null)
+                    {
+                        db.Artists.Add(new Artist {Name = album.Artist});
+                        db.SaveChanges();
+
+                        album.ArtistId = db.Artists.Where(a=>a.Name == album.Artist).Select(a=>new{a.Id}).SingleOrDefault().Id;
+                        db.Albums.Add(album);
+                        db.SaveChanges();
+                       
+                        var albumId = db.Albums.Where(a => a.Title == album.Title && a.Artist == album.Artist && a.ReleaseDate == album.ReleaseDate)
+                            .Select(a => new { a.Id }).SingleOrDefault();
+
+                        return RedirectToAction("Details", new {id = albumId.Id});
+                        //return Details(albumId);
+                    }
+                    else
+                    {
+                        album.ArtistId = existingArtist.Id;
+                        int? albumId = db.Albums.Add(album).Id;
+
+                        db.SaveChanges();
+                        return RedirectToAction("Details", new { id = albumId });
+                    }
+                }
+                else
+                {
+                    int? albumId =existingAlbum.Id;
+                    return RedirectToAction("Details", new { id = albumId });
+                }
             }
 
-            return View(album);
+            return Index();
         }
 
         // GET: Album/Edit/5

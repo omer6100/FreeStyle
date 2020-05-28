@@ -8,7 +8,7 @@ function getAlbumInfo(title, artist) {
             var src = json.album.image[4]["#text"];
             var util = {sum:0};
 
-            $("#img").html("<img alt = " + alt + " src = " + src + ">");
+            $("#img").html("<img id='album-art' alt = " + alt + " src = " + src + ">");
             $("#bio").html(json.album.wiki.summary);
 
             json.album.tracks.track.forEach(function(song){
@@ -34,7 +34,7 @@ function getArtistInfo(name) {
             var src = json.topalbums.album[i].image[3]["#text"];
             var alt = name + "Picture";
 
-            $("#img").html("<img alt = " + alt + " src = " + src + ">");
+            $("#img").html("<img id='album-art' alt = " + alt + " src = " + src + ">");
 
         });
 

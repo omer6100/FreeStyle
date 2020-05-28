@@ -39,7 +39,7 @@ section {
     text-align: center;
 }
 
-.album-art {
+#album-art {
     display: block;
     margin-left: auto;
     margin-right: auto;
