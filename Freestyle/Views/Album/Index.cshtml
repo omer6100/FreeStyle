@@ -1,15 +1,30 @@
 ﻿@model IEnumerable<Freestyle.Models.Album>
 
 @{
-    ViewBag.Title = "Albums";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+                /**/
+
+                ViewBag.Title = "Albums";
+                Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-@Html.Partial("TableHeaderPartial")
+<h1>All Albums</h1>
 
-@Html.Partial("AlbumTablePartialView", Model)
+<section>
+    @Html.Partial("AlbumTablePartialView", Model)
+</section>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
 
+
+@section Scripts{
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#albums-table').DataTable({
+                "order": [0, 'asc'],
+                "language": {
+                    "zeroRecords": 'No Matching Records Found. Would You Like To @Html.ActionLink("Create a New Album", "Create")?'
+                }
+            });
+        });
+    </script>
+
+}

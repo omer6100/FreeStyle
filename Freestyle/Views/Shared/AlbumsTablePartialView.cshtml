@@ -1,20 +1,20 @@
 ﻿@model IEnumerable<Freestyle.Models.Album>
 
 <section>
-    <table class="table table-striped" id="albums-table">
+    <table class="table table-striped">
         <thead>
             <tr>
                 <th>
-                    @Html.DisplayNameFor(model => model.Title)
+                    @Html.ActionLink("Album Title", "Index", "Album", new { sortOrder = ViewBag.NameSortParam }, null)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.Artist)
+                    @Html.ActionLink("Artist", "Index", "Album", new { sortOrder = ViewBag.ArtistSortParam }, null)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.ReleaseDate)
+                    @Html.ActionLink("Release Date", "Index", "Album", new { sortOrder = ViewBag.DateSortParam }, null)
                 </th>
                 <th>
-                    Average Score
+                    @Html.ActionLink("Score", "Index", "Album", new { sortOrder = ViewBag.ScoreSortParam }, null)
                 </th>
                 <th>Actions</th>
             </tr>
@@ -27,7 +27,7 @@
                     @Html.ActionLink(item.Title, "Details", "Album", new { id = item.Id }, null)
                 </td>
                 <td>
-                    @Html.ActionLink(item.Artist, "Details", "Artist", new { id = item.ArtistId }, null)
+                    @Html.ActionLink(item.Artist, "Details", "Artist", new{ id = item.ArtistId}, null)
                 </td>
                 <td>
                     @item.ReleaseDate.ToString("d")
@@ -36,15 +36,11 @@
                     @item.AvgScore / 10
                 </td>
                 <td>
-                    @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-                    @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                    @Html.ActionLink("Edit", "Edit", "Album",new { id = item.Id }, null) |
+                    @Html.ActionLink("Delete", "Delete", "Album",new { id = item.Id },null)
                 </td>
             </tr>
         }
 
     </table>
 </section>
-
-
-
-

@@ -1,5 +1,6 @@
 ﻿using System.Web;
 using System.Web.Optimization;
+using System.Web.UI.WebControls;
 
 namespace Freestyle
 {
@@ -25,6 +26,7 @@ namespace Freestyle
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap-pulse.css",
                       "~/Content/site.css"));
+
         }
     }
 }
