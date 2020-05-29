@@ -19,12 +19,17 @@
     <script type="text/javascript">
         $(document).ready(function() {
             $('#albums-table').DataTable({
-                "order": [0, 'asc'],
                 "language": {
-                    "zeroRecords": 'No Matching Records Found. Would You Like To @Html.ActionLink("Create a New Album", "Create")?'
-                }
-            });
+                    "zeroRecords": 'No Matching Records Found.<br>Would You Like To @Html.ActionLink("Create a New Album", "Create")?'
+                },
+                "columnDefs": [
+                    { "targets": 2, "type": "date" },
+                    { "targets" : [3,4], "type": "num"},
+                    { "targets": 5, "orderable": false }
+                ]
+
         });
+    });
     </script>
 
 }

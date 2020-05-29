@@ -18,7 +18,7 @@ namespace Freestyle.Controllers
         // GET: Album
         public ActionResult Index()
         {
-            return View(db.Albums.ToList());
+            return View(db.Albums.ToList().OrderBy(a=>a.Title));
         }
 
         // GET: Album/Details/5
@@ -33,7 +33,11 @@ namespace Freestyle.Controllers
             {
                 return HttpNotFound();
             }
+
+            album.PageViews++;
+            db.SaveChanges();
             return View(album);
+
         }
 
 
