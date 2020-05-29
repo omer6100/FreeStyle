@@ -1,15 +1,16 @@
 ﻿@model Freestyle.Models.Artist
 
 @{
-    ViewBag.Title = "Details";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+                /**/
+
+                ViewBag.Title = Model.Name;
+                Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 
 <div class="row">
     <div class="col-md-4">
-        <section id="img">
-        </section>
+        <section id="img"></section>
         <hr />
         <section id="score-slider">
             <h2 class="rating-avg"></h2>
@@ -28,10 +29,12 @@
                 @Html.ActionLink(@Model.Name, "Details", "Artist", @Model.Id, null)
             </h1>
         </section>
-        <hr/>
-        <section id="bio"></section>
+        <hr />
+        <h3>Synopsis</h3>
+        <section id="bio">
+        </section>
+        <h3>Discography</h3>
         <section>
-            <h3>Discography</h3>
             @Html.Action("GetDiscog", Model.Id)
         </section>
     </div>
@@ -51,7 +54,22 @@
         $(document).ready(function () {
             var artistName = "@Model.Name";
             getArtistInfo(artistName);
-            
+
+        });
+    </script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#albums-table').DataTable({
+                "language": {
+                    "zeroRecords": 'No Matching Records Found.<br>Would You Like To @Html.ActionLink("Create a New Album", "Create")?'
+                },
+                "columnDefs": [
+                    { "targets": 2, "type": "date" },
+                    { "targets" : [3,4], "type": "num"},
+                    { "targets": 5, "orderable": false }
+                ]
+
+            });
         });
     </script>
 }

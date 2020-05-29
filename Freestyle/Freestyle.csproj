@@ -155,6 +155,14 @@
     <Compile Include="Migrations\202005281800229_album1.designer.cs">
       <DependentUpon>202005281800229_album1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202005290601381_albumModelChanges.cs" />
+    <Compile Include="Migrations\202005290601381_albumModelChanges.designer.cs">
+      <DependentUpon>202005290601381_albumModelChanges.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202005290705293_ArtistModelChange.cs" />
+    <Compile Include="Migrations\202005290705293_ArtistModelChange.designer.cs">
+      <DependentUpon>202005290705293_ArtistModelChange.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Album.cs" />
     <Compile Include="Models\Artist.cs" />
@@ -252,6 +260,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202005281800229_album1.resx">
       <DependentUpon>202005281800229_album1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202005290601381_albumModelChanges.resx">
+      <DependentUpon>202005290601381_albumModelChanges.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202005290705293_ArtistModelChange.resx">
+      <DependentUpon>202005290705293_ArtistModelChange.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

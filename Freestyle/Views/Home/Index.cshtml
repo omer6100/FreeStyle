@@ -4,14 +4,47 @@
 
 <br/>
 
-<div class="row">
-    <div class="col-md-4">
-        <h2>Most Popular Albums</h2>
-    </div>
-    <div class="col-md-4">
-        <h2>Best Reviewed Artists</h2>
-    </div>
-    <div class="col-md-4">
-        <h2>Recent Reviews</h2>
-    </div>
-</div>
+@* <div class="row"> *@
+@*     <div class="col-md-4"> *@
+@*         *@
+@*     </div> *@
+@*     <div class="col-md-4"> *@
+@*         <h2>Best Reviewed Artists</h2> *@
+@*     </div> *@
+@*     <div class="col-md-4"> *@
+@*         <h2>Recent Reviews</h2> *@
+@*     </div> *@
+@* </div> *@
+
+<section >
+    <h2>Most Popular Albums</h2>
+    @Html.Action("GetAlbumsPartial", "Album")
+</section>
+<hr/>
+<section>
+    <h2>Best Reviewed Artists</h2>
+</section>
+<hr />
+<section>
+    <h2>Recent Reviews</h2>
+</section>
+
+@section Scripts
+{
+<script type="text/javascript">
+        $(document).ready(function() {
+            $('#albums-table').DataTable({
+                "order":[3, 'desc'],
+                "language": {
+                    "zeroRecords": 'No Matching Records Found.<br>Would You Like To @Html.ActionLink("Create a New Album", "Create", "Album")?'
+                },
+                "columnDefs": [
+                    { "targets": 2, "type": "date" },
+                    { "targets" : [3,4], "type": "num"},
+                    { "targets": 5, "orderable": false }
+                ]
+
+            });
+        });
+</script>
+}

@@ -2,6 +2,8 @@
 @model Freestyle.Models.Album
 
 @{
+    /**/
+
     ViewBag.Title = @Model.Title + " by " + @Model.Artist;
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
@@ -9,7 +11,7 @@
 <div class="row">
     <div class="col-md-4">
         <section id="img"></section>
-        <hr/>
+        <hr />
         <section id="score-slider">
             <h2 class="rating-avg"></h2>
             <div class="progress">
@@ -31,21 +33,21 @@
                 @Html.ActionLink(@Model.Title, "Details", "Album", new { id = @Model.Id }, null) by
                 @Html.ActionLink(@Model.Artist, "Details", "Artist", new { id = @Model.ArtistId }, null)
             </h1>
-            <h5>Released on @Model.ReleaseDate.ToString("D")</h5>
+            <h5>@Model.Genre Album, Released on @Model.ReleaseDate.ToString("D")</h5>
         </section>
-        <hr/>
+        <hr />
+        <h3>Synopsis</h3>
         <section id="bio"></section>
+        <h3>Track List</h3>
         <section>
-            <h3>Track List</h3>
             <table class="table table-striped">
                 <thead>
-                <tr>
-                    <th>Track Name</th>
-                    <th>Length</th>
-                </tr>
+                    <tr>
+                        <th>Track Name</th>
+                        <th>Length</th>
+                    </tr>
                 </thead>
-                <tbody id ="tracklist">
-                </tbody>
+                <tbody id="tracklist"></tbody>
                 <tfoot id="totalDuration"></tfoot>
             </table>
         </section>
@@ -69,4 +71,6 @@
             getAlbumInfo(title, artistName);
         });
     </script>
+    
 }
+

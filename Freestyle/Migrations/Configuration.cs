@@ -25,7 +25,8 @@
                         Title = "Future Nostalgia",
                         AvgScore = 8.0,
                         ReleaseDate = new DateTime(2020, 3, 27),
-                        ArtistId = 5
+                        ArtistId = 5,
+                        Genre="Pop"
                     },
                     new Album
                     {
@@ -34,7 +35,8 @@
                         Title = "Ye",
                         AvgScore = 8.57,
                         ReleaseDate = new DateTime(2018, 7, 1),
-                        ArtistId = 1
+                        ArtistId = 1,
+                        Genre="Rap"
                     },
                     new Album
                     {
@@ -43,7 +45,8 @@
                         Title = "Is This It",
                         AvgScore = 9,
                         ReleaseDate = new DateTime(2001, 7, 30),
-                        ArtistId = 3
+                        ArtistId = 3,
+                        Genre="Alternative"
                     },
                     new Album
                     {
@@ -52,7 +55,8 @@
                         Title = "Fragile",
                         AvgScore = 9.3,
                         ReleaseDate = new DateTime(1971, 11, 12),
-                        ArtistId = 2
+                        ArtistId = 2,
+                        Genre="Rock"
                     },
                     new Album
                     {
@@ -61,7 +65,8 @@
                         Title = "Discovery",
                         AvgScore = 10,
                         ReleaseDate = new DateTime(2001, 1, 22),
-                        ArtistId = 4
+                        ArtistId = 4,
+                        Genre="Electronic"
                     }
             };
 
@@ -72,23 +77,23 @@
             {
                 new Artist
                 {
-                    Id = 1, Name = "Kanye West", AvgScore = 9.5
+                    Id = 1, Name = "Kanye West", AvgScore = 9.5, OriginCountry = "United States"
                 },
                 new Artist
                 {
-                    Id = 2, Name = "Yes", AvgScore = 7.22
+                    Id = 2, Name = "Yes", AvgScore = 7.22, OriginCountry = "England"
                 },
                 new Artist
                 {
-                    Id =3, Name = "The Strokes", AvgScore = 8
+                    Id =3, Name = "The Strokes", AvgScore = 8, OriginCountry = "United States"
                 },
                 new Artist
                 {
-                    Id =4, Name = "Daft Punk", AvgScore = 9.19
+                    Id =4, Name = "Daft Punk", AvgScore = 9.19, OriginCountry = "France"
                 },
                 new Artist
                 {
-                    Id=5, Name = "Dua Lipa", AvgScore = 5.97
+                    Id=5, Name = "Dua Lipa", AvgScore = 5.97, OriginCountry = "England"
                 }
             };
 

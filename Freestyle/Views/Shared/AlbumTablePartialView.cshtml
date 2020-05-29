@@ -3,24 +3,27 @@
 <section>
     <table class="table table-striped" id="albums-table">
         <thead>
-            <tr>
-                <th>
-                    Album Title
-                </th>
-                <th>
-                   Artist Name
-                </th>
-                <th>
-                   Release Date
-                </th>
-                <th>
-                    Page Visits
-                </th>
-                <th>
-                    Average Score
-                </th>
-                <th></th>
-            </tr>
+        <tr>
+            <th>
+                Album Title
+            </th>
+            <th>
+                Artist Name
+            </th>
+            <th>
+                Release Date
+            </th>
+            <th>
+                Genre
+            </th>
+            <th>
+                Page Visits
+            </th>
+            <th>
+                Average Score
+            </th>
+            <th></th>
+        </tr>
         </thead>
 
         @foreach (var item in Model)
@@ -35,6 +38,7 @@
                 <td>
                     @item.ReleaseDate.ToString("yyyy-MM-dd")
                 </td>
+                <td>@item.Genre</td>
                 <td>
                     @item.PageViews
                 </td>
@@ -50,6 +54,8 @@
 
     </table>
 </section>
+
+
 
 
 

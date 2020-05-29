@@ -21,6 +21,16 @@ namespace Freestyle.Controllers
             return View(db.Albums.ToList().OrderBy(a=>a.Title));
         }
 
+        public IEnumerable<Album> GetAlbums()
+        {
+            return db.Albums.AsEnumerable();
+        }
+
+        public ActionResult GetAlbumsPartial()
+        {
+            return PartialView("AlbumTablePartialView", GetAlbums());
+        }
+
         // GET: Album/Details/5
         public ActionResult Details(int? id)
         {
@@ -52,7 +62,7 @@ namespace Freestyle.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Title,Artist,ReleaseDate")] Album album)
+        public ActionResult Create([Bind(Include = "Title,Artist,ReleaseDate, Genre")] Album album)
         {
             if (ModelState.IsValid)
             {
@@ -95,7 +105,7 @@ namespace Freestyle.Controllers
                 }
             }
 
-            return Index();
+            return View(album);
         }
 
         // GET: Album/Edit/5
@@ -118,7 +128,7 @@ namespace Freestyle.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Title,Artist,ReleaseDate")] Album album)
+        public ActionResult Edit([Bind(Include = "Id,Title,Artist,ReleaseDate, Genre, PageViews")] Album album)
         {
             if (ModelState.IsValid)
             {

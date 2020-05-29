@@ -125,6 +125,7 @@ namespace Freestyle.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
+            //change to Sql-Like
             var discog = db.Albums.ToList();
             discog.RemoveAll(a => a.ArtistId != id);
             if (discog == null)

@@ -1,10 +1,10 @@
 ﻿@model IEnumerable<Freestyle.Models.Album>
 
 @{
-                /**/
+    /**/
 
-                ViewBag.Title = "Albums";
-                Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Albums";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <h1>All Albums</h1>
@@ -24,12 +24,12 @@
                 },
                 "columnDefs": [
                     { "targets": 2, "type": "date" },
-                    { "targets" : [3,4], "type": "num"},
-                    { "targets": 5, "orderable": false }
+                    { "targets" : [4,5], "type": "num"},
+                    { "targets": 6, "orderable": false }
                 ]
 
+            });
         });
-    });
     </script>
 
 }
