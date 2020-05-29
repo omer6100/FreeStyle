@@ -16,7 +16,6 @@ namespace Freestyle.Models
         public string Name { get; set; }
 
         [DisplayName("Origin Country")]
-        [Required(ErrorMessage = "Origin Country is Required")]
         public string OriginCountry { get; set; }
 
 

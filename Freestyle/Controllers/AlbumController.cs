@@ -76,17 +76,15 @@ namespace Freestyle.Controllers
 
                     if (existingArtist == null)
                     {
-                        db.Artists.Add(new Artist {Name = album.Artist});
+                        var artist = new Artist{Name=album.Artist};
+                        db.Artists.Add(artist);
                         db.SaveChanges();
 
-                        album.ArtistId = db.Artists.Where(a=>a.Name == album.Artist).Select(a=>new{a.Id}).SingleOrDefault().Id;
+                        album.ArtistId = artist.Id;
                         db.Albums.Add(album);
                         db.SaveChanges();
-                       
-                        var albumId = db.Albums.Where(a => a.Title == album.Title && a.Artist == album.Artist && a.ReleaseDate == album.ReleaseDate)
-                            .Select(a => new { a.Id }).SingleOrDefault();
-
-                        return RedirectToAction("Details", new {id = albumId.Id});
+                        
+                        return RedirectToAction("Details", new {id = album.Id});
                         //return Details(albumId);
                     }
                     else

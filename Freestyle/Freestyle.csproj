@@ -163,6 +163,10 @@
     <Compile Include="Migrations\202005290705293_ArtistModelChange.designer.cs">
       <DependentUpon>202005290705293_ArtistModelChange.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202005291300444_artistModelChange2.cs" />
+    <Compile Include="Migrations\202005291300444_artistModelChange2.designer.cs">
+      <DependentUpon>202005291300444_artistModelChange2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Album.cs" />
     <Compile Include="Models\Artist.cs" />
@@ -266,6 +270,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202005290705293_ArtistModelChange.resx">
       <DependentUpon>202005290705293_ArtistModelChange.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202005291300444_artistModelChange2.resx">
+      <DependentUpon>202005291300444_artistModelChange2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
