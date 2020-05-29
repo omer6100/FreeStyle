@@ -1,40 +1,32 @@
 ﻿@model IEnumerable<Freestyle.Models.Artist>
 
 @{
-    ViewBag.Title = "Artists";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+                /**/
+
+                ViewBag.Title = "Artists";
+                Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-@Html.Partial("TableHeaderPartial")
-
+<h1>All Artists</h1>
 
 <section>
-    <table class="table table-striped">
-        <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Name)
-            </th>
-            <th>Actions</th>
-        </tr>
-        </thead>
-
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>
-                    @Html.ActionLink(item.Name, "Details", "Artist", new {id = item.Id}, null)
-                </td>
-                <td>
-                    @Html.ActionLink("Edit", "Edit", new {id = item.Id}) |
-                    @Html.ActionLink("Delete", "Delete", new {id = item.Id})
-                </td>
-            </tr>
-        }
-
-    </table>
+    @Html.Partial("ArtistTablePartialView", Model)
 </section>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
+@section Scripts{
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#artist-table').DataTable({
+                "language": {
+                    "zeroRecords": 'No Matching Records Found.<br>Would You Like To @Html.ActionLink("Create a New Album", "Create")?'
+                },
+                "columnDefs": [
+                    { "targets" : [2,3], "type": "num"},
+                    { "targets": 4, "orderable": false }
+                ]
+
+            });
+        });
+    </script>
+
+}

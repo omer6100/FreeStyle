@@ -30,6 +30,8 @@ namespace Freestyle.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Artist artist = db.Artists.Find(id);
+            artist.PageViews++;
+            db.SaveChanges();
             if (artist == null)
             {
                 return HttpNotFound();
@@ -80,7 +82,7 @@ namespace Freestyle.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Name")] Artist artist)
+        public ActionResult Edit([Bind(Include = "Id,Name,OriginCountry,PageViews")] Artist artist)
         {
             if (ModelState.IsValid)
             {

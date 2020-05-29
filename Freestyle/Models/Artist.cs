@@ -18,9 +18,11 @@ namespace Freestyle.Models
         [DisplayName("Origin Country")]
         public string OriginCountry { get; set; }
 
-
+        [DisplayName("Average Score")]
         public double AvgScore { get; set; }
-        public int PageVisits { get; set; }
+
+        [DisplayName("Page Views")]
+        public int PageViews { get; set; }
 
     }
 

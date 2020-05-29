@@ -7,7 +7,7 @@
     {
         public override void Up()
         {
-            DropColumn("dbo.Album", "PageVisits");
+            DropColumn("dbo.Album", "PageViews");
             DropColumn("dbo.Album", "Genre");
             DropColumn("dbo.Artist", "PageViews");
             DropColumn("dbo.Review", "ReviewDate");
@@ -20,7 +20,7 @@
             AddColumn("dbo.Review", "ReviewDate", c => c.DateTime(nullable: false));
             AddColumn("dbo.Artist", "PageViews", c => c.Int(nullable: false));
             AddColumn("dbo.Album", "Genre", c => c.String());
-            AddColumn("dbo.Album", "PageVisits", c => c.Int(nullable: false));
+            AddColumn("dbo.Album", "PageViews", c => c.Int(nullable: false));
         }
     }
 }

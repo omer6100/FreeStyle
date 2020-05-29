@@ -28,6 +28,7 @@
             <h1>
                 @Html.ActionLink(@Model.Name, "Details", "Artist", @Model.Id, null)
             </h1>
+            <h5>From @Model.OriginCountry</h5>
         </section>
         <hr />
         <h3>Synopsis</h3>
@@ -65,8 +66,8 @@
                 },
                 "columnDefs": [
                     { "targets": 2, "type": "date" },
-                    { "targets" : [3,4], "type": "num"},
-                    { "targets": 5, "orderable": false }
+                    { "targets" : [5,4], "type": "num"},
+                    { "targets": 6, "orderable": false }
                 ]
 
             });

@@ -167,6 +167,10 @@
     <Compile Include="Migrations\202005291300444_artistModelChange2.designer.cs">
       <DependentUpon>202005291300444_artistModelChange2.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202005291446037_artistModelChange21.cs" />
+    <Compile Include="Migrations\202005291446037_artistModelChange21.designer.cs">
+      <DependentUpon>202005291446037_artistModelChange21.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Album.cs" />
     <Compile Include="Models\Artist.cs" />
@@ -215,7 +219,6 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Artist\Artist.cshtml" />
     <Content Include="Views\Album\Create.cshtml" />
     <Content Include="Views\Album\Delete.cshtml" />
     <Content Include="Views\Album\Details.cshtml" />
@@ -231,6 +234,7 @@
     <Content Include="Views\Artist\Index.cshtml" />
     <Content Include="Views\Shared\TableHeaderPartial.cshtml" />
     <Content Include="Views\Shared\AlbumTablePartialView.cshtml" />
+    <Content Include="Views\Shared\ArtistTablePartialView.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -273,6 +277,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202005291300444_artistModelChange2.resx">
       <DependentUpon>202005291300444_artistModelChange2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202005291446037_artistModelChange21.resx">
+      <DependentUpon>202005291446037_artistModelChange21.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

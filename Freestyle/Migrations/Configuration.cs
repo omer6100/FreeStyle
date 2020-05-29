@@ -20,7 +20,7 @@
                 {
                     new Album
                     {
-                        Id = 1,
+                        Id = 43,
                         Artist = "Dua Lipa",
                         Title = "Future Nostalgia",
                         AvgScore = 8.0,

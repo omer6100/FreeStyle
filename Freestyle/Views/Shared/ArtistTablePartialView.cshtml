@@ -1,0 +1,43 @@
+﻿@model IEnumerable<Freestyle.Models.Artist>
+
+<table class="table table-striped" id="artist-table">
+    <thead>
+    <tr>
+    <th>
+        @Html.DisplayNameFor(model => model.Name)
+    </th>
+    <th>
+        @Html.DisplayNameFor(model => model.OriginCountry)
+    </th>
+    <th>
+        @Html.DisplayNameFor(model => model.AvgScore)
+    </th>
+    <th>
+        @Html.DisplayNameFor(model => model.PageViews)
+    </th>
+    <th></th>
+    </tr>
+</thead>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.ActionLink(item.Name, "Details", "Artist", new {id=item.Id}, null)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.OriginCountry)
+        </td>
+        <td>
+            @String.Format("{0:F1}", item.AvgScore)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PageViews)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+        </td>
+    </tr>
+}
+
+</table>
