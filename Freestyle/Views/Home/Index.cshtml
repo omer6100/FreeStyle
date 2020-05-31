@@ -34,14 +34,14 @@
 <script type="text/javascript">
         $(document).ready(function() {
             $('#albums-table').DataTable({
-                "order":[3, 'desc'],
+                "order":[4, 'desc'],
                 "language": {
                     "zeroRecords": 'No Matching Records Found.<br>Would You Like To @Html.ActionLink("Create a New Album", "Create", "Album")?'
                 },
                 "columnDefs": [
                     { "targets": 2, "type": "date" },
-                    { "targets" : [3,4], "type": "num"},
-                    { "targets": 5, "orderable": false }
+                    { "targets" : [4,5], "type": "num"},
+                    { "targets": 6, "orderable": false }
                 ]
 
             });

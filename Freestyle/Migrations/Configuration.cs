@@ -121,23 +121,23 @@
             {
                 new EndUser()
                 {
-                    Id = 0, Username = "admin"
+                    Id = 0, Username = "admin", Email = "admin@freestyle.com", Password = "adm1nPassword"
                 },
                 new EndUser()
                 {
-                    Id = 1, Username = "Julian"
+                    Id = 1, Username = "Julian", Email = "JulianCaz@Strokes.com", Password = "Julian1988"
                 },
                 new EndUser()
                 {
-                    Id = 2, Username = "FrenchHouseLover"
+                    Id = 2, Username = "FrenchHouseLover", Email = "Guy@Manuel.com"
                 },
                 new EndUser()
                 {
-                    Id = 3, Username = "omerh"
+                    Id = 3, Username = "omerh", Email = "omer@freestyle.com", Password = "omer1234"
                 },
                 new EndUser()
                 {
-                    Id =4 , Username = "shmuelyo"
+                    Id =4 , Username = "shmuelyo", Email = "joseph@freestyle.com", Password="joseph5678"
                 }
             };
 

@@ -130,6 +130,7 @@
     <Compile Include="Contexts\MusicContext.cs" />
     <Compile Include="Controllers\AlbumController.cs" />
     <Compile Include="Controllers\ArtistController.cs" />
+    <Compile Include="Controllers\EndUserController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="DAL\DbInitializer.cs" />
     <Compile Include="Global.asax.cs">
@@ -170,6 +171,18 @@
     <Compile Include="Migrations\202005291446037_artistModelChange21.cs" />
     <Compile Include="Migrations\202005291446037_artistModelChange21.designer.cs">
       <DependentUpon>202005291446037_artistModelChange21.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202005310529157_userTime.cs" />
+    <Compile Include="Migrations\202005310529157_userTime.designer.cs">
+      <DependentUpon>202005310529157_userTime.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202005310540573_UserModelChang.cs" />
+    <Compile Include="Migrations\202005310540573_UserModelChang.designer.cs">
+      <DependentUpon>202005310540573_UserModelChang.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202005310552547_UserModelChanges.cs" />
+    <Compile Include="Migrations\202005310552547_UserModelChanges.designer.cs">
+      <DependentUpon>202005310552547_UserModelChanges.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Album.cs" />
@@ -235,6 +248,11 @@
     <Content Include="Views\Shared\TableHeaderPartial.cshtml" />
     <Content Include="Views\Shared\AlbumTablePartialView.cshtml" />
     <Content Include="Views\Shared\ArtistTablePartialView.cshtml" />
+    <Content Include="Views\EndUser\Create.cshtml" />
+    <Content Include="Views\EndUser\Delete.cshtml" />
+    <Content Include="Views\EndUser\Details.cshtml" />
+    <Content Include="Views\EndUser\Edit.cshtml" />
+    <Content Include="Views\EndUser\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -280,6 +298,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202005291446037_artistModelChange21.resx">
       <DependentUpon>202005291446037_artistModelChange21.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202005310529157_userTime.resx">
+      <DependentUpon>202005310529157_userTime.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202005310540573_UserModelChang.resx">
+      <DependentUpon>202005310540573_UserModelChang.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202005310552547_UserModelChanges.resx">
+      <DependentUpon>202005310552547_UserModelChanges.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

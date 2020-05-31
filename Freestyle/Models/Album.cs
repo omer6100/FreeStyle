@@ -10,6 +10,7 @@ namespace Freestyle.Models
 {
     public class Album
     {
+        [Key]
         public int Id { get; set; }
 
         [DisplayName("Album Title")]
@@ -31,7 +32,10 @@ namespace Freestyle.Models
         [Required(ErrorMessage = "Genre is Required")]
         public string Genre { get; set; }
 
+        [DisplayName("Average Score")]
         public double AvgScore { get; set; }
+
+        [DisplayName("Page Views")]
         public int PageViews { get; set; }
     }
 }

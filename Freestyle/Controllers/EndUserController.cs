@@ -8,137 +8,135 @@ using System.Web;
 using System.Web.Mvc;
 using Freestyle.Contexts;
 using Freestyle.Models;
-using WebGrease.Css.Extensions;
 
 namespace Freestyle.Controllers
 {
-    public class ArtistController : Controller
+    public class EndUserController : Controller
     {
         private MusicContext db = new MusicContext();
 
-        // GET: Artists
+        // GET: EndUser
         public ActionResult Index()
         {
-            return View(db.Artists.ToList());
+            return View(db.Users.ToList());
         }
 
-        // GET: Artists/Details/5
+        // GET: EndUser/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Artist artist = db.Artists.Find(id);
-            if (artist == null)
+            EndUser endUser = db.Users.Find(id);
+            if (endUser == null)
             {
                 return HttpNotFound();
             }
-            artist.PageViews++;
-            db.SaveChanges();
-            return View(artist);
+            return View(endUser);
         }
 
-        // GET: Artists/Create
+
+        // GET: EndUser/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Artists/Create
+        // POST: EndUser/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Name, OriginCountry")] Artist artist)
+        public ActionResult Create([Bind(Include = "Id,Email,Password,Username")] EndUser endUser)
         {
             if (ModelState.IsValid)
             {
-                var existingArtist = db.Artists.Where(a => a.Name == artist.Name && a.OriginCountry == artist.OriginCountry)
-                    .Select(a => new {a.Id}).SingleOrDefault();
-                if (existingArtist == null)
+                var validInput = db.Users.Where(u => u.Username == endUser.Username || u.Email == endUser.Email)
+                    .ToList();
+                if (validInput.Count > 0)
                 {
-                    db.Artists.Add(artist);
-                    db.SaveChanges();
-                    return RedirectToAction("Details", new {id = artist.Id});
+                    return View(endUser);
                 }
-
-                return RedirectToAction("Details", new { id = existingArtist.Id });
+                db.Users.Add(endUser);
+                db.SaveChanges();
+                return RedirectToAction("Index", "Home");
             }
 
-            return View(artist);
+            return View(endUser);
+
         }
 
-        // GET: Artists/Edit/5
+        public ActionResult LogIn()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult LogIn([Bind(Include = "Username, Password")] EndUser endUser)
+        {
+            if (ModelState.IsValid)
+            {
+                var existingUser =
+                    db.Users.Where(u => u.Username == endUser.Username && u.Password == endUser.Password);
+            }
+        }
+        // GET: EndUser/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Artist artist = db.Artists.Find(id);
-            if (artist == null)
+            EndUser endUser = db.Users.Find(id);
+            if (endUser == null)
             {
                 return HttpNotFound();
             }
-            return View(artist);
+            return View(endUser);
         }
 
-        // POST: Artists/Edit/5
+        // POST: EndUser/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Name,OriginCountry,PageViews")] Artist artist)
+        public ActionResult Edit([Bind(Include = "Id,Email,Password,Username")] EndUser endUser)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(artist).State = EntityState.Modified;
+                db.Entry(endUser).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(artist);
+            return View(endUser);
         }
 
-        // GET: Artists/Delete/5
+        // GET: EndUser/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Artist artist = db.Artists.Find(id);
-            if (artist == null)
+            EndUser endUser = db.Users.Find(id);
+            if (endUser == null)
             {
                 return HttpNotFound();
             }
-            return View(artist);
+            return View(endUser);
         }
 
-        // POST: Artists/Delete/5
+        // POST: EndUser/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Artist artist = db.Artists.Find(id);
-            db.Artists.Remove(artist);
+            EndUser endUser = db.Users.Find(id);
+            db.Users.Remove(endUser);
             db.SaveChanges();
             return RedirectToAction("Index");
-        }
-
-
-        public ActionResult GetDiscog(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-
-
-            var discog = db.Albums.Where(a => a.ArtistId == id).ToList();
-
-            
-            return PartialView("AlbumTablePartialView",discog);
         }
 
         protected override void Dispose(bool disposing)

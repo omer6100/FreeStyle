@@ -76,7 +76,7 @@ namespace Freestyle.Controllers
 
                     if (existingArtist == null)
                     {
-                        var artist = new Artist{Name=album.Artist};
+                        var artist = new Artist{Name=album.Artist, OriginCountry = "Not Available"};
                         db.Artists.Add(artist);
                         db.SaveChanges();
 
@@ -90,10 +90,10 @@ namespace Freestyle.Controllers
                     else
                     {
                         album.ArtistId = existingArtist.Id;
-                        int? albumId = db.Albums.Add(album).Id;
+                        db.Albums.Add(album);
 
                         db.SaveChanges();
-                        return RedirectToAction("Details", new { id = albumId });
+                        return RedirectToAction("Details", new { id = album.Id });
                     }
                 }
                 else
