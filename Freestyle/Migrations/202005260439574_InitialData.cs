@@ -7,7 +7,14 @@
     {
         public override void Up()
         {
-            CreateTable(
+            // CreateTable("dbo.Album",
+            //         c => new
+            //         {
+            //             Id = c.Int(false, true)
+            //         })
+            //     .PrimaryKey(t => t.Id);
+
+                CreateTable(
                 "dbo.Artist",
                 c => new
                     {

@@ -4,6 +4,7 @@ using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
+using System.Security.Cryptography;
 using System.Web;
 using System.Web.Mvc;
 using Freestyle.Contexts;
@@ -37,8 +38,8 @@ namespace Freestyle.Controllers
         }
 
 
-        // GET: EndUser/Create
-        public ActionResult Create()
+        // GET: EndUser/Register
+        public ActionResult Register()
         {
             return View();
         }
@@ -48,7 +49,7 @@ namespace Freestyle.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Email,Password,Username")] EndUser endUser)
+        public ActionResult Register([Bind(Include = "Id,Email,Password,Username")] EndUser endUser)
         {
             if (ModelState.IsValid)
             {
@@ -67,28 +68,55 @@ namespace Freestyle.Controllers
 
         }
 
-        public ActionResult LogIn()
+        public ActionResult SignIn()
         {
             return View();
         }
-
+        
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult LogIn([Bind(Include = "Username, Password")] EndUser endUser)
+        public ActionResult SignIn([Bind(Include = "Email, Password")] EndUser endUser)
         {
             if (ModelState.IsValid)
             {
                 var existingUser =
-                    db.Users.Where(u => u.Username == endUser.Username && u.Password == endUser.Password);
+                    db.Users.Where(u => u.Email == endUser.Email && u.Password == endUser.Password).Select(u=>new{u.Id,u.Username}).SingleOrDefault();
+
+                if (existingUser == null)
+                {
+                    return View(endUser);
+                }
+
+                Session["UserId"] = existingUser.Id;
+                Session["Role"] = existingUser.Id == 1 ? "Admin" : "User";
+                Session["Username"] = existingUser.Username;
+                Session["Authorized"] = true;
+                return RedirectToAction("Index", "Home");
             }
+
+            return View(endUser);
         }
+
+
+        public ActionResult SignOut()
+        {
+            Session["UserId"] = null;
+            Session["Role"] = "Guest";
+            Session["Username"] = null;
+            Session["Authorized"] = false;
+
+            return RedirectToAction("Index", "Home");
+        }
+
         // GET: EndUser/Edit/5
-        public ActionResult Edit(int? id)
+        public ActionResult Update(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+            
+
             EndUser endUser = db.Users.Find(id);
             if (endUser == null)
             {
@@ -102,13 +130,13 @@ namespace Freestyle.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Email,Password,Username")] EndUser endUser)
+        public ActionResult Update([Bind(Include = "Id,Email,Password,Username")] EndUser endUser)
         {
             if (ModelState.IsValid)
             {
                 db.Entry(endUser).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", "Home");
             }
             return View(endUser);
         }

@@ -1,4 +1,5 @@
-﻿@model IEnumerable<Freestyle.Models.Album>
+﻿@using Microsoft.Ajax.Utilities
+@model IEnumerable<Freestyle.Models.Album>
 
 <section>
     <table class="table table-striped" id="albums-table">
@@ -30,10 +31,10 @@
         {
             <tr>
                 <td>
-                    @Html.ActionLink(item.Title, "Details", "Album", new { id = item.Id }, null)
+                    @Html.ActionLink(item.Title, "Details", "Album", new {id = item.Id}, null)
                 </td>
                 <td>
-                    @Html.ActionLink(item.Artist, "Details", "Artist", new { id = item.ArtistId }, null)
+                    @Html.ActionLink(item.Artist, "Details", "Artist", new {id = item.ArtistId}, null)
                 </td>
                 <td>
                     @item.ReleaseDate.ToString("yyyy-MM-dd")
@@ -45,16 +46,23 @@
                 <td>
                     @String.Format("{0:F1}", item.AvgScore)
                 </td>
-                <td>
-                    @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-                    @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                <td >
+                    | @Html.ActionLink("Write a Review", "Create", "Review", new{albumId = item.Id}, null) |
+                    <div class="admin-actions"></div>
+                    <script>
+                        $(document).ready(function() {
+                            if ("@Session["Role"].IfNotNull(r => r.Equals("Admin"))" === "True") {
+                                $(".admin-actions").html('<b>Admin Actions</b><br/>'+'@Html.ActionLink("| Edit |", "Edit", "Album", new {id = item.Id}, null)' + '<br/>' +
+                                    '@Html.ActionLink("| Delete |", "Delete", "Album", new {id = item.Id}, null)');
+                            }
+                        });
+                    </script>
                 </td>
             </tr>
         }
 
     </table>
 </section>
-
 
 
 

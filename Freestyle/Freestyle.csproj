@@ -132,7 +132,6 @@
     <Compile Include="Controllers\ArtistController.cs" />
     <Compile Include="Controllers\EndUserController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="DAL\DbInitializer.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -183,6 +182,10 @@
     <Compile Include="Migrations\202005310552547_UserModelChanges.cs" />
     <Compile Include="Migrations\202005310552547_UserModelChanges.designer.cs">
       <DependentUpon>202005310552547_UserModelChanges.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202005311723134_UserModelChanges1.cs" />
+    <Compile Include="Migrations\202005311723134_UserModelChanges1.designer.cs">
+      <DependentUpon>202005311723134_UserModelChanges1.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Album.cs" />
@@ -248,15 +251,16 @@
     <Content Include="Views\Shared\TableHeaderPartial.cshtml" />
     <Content Include="Views\Shared\AlbumTablePartialView.cshtml" />
     <Content Include="Views\Shared\ArtistTablePartialView.cshtml" />
-    <Content Include="Views\EndUser\Create.cshtml" />
+    <Content Include="Views\EndUser\SignIn.cshtml" />
     <Content Include="Views\EndUser\Delete.cshtml" />
     <Content Include="Views\EndUser\Details.cshtml" />
-    <Content Include="Views\EndUser\Edit.cshtml" />
+    <Content Include="Views\EndUser\Update.cshtml" />
     <Content Include="Views\EndUser\Index.cshtml" />
+    <Content Include="Views\EndUser\Register.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Users\" />
+    <Folder Include="Security\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -307,6 +311,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202005310552547_UserModelChanges.resx">
       <DependentUpon>202005310552547_UserModelChanges.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202005311723134_UserModelChanges1.resx">
+      <DependentUpon>202005311723134_UserModelChanges1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

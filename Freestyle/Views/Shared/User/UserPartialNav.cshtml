@@ -1,5 +1,15 @@
 ﻿<ul class="nav navbar-nav navbar-right">
-    <li class="nav-item">
-        @Html.ActionLink("Your Profile", "Profile", "User", User.Identity.Name, new { @class = "nav-link" })
+    <li class="nav-item dropdown">
+        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" id="nav-dropdown">
+            Welcome back @Session["Username"]!
+        </a>
+        <div class="dropdown-menu" aria-labelledby="nav-dropdown">
+
+                @Html.ActionLink("Your Profile", "Details", "EndUser", new { id = Session["UserId"] }, new { @class = "dropdown-item" })
+
+                @Html.ActionLink("Update Your Profile", "Update", "EndUser", new{id=Session["UserId"]}, new { @class = "dropdown-item" })
+
+                @Html.ActionLink("Sign Out", "SignOut", "EndUser", null, new { @class = "dropdown-item" })
+        </div>
     </li>
 </ul>
