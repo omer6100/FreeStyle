@@ -1,4 +1,5 @@
 ﻿var LastFmKey = "e178f40cea3ee8e7deaaa8b69128089f";
+var GoogleKey = "AIzaSyC6perw931as-fOkiSIsmVYyfeIwLyyur4";
 
 function getAlbumInfo(title, artist) {
     $.getJSON(
@@ -57,14 +58,26 @@ function strPadLeft(string, padding, length) {
     return (new Array(length + 1).join(padding) + string).slice(-length);
 }
 
-//function addStars(rating) {
-//    var starCount = Math.floor(rating);
-//
-//    for (var i = 0; i < 5; i++) {
-//        if (i < starCount) {
-//            $("#ratingStars").append("<span class='glyphicon glyphicon-star'></span>");
-//        } else {
-//            $("#ratingStars").append("<span class='glyphicon glyphicon-star-empty'></span>");
-//        }
-//    }
-//}
+function getVideo(keyword) {
+    
+
+    $.getJSON("https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=1&type=video&q=" +
+        keyword +
+        "&key=" + GoogleKey,
+        function(json) {
+            var videoId = json.items[0].id.videoId;
+            var embed = "https://www.youtube.com/embed/" + videoId;
+
+            var iframe = "<iframe width='745' height='500' src='" +
+                embed +
+                "' frameborder='0' allow='accelerometer; autoplay; encrrypted-media; gyroscope; picture-in-picture' allowfullscreen></iframe>";
+
+            $(".youtube-video").html(iframe);
+        });
+
+
+}
+
+
+
+

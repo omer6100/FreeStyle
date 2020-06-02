@@ -25,7 +25,10 @@
             <h4>Write a Review</h4>
             @* @Html.Partial("Review/WriteReviewPartial"); *@
         </section>
-
+        <section>
+            <h4>Share on Social</h4>
+            <div class="share"></div>
+        </section>
     </div>
     <div class="col-md-8">
         <section id="title">
@@ -42,14 +45,18 @@
         <section>
             <table class="table table-striped">
                 <thead>
-                    <tr>
-                        <th>Track Name</th>
-                        <th>Length</th>
-                    </tr>
+                <tr>
+                    <th>Track Name</th>
+                    <th>Length</th>
+                </tr>
                 </thead>
                 <tbody id="tracklist"></tbody>
                 <tfoot id="totalDuration"></tfoot>
             </table>
+        </section>
+        <h3>Top Video</h3>
+        <section>
+            <div class="youtube-video"></div>
         </section>
     </div>
 </div>
@@ -69,7 +76,19 @@
             var title = "@Model.Title";
             var artistName = "@Model.Artist";
             getAlbumInfo(title, artistName);
+
+            getVideo(title + " " + artistName);
         });
+    </script>
+    <script>
+        var fb = '<iframe src="https://www.facebook.com/plugins/share_button.php?href=https%3A%2F%2Flocalhost%3A50024%2FAlbum%2FDetails%3Fid%3D' + @Model.Id
+            +'&layout=button&size=large&width=77&height=28&appId" width="77" height="28" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media"></iframe>';
+        var twitter = "<a href='https://twitter.com/share?ref_src=twsrc%5Etfw' class='twitter-share-button' data-size='large' data-text='Check out this page on Freestyle - a Music Reviewing Site' data-show-count='false'>Tweet</a>" +
+            "<script async src='https://platform.twitter.com/widgets.js' charset='utf-8'>" +
+            "</scr" +
+            "ipt>";
+
+        $(".share").html(fb + twitter);
     </script>
     
 }
