@@ -187,6 +187,14 @@
     <Compile Include="Migrations\202005311723134_UserModelChanges1.designer.cs">
       <DependentUpon>202005311723134_UserModelChanges1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202006020256091_UserModelChanges2.cs" />
+    <Compile Include="Migrations\202006020256091_UserModelChanges2.designer.cs">
+      <DependentUpon>202006020256091_UserModelChanges2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202006020316147_test.cs" />
+    <Compile Include="Migrations\202006020316147_test.designer.cs">
+      <DependentUpon>202006020316147_test.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Album.cs" />
     <Compile Include="Models\Artist.cs" />
@@ -314,6 +322,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202005311723134_UserModelChanges1.resx">
       <DependentUpon>202005311723134_UserModelChanges1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202006020256091_UserModelChanges2.resx">
+      <DependentUpon>202006020256091_UserModelChanges2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202006020316147_test.resx">
+      <DependentUpon>202006020316147_test.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using Freestyle.Contexts;
 using Freestyle.Models;
+using Microsoft.Ajax.Utilities;
 using WebGrease.Css.Extensions;
 
 namespace Freestyle.Controllers
@@ -76,6 +77,11 @@ namespace Freestyle.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+
+            if (Session["Role"] == null || Session["Role"].IfNotNull(role => role.Equals("User")))
+            {
+                return RedirectToAction("Index", "Home");
+            }
             Artist artist = db.Artists.Find(id);
             if (artist == null)
             {
@@ -106,6 +112,11 @@ namespace Freestyle.Controllers
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            if (Session["Role"] == null || Session["Role"].IfNotNull(role => role.Equals("User")))
+            {
+                return RedirectToAction("Index", "Home");
             }
             Artist artist = db.Artists.Find(id);
             if (artist == null)
@@ -148,6 +159,11 @@ namespace Freestyle.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+
+        public ActionResult GetArtistsPartial()
+        {
+            return PartialView("ArtistTablePartialView", db.Artists.AsEnumerable());
         }
     }
 }

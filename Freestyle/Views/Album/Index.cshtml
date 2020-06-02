@@ -20,11 +20,11 @@
         $(document).ready(function() {
             $('#albums-table').DataTable({
                 "language": {
-                    "zeroRecords": 'No Matching Records Found.<br>Would You Like To @Html.ActionLink("Create a New Album", "Create")?'
+                    "zeroRecords": 'No Matching Records Found.<br>Would You Like To @Html.ActionLink("Add a New Album", "Create")?'
                 },
                 "columnDefs": [
                     { "targets": 2, "type": "date" },
-                    { "targets" : [4,5], "type": "num"},
+                    { "targets": [4, 5], "type": "num" },
                     { "targets": 6, "orderable": false }
                 ]
 

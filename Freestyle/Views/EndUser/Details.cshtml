@@ -1,43 +1,37 @@
 ﻿@model Freestyle.Models.EndUser
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "@" + Model.Username;
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Details</h2>
 
-<div>
-    <h4>EndUser</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Email)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Email)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Password)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Password)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Username)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Username)
-        </dd>
-
-    </dl>
+<div class="row">
+    <div class="col-md-4">
+        <section id="img"></section>
+        <hr />
+        <section id="score-slider">
+            <h2 class="rating-avg"></h2>
+            <div class="progress">
+                <div class="progress-bar" id="score-progress"></div>
+            </div>
+        </section>
+    </div>
+    <div class="col-md-8">
+        <section id="title">
+            <h1>
+                @Html.ActionLink("@" + Model.Username, "Details", Model.Id)
+            </h1>
+        </section>
+        <hr />
+        <h3>Bio</h3>
+        <section id="bio"></section>
+        <h3>Recent Reviews</h3>
+        <section>
+            @Html.Action("GetReviewsByUser", new{id=Model.Id})
+        </section>
+        <h3>Favorites</h3>
+        <div class="col-md-4"></div>
+        <div class="col-md-4"></div>
+    </div>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>

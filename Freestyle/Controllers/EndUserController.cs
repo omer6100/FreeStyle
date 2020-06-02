@@ -9,6 +9,7 @@ using System.Web;
 using System.Web.Mvc;
 using Freestyle.Contexts;
 using Freestyle.Models;
+using Microsoft.Ajax.Utilities;
 
 namespace Freestyle.Controllers
 {
@@ -115,7 +116,12 @@ namespace Freestyle.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            
+
+            if (Session["Role"] == null || !Session["UserId"].IfNotNull(userId => userId.Equals(id)))
+            {
+                return RedirectToAction("Index", "Home");
+            }
+
 
             EndUser endUser = db.Users.Find(id);
             if (endUser == null)
@@ -147,6 +153,10 @@ namespace Freestyle.Controllers
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            if (Session["Role"] == null || !Session["UserId"].IfNotNull(userId => userId.Equals(id)))
+            {
+                return RedirectToAction("Index", "Home");
             }
             EndUser endUser = db.Users.Find(id);
             if (endUser == null)

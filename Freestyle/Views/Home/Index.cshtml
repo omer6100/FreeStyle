@@ -23,6 +23,7 @@
 <hr/>
 <section>
     <h2>Best Reviewed Artists</h2>
+    @Html.Action("GetArtistsPartial", "Artist")
 </section>
 <hr />
 <section>
@@ -44,6 +45,17 @@
                     { "targets": 6, "orderable": false }
                 ]
 
+            });
+
+            $("#artist-table").DataTable({
+                "order": [2, 'desc'],
+                "language": {
+                    "zeroRecords": 'No Matching Records Found.<br>Would You Like To @Html.ActionLink("Add a New Artist", "Create", "Artist")?'
+                },
+                "columnDefs": [
+                    { "targets": [2, 3], "type": "num" },
+                    { "targets": 4, "orderable": false }
+                ]
             });
         });
 </script>

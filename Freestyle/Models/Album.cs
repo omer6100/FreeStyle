@@ -23,6 +23,7 @@ namespace Freestyle.Models
 
         public int ArtistId { get; set; }
 
+
         [DisplayName("Release Date")]
         [Required(ErrorMessage = "Release Date is Required")]
         [DataType(DataType.DateTime, ErrorMessage = "Please Enter a Valid Date")]
