@@ -47,7 +47,7 @@
                     @String.Format("{0:F1}", item.AvgScore)
                 </td>
                 <td >
-                    | @Html.ActionLink("Write a Review", "Create", "Review", new{albumId = item.Id}, null) |
+                    | @Html.ActionLink("Write a Review", "Create", "Reviews", new{albumId = item.Id}, null) |
                     <div class="admin-actions"></div>
                     <script>
                         $(document).ready(function() {
