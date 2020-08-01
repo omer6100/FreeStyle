@@ -21,6 +21,10 @@
         <section id="review-stats">
             <h4>Statistics</h4>
         </section>
+        <section>
+            <h4>Share on Social</h4>
+            <div class="share"></div>
+        </section>
 
     </div>
     <div class="col-md-8">
@@ -38,6 +42,13 @@
         <section>
             @Html.Action("GetDiscog", Model.Id)
         </section>
+        <h3>Reviews</h3>
+        <section></section>
+        <h3>Top Video from YouTube</h3>
+        <section>
+            <div class="youtube-video"></div>
+        </section>
+
     </div>
 </div>
 
@@ -55,7 +66,7 @@
         $(document).ready(function () {
             var artistName = "@Model.Name";
             getArtistInfo(artistName);
-
+            getVideo(artistName);
         });
     </script>
     <script type="text/javascript">
@@ -72,6 +83,14 @@
 
             });
         });
+    </script>
+    <script>
+        var twitter = "<a href='https://twitter.com/share?ref_src=twsrc%5Etfw' class='twitter-share-button' data-size='large' data-text='Check out this page on Freestyle - a Music Reviewing Site' data-show-count='false'>Tweet</a>" +
+            "<script async src='https://platform.twitter.com/widgets.js' charset='utf-8'>" +
+            "</scr" +
+            "ipt>";
+
+        $(".share").html(twitter);
     </script>
 }
 

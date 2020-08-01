@@ -41,8 +41,9 @@
                     <script>
                 $(document).ready(function() {
                     if ("@Session["Role"].IfNotNull(r => r.Equals("Admin"))" === "True") {
-                        $(".admin-actions").html('<b>Admin Actions</b><br/>'+'@Html.ActionLink("| Edit |", "Edit", "Album", new {id = item.Id}, null)' + '<br/>' +
-                            '@Html.ActionLink("| Delete |", "Delete", "Album", new {id = item.Id}, null)');
+                        $(".admin-actions").html('<b>Admin Actions</b><br/>'+
+                            '@Html.ActionLink("| Edit |", "Edit", "Artist", new {id = item.Id}, null)' + '<br/>' +
+                            '@Html.ActionLink("| Delete |", "Delete", "Artist", new {id = item.Id}, null)');
                     }
                 });
                     </script>

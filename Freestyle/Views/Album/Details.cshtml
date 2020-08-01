@@ -13,7 +13,9 @@
         <section id="img"></section>
         <hr />
         <section id="score-slider">
-            <h2 class="rating-avg"></h2>
+            <h2 class="rating-avg">
+                @String.Format("{0:F1}", Model.AvgScore)
+            </h2>
             <div class="progress">
                 <div class="progress-bar" id="score-progress"></div>
             </div>
@@ -54,6 +56,10 @@
                 <tfoot id="totalDuration"></tfoot>
             </table>
         </section>
+        <h3>Reviews</h3>
+        <section>
+            <!--Reviews will be here-->
+        </section>
         <h3>Top Video</h3>
         <section>
             <div class="youtube-video"></div>
@@ -65,14 +71,23 @@
 @section Scripts
 {
     <script>
-        $(".rating-avg").append((Math.round(@Model.AvgScore * 100) / 100).toFixed(1));
+        $({ Counter: 0 }).animate({
+                Counter: $(".rating-avg").text()
+            },
+            {
+                duration: 1000,
+                easing: 'swing',
+                step: function() {
+                    $(".rating-avg").text(this.Counter.toFixed(1));
+                }
+            });
     </script>
     <script>
         var scorePercent = @Model.AvgScore * 10;
         $("#score-progress").attr("style", "width:" + scorePercent + "%");
     </script>
     <script>
-        $(document).ready(function () {
+        $(document).ready(function() {
             var title = "@Model.Title";
             var artistName = "@Model.Artist";
             getAlbumInfo(title, artistName);
@@ -81,15 +96,13 @@
         });
     </script>
     <script>
-        var fb = '<iframe src="https://www.facebook.com/plugins/share_button.php?href=https%3A%2F%2Flocalhost%3A50024%2FAlbum%2FDetails%3Fid%3D' + @Model.Id
-            +'&layout=button&size=large&width=77&height=28&appId" width="77" height="28" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media"></iframe>';
         var twitter = "<a href='https://twitter.com/share?ref_src=twsrc%5Etfw' class='twitter-share-button' data-size='large' data-text='Check out this page on Freestyle - a Music Reviewing Site' data-show-count='false'>Tweet</a>" +
             "<script async src='https://platform.twitter.com/widgets.js' charset='utf-8'>" +
             "</scr" +
             "ipt>";
 
-        $(".share").html(fb + twitter);
+        $(".share").html(twitter);
     </script>
-    
+
 }
 

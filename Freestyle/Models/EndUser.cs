@@ -12,7 +12,6 @@ namespace Freestyle.Models
         [Key]
         public int Id { get; set; }
 
-        [DisplayName("Email Address")]
         [DataType(DataType.EmailAddress, ErrorMessage = "Please Enter a Valid Email")]
         [Required(ErrorMessage = "Please Enter an Email")]
         public string Email { get; set; }
@@ -25,9 +24,5 @@ namespace Freestyle.Models
         // [Required(ErrorMessage = "Please Enter a Username")]
         // [MinLength(4, ErrorMessage = "Your Username needs to be at least 4 characters long")]
         public string Username { get; set; }
-
-        public string Bio { get; set; }
-        public Artist FavArtist { get; set; }
-        public Album FavAlbum { get; set; }
     }
 }

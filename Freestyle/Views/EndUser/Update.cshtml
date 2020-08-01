@@ -50,5 +50,7 @@
 }
 
 <div>
+    @Html.ActionLink("Delete your Account", "Delete", "EndUser", new {id=Model.Id}, null)
+    <br/>
     @Html.ActionLink("Back to the Home Page", "Index", "Home")
 </div>
