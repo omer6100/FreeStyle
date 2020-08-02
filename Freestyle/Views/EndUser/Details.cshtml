@@ -8,7 +8,9 @@
 
 <div class="row">
     <div class="col-md-4">
-        <section id="img"></section>
+        <section id="img">
+            <img id="profile-pic" src="~/Content/profile_pic.jpg" />
+        </section>
         <hr />
         <section id="score-slider">
             <h2 class="rating-avg"></h2>
@@ -16,22 +18,62 @@
                 <div class="progress-bar" id="score-progress"></div>
             </div>
         </section>
+        <section>
+            <h4>Share on Social</h4>
+            <div class="share"></div>
+        </section>
     </div>
     <div class="col-md-8">
         <section id="title">
             <h1>
-                @Html.ActionLink("@" + Model.Username, "Details", Model.Id)
+                @Html.ActionLink("@" + Model.Username, "Details", new { id = Model.Id })
             </h1>
         </section>
         <hr />
-        <h3>Bio</h3>
-        <section id="bio"></section>
-        <h3>Recent Reviews</h3>
+        <h3>Reviews</h3>
         <section>
-            @Html.Action("GetReviewsByUser", new{id=Model.Id})
+            @Html.Action("GetReviewsByUser", "Review", new { id = Model.Id })
         </section>
-        <h3>Favorites</h3>
-        <div class="col-md-4"></div>
-        <div class="col-md-4"></div>
     </div>
 </div>
+
+@section Scripts
+{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var table = $('#review-table').DataTable({
+                "language": {
+                    "zeroRecords": 'No Matching Records Found.'
+                },
+                "columnDefs": [
+                    { "targets": 2, "type": "num" },
+                    { "targets": 3, "orderable": false }
+                ]
+
+            });
+            var avg = table.column(2).data().average();
+            $(".rating-avg").append((Math.round(avg * 100) / 100).toFixed(1));
+            var scorePercent = avg * 10;
+            $("#score-progress").attr("style", "width:" + scorePercent + "%");
+            $({ Counter: 0 }).animate({
+                    Counter: $(".rating-avg").text()
+                },
+                {
+                    duration: 1000,
+                    easing: 'swing',
+                    step: function() {
+                        $(".rating-avg").text(this.Counter.toFixed(1));
+                    }
+                });
+        });
+    </script>
+    <script>
+        var twitter = "<a href='https://twitter.com/share?ref_src=twsrc%5Etfw' class='twitter-share-button' data-size='large' data-text='Check out this page on Freestyle - a Music Reviewing Site' data-show-count='false'>Tweet</a>" +
+            "<script async src='https://platform.twitter.com/widgets.js' charset='utf-8'>" +
+            "</scr" +
+            "ipt>";
+
+        $(".share").html(twitter);
+    </script>
+}
+

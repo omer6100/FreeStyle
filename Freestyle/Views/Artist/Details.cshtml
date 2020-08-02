@@ -43,7 +43,9 @@
             @Html.Action("GetDiscog", Model.Id)
         </section>
         <h3>Reviews</h3>
-        <section></section>
+        <section>
+            @Html.Action("GetReviewsByArtist", "Review")
+        </section>
         <h3>Top Video from YouTube</h3>
         <section>
             <div class="youtube-video"></div>
@@ -63,6 +65,18 @@
         $("#score-progress").attr("style", "width:" + scorePercent + "%");
     </script>
     <script>
+        $({ Counter: 0 }).animate({
+                Counter: $(".rating-avg").text()
+            },
+            {
+                duration: 1000,
+                easing: 'swing',
+                step: function() {
+                    $(".rating-avg").text(this.Counter.toFixed(1));
+                }
+            });
+    </script>
+    <script>
         $(document).ready(function () {
             var artistName = "@Model.Name";
             getArtistInfo(artistName);
@@ -79,6 +93,16 @@
                     { "targets": 2, "type": "date" },
                     { "targets" : [5,4], "type": "num"},
                     { "targets": 6, "orderable": false }
+                ]
+
+            });
+            $('#review-table').DataTable({
+                "language": {
+                    "zeroRecords": 'No Matching Records Found.'
+                },
+                "columnDefs": [
+                    { "targets": 2, "type": "num" },
+                    { "targets": 3, "orderable": false }
                 ]
 
             });

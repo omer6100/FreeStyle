@@ -53,7 +53,7 @@
                     @if (Session["Role"].IfNotNull(role => role.Equals("Admin")))
                     {
                         <b>Admin: </b>
-                        @Html.ActionLink("Edit", "Edit", "Album", new { id = item.Id }, null)
+                        @Html.ActionLink("Edit ", "Edit", "Album", new { id = item.Id }, null)
                         @Html.ActionLink("Delete", "Delete", "Album", new { id = item.Id }, null)
                     }
                 </td>

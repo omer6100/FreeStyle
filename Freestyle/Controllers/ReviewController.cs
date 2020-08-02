@@ -27,6 +27,31 @@ namespace Freestyle.Controllers
             return PartialView("ReviewTablePartialView", db.Reviews.AsEnumerable());
         }
 
+        public ActionResult GetReviewsByAlbum(int id)
+        {
+            return PartialView("ReviewTablePartialView", db.Reviews.Where(r => r.AlbumId == id).AsEnumerable());
+        }
+        public ActionResult GetReviewsByArtist(int id)
+        {
+            var reviews = new List<Review>();
+            var albums = db.Albums.Where(album => album.ArtistId == id).ToList();
+            if (albums.Count > 0)
+            {
+                albums.ForEach(a =>
+                {
+                    reviews.AddRange(db.Reviews.Where(r=>r.AlbumId == a.Id).AsEnumerable());
+                });
+                
+            }
+
+            return PartialView("ReviewTablePartialView", reviews);
+        }
+
+        public ActionResult GetReviewsByUser(int id)
+        {
+            return PartialView("ReviewTablePartialView", db.Reviews.Where(r => r.UserId == id).AsEnumerable());
+        }
+
         // GET: Reviews/Details/5
         public ActionResult Details(int? id)
         {
@@ -71,10 +96,23 @@ namespace Freestyle.Controllers
                     {
                         return View();
                     }
-
                     int count = db.Reviews.Count(r => r.AlbumId == album.Id);
 
+                    var artist = db.Artists.FirstOrDefault(a => a.Id == album.ArtistId);
+                    if (artist == null)
+                    {
+                        return View();
+                    }
+
+                    int x = 0;
+                    db.Albums.ForEach(a =>
+                    {
+                        if (a.ArtistId == artist.Id) x += db.Reviews.Count(r => r.AlbumId == a.Id);
+                    });
+
                     album.AvgScore = ((album.AvgScore * count) + review.Score) / (count + 1);
+                    artist.AvgScore = ((artist.AvgScore * x) + review.Score) / (x + 1);
+
                     review.UserId = int.Parse(Session["UserId"].IfNotNull(uid => uid.ToString()));
                     review.Username = Session["Username"].ToString();
                     review.AlbumId = album.Id;
@@ -99,6 +137,7 @@ namespace Freestyle.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+            
             Review review = db.Reviews.Find(id);
             if (review == null)
             {
@@ -145,8 +184,18 @@ namespace Freestyle.Controllers
         {
             Review review = db.Reviews.Find(id);
             Album album = db.Albums.FirstOrDefault(a=>a.Id==review.AlbumId);
+            Artist artist = db.Artists.FirstOrDefault(a => a.Id == album.ArtistId);
             int count = db.Reviews.Count(r => r.AlbumId == album.Id);
+            var x = 0;
+
+            db.Albums.Where(a => a.ArtistId == artist.Id).ForEach(a =>
+            {
+                x += db.Reviews.Count(r => r.AlbumId == a.Id);
+            });
+
             album.AvgScore = (album.AvgScore * count - review.Score) / (count - 1);
+            artist.AvgScore = ((artist.AvgScore * x) - review.Score) / (x - 1);
+
             db.Reviews.Remove(review);
             db.SaveChanges();
             return RedirectToAction("Index");
