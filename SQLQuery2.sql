@@ -42,8 +42,8 @@ where id=5
 
 
  update	Review
- set UserId = 2
- where Id=1
+ set Score = 5
+ where Id=8
 
  update Review
  set UserId = 3

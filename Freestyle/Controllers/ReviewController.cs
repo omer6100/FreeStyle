@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.Data.Entity.Migrations;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -157,13 +158,37 @@ namespace Freestyle.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,UserId,AlbumId,Text,Score")] Review review)
+        public ActionResult Edit([Bind(Include = "Id,UserId,Username,AlbumId,AlbumTitle,Text,Score")] Review review)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(review).State = EntityState.Modified;
+                //
+                //int oldScore = db.Entry(review).Entity.Score;
+                int oldScore = db.Reviews.FirstOrDefault(r => r.Id == review.Id).Score;
+                
+                var album = db.Albums.FirstOrDefault(a => a.Id == review.AlbumId);
+                if (album == null)
+                {
+                    return RedirectToAction("Details", new { id = review.Id });
+                }
+                var artist = db.Artists.FirstOrDefault(a => a.Id == album.ArtistId);
+                if (artist == null)
+                {
+                    return RedirectToAction("Details", new{id=review.Id});
+                }
+
+                int albumReviewCount = db.Reviews.Count(r => r.AlbumId == album.Id);
+                int artistReviewCount = 0;
+                db.Albums.ForEach(a =>
+                {
+                    if (a.ArtistId == artist.Id) artistReviewCount += db.Reviews.Count(r => r.AlbumId == a.Id);
+                });
+                album.AvgScore = ((album.AvgScore * albumReviewCount) + review.Score - oldScore) / (albumReviewCount);
+                artist.AvgScore = ((artist.AvgScore * artistReviewCount) + review.Score - oldScore) / (artistReviewCount);
+
+                db.Reviews.AddOrUpdate(review);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Details", new { id = review.Id });
             }
             return View(review);
         }
