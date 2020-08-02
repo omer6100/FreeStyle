@@ -224,6 +224,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\review_0.jpg" />
+    <Content Include="Content\review_1.jpg" />
+    <Content Include="Content\review_2.jpg" />
     <Content Include="Content\bootstrap-pulse.css" />
     <Content Include="Content\bootstrap-simplex.css" />
     <Content Include="Content\bootstrap-theme.css" />

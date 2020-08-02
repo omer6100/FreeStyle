@@ -1,51 +1,73 @@
 ﻿@model Freestyle.Models.Review
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = Model.Username + "'s Review of " + Model.AlbumTitle;
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Details</h2>
-
-<div>
-    <h4>Review</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.UserId)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.UserId)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.AlbumId)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.AlbumId)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Text)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Text)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Score)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Score)
-        </dd>
-
-    </dl>
+<div class="row">
+    <div class="col-md-4">
+        <section id="img"></section>
+        <hr />
+        <section id="score-slider">
+            <h2 class="rating-avg">
+                @String.Format("{0:F1}", Model.Score)
+            </h2>
+            <div class="progress">
+                <div class="progress-bar" id="score-progress"></div>
+            </div>
+        </section>
+        <section>
+            <h4>Share on Social</h4>
+            <div class="share"></div>
+        </section>
+    </div>
+    <div class="col-md-8">
+        <section id="title">
+            <h1>
+                @Html.ActionLink("@" + Model.Username, "Details", "EndUser", new { id = Model.UserId }, null)'s Review of
+                @Html.ActionLink(Model.AlbumTitle, "Details", "Album", new { id = Model.AlbumId }, null)
+            </h1>
+        </section>
+        <hr />
+        <h3>Review</h3>
+        <section>
+            @Model.Text
+        </section>
+    </div>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+
+@section Scripts{
+    <script>
+        $(document).ready(function() {
+            var num = @Model.Id % 3;
+            $("#img").html("<img id='review-art' src ='/Content/review_" + num + ".jpg'/>");
+        });
+    </script>
+    <script>
+        $({ Counter: 0 }).animate(
+            {
+                Counter: $(".rating-avg").text()
+            },
+            {
+                duration: 1000,
+                easing: 'swing',
+                step: function () {
+                    $(".rating-avg").text(this.Counter.toFixed(1));
+                }
+            });
+    </script>
+    <script>
+        var scorePercent = @Model.Score * 10;
+        $("#score-progress").attr("style", "width:" + scorePercent + "%");
+    </script>
+    <script>
+        var twitter = "<a href='https://twitter.com/share?ref_src=twsrc%5Etfw' class='twitter-share-button' data-size='large' data-text='Check out this page on Freestyle - a Music Reviewing Site' data-show-count='false'>Tweet</a>" +
+            "<script async src='https://platform.twitter.com/widgets.js' charset='utf-8'>" +
+            "</scr" +
+            "ipt>";
+
+        $(".share").html(twitter);
+    </script>
+}
+
