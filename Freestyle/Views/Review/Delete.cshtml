@@ -1,7 +1,7 @@
 ﻿@model Freestyle.Models.Review
 
 @{
-    ViewBag.Title = "Delete";
+    ViewBag.Title = "Delete a Review";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -13,19 +13,19 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.UserId)
+            @Html.DisplayNameFor(model => model.Username)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.UserId)
+            @Html.DisplayFor(model => model.Username)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.AlbumId)
+            @Html.DisplayNameFor(model => model.AlbumTitle)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.AlbumId)
+            @Html.DisplayFor(model => model.AlbumTitle)
         </dd>
 
         <dt>
@@ -50,7 +50,7 @@
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
+            <input type="submit" value="Delete" class="btn btn-primary" /> |
             @Html.ActionLink("Back to List", "Index")
         </div>
     }
