@@ -88,7 +88,7 @@ namespace Freestyle.Controllers
                     return View(endUser);
                 }
 
-                Session["UserId"] = existingUser.Id;
+                Session["UserId"] =  existingUser.Id;
                 Session["Role"] = existingUser.Id == 1 ? "Admin" : "User";
                 Session["Username"] = existingUser.Username;
                 Session["Authorized"] = true;

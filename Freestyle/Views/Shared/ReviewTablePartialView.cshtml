@@ -1,0 +1,50 @@
+﻿@using Microsoft.Ajax.Utilities
+@model IEnumerable<Freestyle.Models.Review>
+
+
+<section>
+    <table class="table table-striped" id="review-table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.AlbumTitle)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Username)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Score)
+                </th>
+                <th>
+
+                </th>
+            </tr>
+        </thead>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.ActionLink(item.AlbumTitle, "Details", "Album", new { id = item.AlbumId }, null)
+                </td>
+                <td>
+                    @Html.ActionLink(item.Username, "Details", "EndUser", new { id = item.UserId }, null)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Score)
+                </td>
+                <td>
+                    @Html.ActionLink("Read the Review ", "Details", "Review", new { id = item.Id }, null)
+                    <div class="admin-actions"></div>
+                    @if (Session["Role"].IfNotNull(role => role.Equals("Admin")))
+                    {
+                        <b>Admin: </b>
+                        @Html.ActionLink("Edit ", "Edit", "Review", new { id = item.Id }, null)
+                        @Html.ActionLink("Delete", "Delete", "Review", new { id = item.Id }, null)
+                    }
+                </td>
+            </tr>
+        }
+
+    </table>
+</section>

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
@@ -12,15 +13,22 @@ namespace Freestyle.Models
         [Key]
         public int Id { get; set; }
 
-        public string AuthorName { get; set; }
-
         public int UserId { get; set; }
 
+        [DisplayName("Reviewer")]
+        public string Username { get; set; }
+
+        public int AlbumId { get; set; }
+
+        [DisplayName("Album Title")]
         public string AlbumTitle { get; set; }
 
-       
-        public int AlbumId { get; set; }
+        [Required(ErrorMessage = "A Review cannot be Empty")]
+        [DataType(DataType.MultilineText)]
         public string Text { get; set; }
-        public double Score { get; set; }
+
+        [Required(ErrorMessage = "Please Enter a Score")]
+        [Range(0, 10, ErrorMessage = "Please Enter a Score from 1-10")]
+        public int Score { get; set; }
     }
 } 

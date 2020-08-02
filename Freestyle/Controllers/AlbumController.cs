@@ -51,6 +51,21 @@ namespace Freestyle.Controllers
 
         }
 
+        // //POST
+        // public ActionResult Details([Bind(Include = "AlbumId, Text, Score")] Review review)
+        // {
+        //     if (ModelState.IsValid)
+        //     {
+        //         return RedirectToAction("Create", "Reviews", review);
+        //     }
+        //
+        //     return View(db.Albums.Find(review.AlbumId));
+        // }
+
+        public ActionResult GetWriteReviewPartial(Album album)
+        {
+            return PartialView("WriteReviewPartial", new Review{ AlbumId = album.Id });
+        }
 
         // GET: Album/Create
         public ActionResult Create()

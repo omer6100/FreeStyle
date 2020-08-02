@@ -104,13 +104,13 @@
             {
                 new Review()
                 {
-                    AlbumId = 3, AlbumTitle = "Is This It", AuthorName = "Julian", Id = 1, Score = 9,
-                    Text = "Strokes RULE", UserId = 1
+                    AlbumId = 3, Id = 1, Score = 9, AlbumTitle = "The New Abnormal", 
+                    Text = "Strokes RULE", UserId = 1, Username = "Julian"
                 },
                 new Review()
                 {
-                    AlbumId = 5, AlbumTitle = "Discovery", AuthorName = "FrenchHouseLover", Id = 2, Score = 10,
-                    Text = "The Best Album of all time", UserId = 2
+                    AlbumId = 5, Id = 2, Score = 10, AlbumTitle = "Discovery", 
+                    Text = "The Best Album of all time", UserId = 2, Username = "FrenchHouseLover"
                 }
             };
            

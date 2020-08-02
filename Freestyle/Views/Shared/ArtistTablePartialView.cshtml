@@ -4,21 +4,21 @@
 <section>
     <table class="table table-striped" id="artist-table">
         <thead>
-            <tr>
-                <th>
-                    @Html.DisplayNameFor(model => model.Name)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.OriginCountry)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.AvgScore)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.PageViews)
-                </th>
-                <th></th>
-            </tr>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.OriginCountry)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AvgScore)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PageViews)
+            </th>
+            <th></th>
+        </tr>
         </thead>
 
         @foreach (var item in Model)
@@ -37,16 +37,14 @@
                     @Html.DisplayFor(modelItem => item.PageViews)
                 </td>
                 <td>
-                    <div class="admin-actions"></div>
-                    <script>
-                $(document).ready(function() {
-                    if ("@Session["Role"].IfNotNull(r => r.Equals("Admin"))" === "True") {
-                        $(".admin-actions").html('<b>Admin Actions</b><br/>'+
-                            '@Html.ActionLink("| Edit |", "Edit", "Artist", new {id = item.Id}, null)' + '<br/>' +
-                            '@Html.ActionLink("| Delete |", "Delete", "Artist", new {id = item.Id}, null)');
-                    }
-                });
-                    </script>
+                    <div class="admin-actions">
+                        @if (Session["Role"].IfNotNull(role => role.Equals("Admin")))
+                        {
+                            <b>Admin: </b>
+                            @Html.ActionLink("Edit ", "Edit", "Artist", new { id = item.Id }, null)
+                            @Html.ActionLink("Delete", "Delete", "Artist", new { id = item.Id }, null)
+                        }
+                    </div>
                 </td>
             </tr>
         }

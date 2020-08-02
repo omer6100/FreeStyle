@@ -132,6 +132,7 @@
     <Compile Include="Controllers\ArtistController.cs" />
     <Compile Include="Controllers\EndUserController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ReviewController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -199,6 +200,22 @@
     <Compile Include="Migrations\202006022305090_changes.designer.cs">
       <DependentUpon>202006022305090_changes.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202008011329109_reviewModelChanges.cs" />
+    <Compile Include="Migrations\202008011329109_reviewModelChanges.designer.cs">
+      <DependentUpon>202008011329109_reviewModelChanges.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202008011444434_reviewChanges2.cs" />
+    <Compile Include="Migrations\202008011444434_reviewChanges2.designer.cs">
+      <DependentUpon>202008011444434_reviewChanges2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202008011700458_reviewChanges4.cs" />
+    <Compile Include="Migrations\202008011700458_reviewChanges4.designer.cs">
+      <DependentUpon>202008011700458_reviewChanges4.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202008011751378_reviewChanges5.cs" />
+    <Compile Include="Migrations\202008011751378_reviewChanges5.designer.cs">
+      <DependentUpon>202008011751378_reviewChanges5.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Album.cs" />
     <Compile Include="Models\Artist.cs" />
@@ -254,7 +271,6 @@
     <Content Include="Views\Album\Index.cshtml" />
     <Content Include="Views\Shared\Guest\GuestPartialNav.cshtml" />
     <Content Include="Views\Shared\User\UserPartialNav.cshtml" />
-    <Content Include="Views\Review\WriteReviewPartial.cshtml" />
     <Content Include="Views\Artist\Create.cshtml" />
     <Content Include="Views\Artist\Delete.cshtml" />
     <Content Include="Views\Artist\Details.cshtml" />
@@ -269,6 +285,13 @@
     <Content Include="Views\EndUser\Update.cshtml" />
     <Content Include="Views\EndUser\Index.cshtml" />
     <Content Include="Views\EndUser\Register.cshtml" />
+    <Content Include="Views\Review\Delete.cshtml" />
+    <Content Include="Views\Review\Details.cshtml" />
+    <Content Include="Views\Review\Edit.cshtml" />
+    <Content Include="Views\Shared\WriteReviewPartial.cshtml" />
+    <Content Include="Views\Review\Create.cshtml" />
+    <Content Include="Views\Shared\ReviewTablePartialView.cshtml" />
+    <Content Include="Views\Review\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -335,6 +358,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202006022305090_changes.resx">
       <DependentUpon>202006022305090_changes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202008011329109_reviewModelChanges.resx">
+      <DependentUpon>202008011329109_reviewModelChanges.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202008011444434_reviewChanges2.resx">
+      <DependentUpon>202008011444434_reviewChanges2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202008011700458_reviewChanges4.resx">
+      <DependentUpon>202008011700458_reviewChanges4.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202008011751378_reviewChanges5.resx">
+      <DependentUpon>202008011751378_reviewChanges5.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

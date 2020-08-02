@@ -103,7 +103,8 @@ namespace Freestyle.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(artist);
+
+            return RedirectToAction("Details", new {id=artist.Id});
         }
 
         // GET: Artists/Delete/5
