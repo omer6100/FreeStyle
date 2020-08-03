@@ -189,6 +189,14 @@ namespace Freestyle.Controllers
 
             Artist artist = db.Artists.Find(album.ArtistId);
             var reviews = db.Reviews.Where(r => r.AlbumId == album.Id);
+
+            if (reviews.ToList().Count == 0)
+            {
+                db.Albums.Remove(album);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+
             var sum = reviews.Sum(r => r.Score);
             var reviewCount = reviews.ToList().Count;
             int totalCount = 0;
