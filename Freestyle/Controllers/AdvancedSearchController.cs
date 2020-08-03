@@ -8,22 +8,67 @@ using System.Web;
 using System.Web.Mvc;
 using Freestyle.Contexts;
 using Freestyle.Models;
-
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
 namespace Freestyle.Controllers
 {
     public class AdvancedSearchController : Controller
     {
         private MusicContext db = new MusicContext();
 
-        // GET: AdvancedSearch
-        public ActionResult Index()
+       
+        //public ActionResult Index()
+        //{
+
+        //    return View(db.Albums.ToList());
+        //}
+        public ActionResult Index(string jBy)
         {
-            return View(db.Albums.ToList());
+            if(jBy == "artist")
+            {
+                var join =
+                 from alb in db.Albums
+
+                 join art in db.Artists on alb.ArtistId equals art.Id
+
+                 select new { alb.Artist, alb.AvgScore };
+
+                var albumList = new List<Album>();
+                foreach (var t in join)
+                {
+                    albumList.Add(new Album()
+                    {
+                        Artist = t.Artist,
+                        AvgScore = t.AvgScore
+                    });
+                }
+                return View(albumList);
+            }
+            return View();
         }
-        public ActionResult Result()
+            //#######################################################
+            public ActionResult Result()
         {
-            return View(db.Albums.ToList());
+            var join =
+                 from alb in db.Albums
+                 
+                 join art in db.Artists on alb.ArtistId equals art.Id
+                 
+                 select new { alb.Artist, alb.AvgScore};
+
+            var albumList = new List<Album>();
+            foreach (var t in join)
+            {
+                albumList.Add(new Album()
+                {
+                    Artist = t.Artist,
+                    AvgScore = t.AvgScore
+                });
+            }
+            return View(albumList);
         }
+
+
         // GET: AdvancedSearch/Details/5
         public ActionResult Details(int? id)
         {
