@@ -25,12 +25,12 @@ namespace Freestyle.Controllers
 
         public ActionResult GetReviewPartial()
         {
-            return PartialView("ReviewTablePartialView", db.Reviews.AsEnumerable());
+            return PartialView("Tables/ReviewTablePartialView", db.Reviews.AsEnumerable());
         }
 
         public ActionResult GetReviewsByAlbum(int id)
         {
-            return PartialView("ReviewTablePartialView", db.Reviews.Where(r => r.AlbumId == id).AsEnumerable());
+            return PartialView("Tables/ReviewTablePartialView", db.Reviews.Where(r => r.AlbumId == id).AsEnumerable());
         }
         public ActionResult GetReviewsByArtist(int id)
         {
@@ -45,12 +45,12 @@ namespace Freestyle.Controllers
                 
             }
 
-            return PartialView("ReviewTablePartialView", reviews);
+            return PartialView("Tables/ReviewTablePartialView", reviews);
         }
 
         public ActionResult GetReviewsByUser(int id)
         {
-            return PartialView("ReviewTablePartialView", db.Reviews.Where(r => r.UserId == id).AsEnumerable());
+            return PartialView("Tables/ReviewTablePartialView", db.Reviews.Where(r => r.UserId == id).AsEnumerable());
         }
 
         // GET: Reviews/Details/5
@@ -122,10 +122,9 @@ namespace Freestyle.Controllers
                     db.SaveChanges();
                     return RedirectToAction("Details", new{id=review.Id});
                 }
-                else
-                {
-                    return RedirectToAction("SignIn", "EndUser");
-                }
+
+                return RedirectToAction("SignIn", "EndUser");
+                
             }
 
             return View(review);
@@ -141,7 +140,7 @@ namespace Freestyle.Controllers
 
             if (Session["Authorized"] == null || Session["Role"].IfNotNull(role => role.Equals("User")) && Session["UserId"].IfNotNull(uid => !uid.Equals(id)))
             {
-                return RedirectToAction("Details", new {id = id});
+                return RedirectToAction("Details", new {id});
             }
 
             

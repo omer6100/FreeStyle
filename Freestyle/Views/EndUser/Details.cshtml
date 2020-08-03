@@ -40,7 +40,7 @@
 @section Scripts
 {
     <script type="text/javascript">
-        $(document).ready(function () {
+        $(document).ready(function() {
             var table = $('#review-table').DataTable({
                 "language": {
                     "zeroRecords": 'No Matching Records Found.'
@@ -52,6 +52,9 @@
 
             });
             var avg = table.column(2).data().average();
+            if (isNaN(avg)) {
+                avg = 0;
+            }
             $(".rating-avg").append((Math.round(avg * 100) / 100).toFixed(1));
             var scorePercent = avg * 10;
             $("#score-progress").attr("style", "width:" + scorePercent + "%");

@@ -171,7 +171,7 @@ namespace Freestyle.Controllers
             var discog = db.Albums.Where(a => a.ArtistId == id).ToList();
 
             
-            return PartialView("AlbumTablePartialView",discog);
+            return PartialView("Tables/AlbumTablePartialView",discog);
         }
 
         protected override void Dispose(bool disposing)
@@ -185,7 +185,7 @@ namespace Freestyle.Controllers
 
         public ActionResult GetArtistsPartial()
         {
-            return PartialView("ArtistTablePartialView", db.Artists.AsEnumerable());
+            return PartialView("Tables/ArtistTablePartialView", db.Artists.AsEnumerable());
         }
     }
 }

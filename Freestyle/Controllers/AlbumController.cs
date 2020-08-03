@@ -29,7 +29,7 @@ namespace Freestyle.Controllers
 
         public ActionResult GetAlbumsPartial()
         {
-            return PartialView("AlbumTablePartialView", GetAlbums());
+            return PartialView("Tables/AlbumTablePartialView", GetAlbums());
         }
 
         // GET: Album/Details/5
@@ -61,11 +61,6 @@ namespace Freestyle.Controllers
         //
         //     return View(db.Albums.Find(review.AlbumId));
         // }
-
-        public ActionResult GetWriteReviewPartial(Album album)
-        {
-            return PartialView("WriteReviewPartial", new Review{ AlbumId = album.Id });
-        }
 
         // GET: Album/Create
         public ActionResult Create()

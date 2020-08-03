@@ -235,21 +235,19 @@
     <Content Include="Views\Artist\Details.cshtml" />
     <Content Include="Views\Artist\Edit.cshtml" />
     <Content Include="Views\Artist\Index.cshtml" />
-    <Content Include="Views\Shared\TableHeaderPartial.cshtml" />
-    <Content Include="Views\Shared\AlbumTablePartialView.cshtml" />
-    <Content Include="Views\Shared\ArtistTablePartialView.cshtml" />
+    <Content Include="Views\Shared\Tables\AlbumTablePartialView.cshtml" />
+    <Content Include="Views\Shared\Tables\ArtistTablePartialView.cshtml" />
     <Content Include="Views\EndUser\SignIn.cshtml" />
     <Content Include="Views\EndUser\Delete.cshtml" />
     <Content Include="Views\EndUser\Details.cshtml" />
     <Content Include="Views\EndUser\Update.cshtml" />
-    <Content Include="Views\EndUser\Index.cshtml" />
+    <Content Include="Views\Shared\Tables\UserTablePartialView.cshtml" />
     <Content Include="Views\EndUser\Register.cshtml" />
     <Content Include="Views\Review\Delete.cshtml" />
     <Content Include="Views\Review\Details.cshtml" />
     <Content Include="Views\Review\Edit.cshtml" />
-    <Content Include="Views\Shared\WriteReviewPartial.cshtml" />
     <Content Include="Views\Review\Create.cshtml" />
-    <Content Include="Views\Shared\ReviewTablePartialView.cshtml" />
+    <Content Include="Views\Shared\Tables\ReviewTablePartialView.cshtml" />
     <Content Include="Views\Review\Index.cshtml" />
     <Content Include="Views\AdvancedSearch\Create.cshtml" />
     <Content Include="Views\AdvancedSearch\Delete.cshtml" />
@@ -257,6 +255,7 @@
     <Content Include="Views\AdvancedSearch\Edit.cshtml" />
     <Content Include="Views\AdvancedSearch\Index.cshtml" />
     <Content Include="Views\AdvancedSearch\Result.cshtml" />
+    <Content Include="Views\EndUser\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

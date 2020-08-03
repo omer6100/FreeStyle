@@ -7,10 +7,9 @@
                 Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>All Artists</h1>
-
 <section>
-    @Html.Partial("ArtistTablePartialView", Model)
+    <h1>All Artists</h1>
+    @Html.Partial("Tables/ArtistTablePartialView", Model)
 </section>
 
 @section Scripts{

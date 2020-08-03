@@ -1,0 +1,42 @@
+﻿@using Microsoft.Ajax.Utilities
+@model IEnumerable<Freestyle.Models.EndUser>
+
+
+<section>
+    <table class="table table-striped" id="user-table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Username)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Email)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td>
+                @Html.ActionLink("@" + item.Username, "Details","EndUser", new{id=item.Id}, null)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                <div class="admin-actions"></div>
+                 
+                @if (Session["Role"].IfNotNull(role => role.Equals("Admin")))
+                {
+                    <b>Admin: </b>
+                    @Html.ActionLink("Update ", "Update", "EndUser", new { id = item.Id }, null)
+                    @Html.ActionLink("Delete", "Delete", "EndUser", new { id = item.Id }, null)
+                }
+            </td>
+        </tr>
+        }
+
+    </table>
+</section>
