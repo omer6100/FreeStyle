@@ -20,7 +20,10 @@ namespace Freestyle.Controllers
         {
             return View(db.Albums.ToList());
         }
-
+        public ActionResult Result()
+        {
+            return View(db.Albums.ToList());
+        }
         // GET: AdvancedSearch/Details/5
         public ActionResult Details(int? id)
         {

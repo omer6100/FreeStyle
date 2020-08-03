@@ -37,6 +37,9 @@
             <li class="nav-item">
                 @Html.ActionLink("Users", "Index", "EndUser", null, new { @class = "nav-link" })
             </li>
+            <li class="nav-item">
+                @Html.ActionLink("AdvancedSearch", "Index", "AdvancedSearch", null, new { @class = "nav-link" })
+            </li>
         </ul>
 
         @if (Session["Authorized"].IfNotNull(s=>s.Equals(true)))

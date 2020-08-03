@@ -222,6 +222,7 @@
     <Content Include="Views\AdvancedSearch\Details.cshtml" />
     <Content Include="Views\AdvancedSearch\Edit.cshtml" />
     <Content Include="Views\AdvancedSearch\Index.cshtml" />
+    <Content Include="Views\AdvancedSearch\Result.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
