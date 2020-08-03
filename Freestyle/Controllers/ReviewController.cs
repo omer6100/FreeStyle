@@ -229,6 +229,24 @@ namespace Freestyle.Controllers
                 x += db.Reviews.Count(r => r.AlbumId == a.Id);
             });
 
+            if (count == 1)
+            {
+                album.AvgScore = 0;
+            }
+            else
+            {
+                album.AvgScore = (album.AvgScore * count - review.Score) / (count - 1);
+            }
+
+            if (x == 1)
+            {
+                artist.AvgScore = 0;
+            }
+            else
+            {
+                artist.AvgScore = ((artist.AvgScore * x) - review.Score) / (x - 1);
+            }
+
             album.AvgScore = (album.AvgScore * count - review.Score) / (count - 1);
             artist.AvgScore = ((artist.AvgScore * x) - review.Score) / (x - 1);
 

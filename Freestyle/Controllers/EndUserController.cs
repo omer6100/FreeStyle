@@ -172,9 +172,44 @@ namespace Freestyle.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             EndUser endUser = db.Users.Find(id);
+            var reviews = db.Reviews.Where(r => r.UserId == endUser.Id);
+
+            foreach (Review review in reviews)
+            {
+                Album album = db.Albums.FirstOrDefault(a => a.Id == review.AlbumId);
+                Artist artist = db.Artists.FirstOrDefault(a => a.Id == album.ArtistId);
+                int count = db.Reviews.Count(r => r.AlbumId == album.Id);
+                var x = 0;
+
+                db.Albums.Where(a => a.ArtistId == artist.Id).ForEach(a =>
+                {
+                    x += db.Reviews.Count(r => r.AlbumId == a.Id);
+                });
+
+                if (count == 1)
+                {
+                    album.AvgScore = 0;
+                }
+                else
+                {
+                    album.AvgScore = (album.AvgScore * count - review.Score) / (count - 1);
+                }
+
+                if (x == 1)
+                {
+                    artist.AvgScore = 0;
+                }
+                else
+                {
+                    artist.AvgScore = ((artist.AvgScore * x) - review.Score) / (x - 1);
+                }
+
+                db.Reviews.Remove(review);
+            }
+
             db.Users.Remove(endUser);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("SignOut");
         }
 
         protected override void Dispose(bool disposing)

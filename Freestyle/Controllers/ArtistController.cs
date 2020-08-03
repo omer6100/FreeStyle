@@ -9,7 +9,6 @@ using System.Web.Mvc;
 using Freestyle.Contexts;
 using Freestyle.Models;
 using Microsoft.Ajax.Utilities;
-using WebGrease.Css.Extensions;
 
 namespace Freestyle.Controllers
 {
@@ -133,6 +132,22 @@ namespace Freestyle.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             Artist artist = db.Artists.Find(id);
+
+            var albums = db.Albums.Where(a => a.ArtistId == artist.Id);
+            List<Review> reviews = new List<Review>();
+
+            db.Reviews.ForEach(r =>
+            {
+                albums.ForEach(a =>
+                {
+                    if (r.AlbumId == a.Id) reviews.Add(r);
+                });
+            });
+
+
+            db.Artists.Remove(artist);
+            db.Reviews.RemoveRange(reviews.AsEnumerable());
+            db.Albums.RemoveRange(albums);
             db.Artists.Remove(artist);
             db.SaveChanges();
             return RedirectToAction("Index");

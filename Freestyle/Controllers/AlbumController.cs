@@ -186,6 +186,29 @@ namespace Freestyle.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             Album album = db.Albums.Find(id);
+
+            Artist artist = db.Artists.Find(album.ArtistId);
+            var reviews = db.Reviews.Where(r => r.AlbumId == album.Id);
+            var sum = reviews.Sum(r => r.Score);
+            var reviewCount = reviews.ToList().Count;
+            int totalCount = 0;
+
+            db.Albums.Where(a => a.ArtistId == artist.Id).ForEach(a =>
+            {
+                totalCount += db.Reviews.Count(r => r.AlbumId == a.Id);
+            });
+
+            if (totalCount - reviewCount == 0)
+            {
+                artist.AvgScore = 0;
+
+            }
+            else
+            {
+                artist.AvgScore = (artist.AvgScore * totalCount - sum) / (totalCount - reviewCount);
+            }
+
+            db.Reviews.RemoveRange(reviews);
             db.Albums.Remove(album);
             db.SaveChanges();
             return RedirectToAction("Index");
