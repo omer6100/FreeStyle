@@ -128,6 +128,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Contexts\MusicContext.cs" />
+    <Compile Include="Controllers\AdvancedSearchController.cs" />
     <Compile Include="Controllers\AlbumController.cs" />
     <Compile Include="Controllers\ArtistController.cs" />
     <Compile Include="Controllers\EndUserController.cs" />
@@ -135,86 +136,6 @@
     <Compile Include="Controllers\ReviewController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202005260439574_InitialData.cs" />
-    <Compile Include="Migrations\202005260439574_InitialData.designer.cs">
-      <DependentUpon>202005260439574_InitialData.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202005260511423_InitialData1.cs" />
-    <Compile Include="Migrations\202005260511423_InitialData1.designer.cs">
-      <DependentUpon>202005260511423_InitialData1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202005260752351_VariousModelChange.cs" />
-    <Compile Include="Migrations\202005260752351_VariousModelChange.designer.cs">
-      <DependentUpon>202005260752351_VariousModelChange.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202005280048518_ModelChange.cs" />
-    <Compile Include="Migrations\202005280048518_ModelChange.designer.cs">
-      <DependentUpon>202005280048518_ModelChange.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202005281800229_album1.cs" />
-    <Compile Include="Migrations\202005281800229_album1.designer.cs">
-      <DependentUpon>202005281800229_album1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202005290601381_albumModelChanges.cs" />
-    <Compile Include="Migrations\202005290601381_albumModelChanges.designer.cs">
-      <DependentUpon>202005290601381_albumModelChanges.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202005290705293_ArtistModelChange.cs" />
-    <Compile Include="Migrations\202005290705293_ArtistModelChange.designer.cs">
-      <DependentUpon>202005290705293_ArtistModelChange.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202005291300444_artistModelChange2.cs" />
-    <Compile Include="Migrations\202005291300444_artistModelChange2.designer.cs">
-      <DependentUpon>202005291300444_artistModelChange2.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202005291446037_artistModelChange21.cs" />
-    <Compile Include="Migrations\202005291446037_artistModelChange21.designer.cs">
-      <DependentUpon>202005291446037_artistModelChange21.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202005310529157_userTime.cs" />
-    <Compile Include="Migrations\202005310529157_userTime.designer.cs">
-      <DependentUpon>202005310529157_userTime.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202005310540573_UserModelChang.cs" />
-    <Compile Include="Migrations\202005310540573_UserModelChang.designer.cs">
-      <DependentUpon>202005310540573_UserModelChang.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202005310552547_UserModelChanges.cs" />
-    <Compile Include="Migrations\202005310552547_UserModelChanges.designer.cs">
-      <DependentUpon>202005310552547_UserModelChanges.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202005311723134_UserModelChanges1.cs" />
-    <Compile Include="Migrations\202005311723134_UserModelChanges1.designer.cs">
-      <DependentUpon>202005311723134_UserModelChanges1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202006020256091_UserModelChanges2.cs" />
-    <Compile Include="Migrations\202006020256091_UserModelChanges2.designer.cs">
-      <DependentUpon>202006020256091_UserModelChanges2.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202006020316147_test.cs" />
-    <Compile Include="Migrations\202006020316147_test.designer.cs">
-      <DependentUpon>202006020316147_test.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202006022305090_changes.cs" />
-    <Compile Include="Migrations\202006022305090_changes.designer.cs">
-      <DependentUpon>202006022305090_changes.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202008011329109_reviewModelChanges.cs" />
-    <Compile Include="Migrations\202008011329109_reviewModelChanges.designer.cs">
-      <DependentUpon>202008011329109_reviewModelChanges.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202008011444434_reviewChanges2.cs" />
-    <Compile Include="Migrations\202008011444434_reviewChanges2.designer.cs">
-      <DependentUpon>202008011444434_reviewChanges2.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202008011700458_reviewChanges4.cs" />
-    <Compile Include="Migrations\202008011700458_reviewChanges4.designer.cs">
-      <DependentUpon>202008011700458_reviewChanges4.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202008011751378_reviewChanges5.cs" />
-    <Compile Include="Migrations\202008011751378_reviewChanges5.designer.cs">
-      <DependentUpon>202008011751378_reviewChanges5.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Album.cs" />
@@ -296,6 +217,11 @@
     <Content Include="Views\Review\Create.cshtml" />
     <Content Include="Views\Shared\ReviewTablePartialView.cshtml" />
     <Content Include="Views\Review\Index.cshtml" />
+    <Content Include="Views\AdvancedSearch\Create.cshtml" />
+    <Content Include="Views\AdvancedSearch\Delete.cshtml" />
+    <Content Include="Views\AdvancedSearch\Details.cshtml" />
+    <Content Include="Views\AdvancedSearch\Edit.cshtml" />
+    <Content Include="Views\AdvancedSearch\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -313,68 +239,6 @@
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.3.1.min.map" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\202005260439574_InitialData.resx">
-      <DependentUpon>202005260439574_InitialData.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202005260511423_InitialData1.resx">
-      <DependentUpon>202005260511423_InitialData1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202005260752351_VariousModelChange.resx">
-      <DependentUpon>202005260752351_VariousModelChange.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202005280048518_ModelChange.resx">
-      <DependentUpon>202005280048518_ModelChange.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202005281800229_album1.resx">
-      <DependentUpon>202005281800229_album1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202005290601381_albumModelChanges.resx">
-      <DependentUpon>202005290601381_albumModelChanges.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202005290705293_ArtistModelChange.resx">
-      <DependentUpon>202005290705293_ArtistModelChange.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202005291300444_artistModelChange2.resx">
-      <DependentUpon>202005291300444_artistModelChange2.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202005291446037_artistModelChange21.resx">
-      <DependentUpon>202005291446037_artistModelChange21.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202005310529157_userTime.resx">
-      <DependentUpon>202005310529157_userTime.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202005310540573_UserModelChang.resx">
-      <DependentUpon>202005310540573_UserModelChang.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202005310552547_UserModelChanges.resx">
-      <DependentUpon>202005310552547_UserModelChanges.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202005311723134_UserModelChanges1.resx">
-      <DependentUpon>202005311723134_UserModelChanges1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202006020256091_UserModelChanges2.resx">
-      <DependentUpon>202006020256091_UserModelChanges2.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202006020316147_test.resx">
-      <DependentUpon>202006020316147_test.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202006022305090_changes.resx">
-      <DependentUpon>202006022305090_changes.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202008011329109_reviewModelChanges.resx">
-      <DependentUpon>202008011329109_reviewModelChanges.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202008011444434_reviewChanges2.resx">
-      <DependentUpon>202008011444434_reviewChanges2.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202008011700458_reviewChanges4.resx">
-      <DependentUpon>202008011700458_reviewChanges4.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202008011751378_reviewChanges5.resx">
-      <DependentUpon>202008011751378_reviewChanges5.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
