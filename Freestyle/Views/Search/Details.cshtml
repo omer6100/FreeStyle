@@ -1,0 +1,50 @@
+﻿@model Freestyle.Models.Search
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Search</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.primaryName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.primaryName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.secondaryName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.secondaryName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.score)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.score)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.genreCounry)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.genreCounry)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.type }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

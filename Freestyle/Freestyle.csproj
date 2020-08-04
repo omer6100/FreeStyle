@@ -162,18 +162,27 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Contexts\MusicContext.cs" />
-    <Compile Include="Controllers\AdvancedSearchController.cs" />
     <Compile Include="Controllers\AlbumController.cs" />
     <Compile Include="Controllers\ArtistController.cs" />
     <Compile Include="Controllers\EndUserController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ReviewController.cs" />
+    <Compile Include="Controllers\SearchController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202008041339471_yos.cs" />
+    <Compile Include="Migrations\202008041339471_yos.designer.cs">
+      <DependentUpon>202008041339471_yos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202008041628420_yos1.cs" />
+    <Compile Include="Migrations\202008041628420_yos1.designer.cs">
+      <DependentUpon>202008041628420_yos1.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Album.cs" />
     <Compile Include="Models\Artist.cs" />
+    <Compile Include="Models\Search.cs" />
     <Compile Include="Models\Review.cs" />
     <Compile Include="Models\EndUser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -249,13 +258,12 @@
     <Content Include="Views\Review\Create.cshtml" />
     <Content Include="Views\Shared\Tables\ReviewTablePartialView.cshtml" />
     <Content Include="Views\Review\Index.cshtml" />
-    <Content Include="Views\AdvancedSearch\Create.cshtml" />
-    <Content Include="Views\AdvancedSearch\Delete.cshtml" />
-    <Content Include="Views\AdvancedSearch\Details.cshtml" />
-    <Content Include="Views\AdvancedSearch\Edit.cshtml" />
-    <Content Include="Views\AdvancedSearch\Index.cshtml" />
-    <Content Include="Views\AdvancedSearch\Result.cshtml" />
     <Content Include="Views\EndUser\Index.cshtml" />
+    <Content Include="Views\Search\Create.cshtml" />
+    <Content Include="Views\Search\Delete.cshtml" />
+    <Content Include="Views\Search\Details.cshtml" />
+    <Content Include="Views\Search\Edit.cshtml" />
+    <Content Include="Views\Search\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -273,6 +281,14 @@
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.3.1.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\202008041339471_yos.resx">
+      <DependentUpon>202008041339471_yos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202008041628420_yos1.resx">
+      <DependentUpon>202008041628420_yos1.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

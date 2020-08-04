@@ -22,5 +22,7 @@ namespace Freestyle.Contexts
         {
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
         }
+
+        public System.Data.Entity.DbSet<Freestyle.Models.Search> Searches { get; set; }
     }
 }
