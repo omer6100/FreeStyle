@@ -179,6 +179,10 @@
     <Compile Include="Migrations\202008041628420_yos1.designer.cs">
       <DependentUpon>202008041628420_yos1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202008042041328_saveModelChanges.cs" />
+    <Compile Include="Migrations\202008042041328_saveModelChanges.designer.cs">
+      <DependentUpon>202008042041328_saveModelChanges.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Album.cs" />
     <Compile Include="Models\Artist.cs" />
@@ -288,6 +292,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202008041628420_yos1.resx">
       <DependentUpon>202008041628420_yos1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202008042041328_saveModelChanges.resx">
+      <DependentUpon>202008042041328_saveModelChanges.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

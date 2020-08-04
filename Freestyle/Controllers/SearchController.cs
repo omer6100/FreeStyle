@@ -22,7 +22,7 @@ namespace Freestyle.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Index([Bind(Include = "type,primaryName,secondaryName,score,genreCounry")] Search search)
+        public ActionResult Index([Bind(Include = "type,primaryName,secondaryName,ScoreLowerBound,GenreCountry")] Search search)
         {
 
             if (ModelState.IsValid)
@@ -63,7 +63,7 @@ namespace Freestyle.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "type,primaryName,secondaryName,score,genreCounry")] Search search)
+        public ActionResult Create([Bind(Include = "type,primaryName,secondaryName,ScoreLowerBound,GenreCountry")] Search search)
         {
             if (ModelState.IsValid)
             {
@@ -95,7 +95,7 @@ namespace Freestyle.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "type,primaryName,secondaryName,score,genreCounry")] Search search)
+        public ActionResult Edit([Bind(Include = "type,primaryName,secondaryName,ScoreLowerBound,GenreCountry")] Search search)
         {
             if (ModelState.IsValid)
             {
