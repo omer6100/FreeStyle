@@ -67,6 +67,7 @@ namespace Freestyle.Controllers
         {
             if (ModelState.IsValid)
             {
+                
                 db.Searches.Add(search);
                 db.SaveChanges();
                 return RedirectToAction("Index");

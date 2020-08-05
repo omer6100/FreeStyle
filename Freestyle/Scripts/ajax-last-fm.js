@@ -79,5 +79,28 @@ function getVideo(keyword) {
 }
 
 
+function animateScore() {
 
+    var rtg = $(".rating-avg").text();
+    $({ Counter: 0 }).animate({
+            Counter: $(".rating-avg").text()
+        },
+        {
+            duration: 1000,
+            easing: 'swing',
+            step: function () {
+                $(".rating-avg").text(this.Counter.toFixed(1));
+            }
+        });
+    $(".rating-avg").html(rtg);
+}
+
+function embedTweet() {
+    var twitter = "<a href='https://twitter.com/share?ref_src=twsrc%5Etfw' class='twitter-share-button' data-size='large' data-text='Check out this page on Freestyle - a Music Reviewing Site' data-show-count='false'>Tweet</a>" +
+        "<script async src='https://platform.twitter.com/widgets.js' charset='utf-8'>" +
+        "</scr" +
+        "ipt>";
+
+    $(".share").html(twitter);
+}
 

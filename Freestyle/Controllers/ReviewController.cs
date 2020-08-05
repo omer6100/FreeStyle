@@ -77,7 +77,7 @@ namespace Freestyle.Controllers
                 db.Albums.Where(a => a.Id == albumId).Select(a => new {title = a.Title}).SingleOrDefault().IfNotNull(t=>albumTitle = t.title);
                 return View(new Review{AlbumTitle = albumTitle});
             }
-            return View();
+            return View(new Review { AlbumTitle = null });
         }
 
         
@@ -95,6 +95,7 @@ namespace Freestyle.Controllers
                     var album = db.Albums.FirstOrDefault(a => a.Title == review.AlbumTitle);
                     if (album == null)
                     {
+                        ModelState.AddModelError("AlbumTitle","You cannot Review a non-existent Album");
                         return View();
                     }
                     int count = db.Reviews.Count(r => r.AlbumId == album.Id);

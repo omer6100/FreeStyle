@@ -100,10 +100,10 @@ namespace Freestyle.Controllers
             {
                 db.Entry(artist).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Details", new { id = artist.Id });
             }
 
-            return RedirectToAction("Details", new {id=artist.Id});
+            return View(artist);
         }
 
         // GET: Artists/Delete/5

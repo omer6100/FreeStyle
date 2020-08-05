@@ -5,6 +5,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
+using Newtonsoft.Json;
 
 namespace Freestyle.Models
 {
@@ -15,12 +16,13 @@ namespace Freestyle.Models
 
         public int UserId { get; set; }
 
-        [DisplayName("Reviewer")]
+        [DisplayName("Username")]
         public string Username { get; set; }
 
         public int AlbumId { get; set; }
 
         [DisplayName("Album Title")]
+        [Required(ErrorMessage = "Please Enter an Album Title")]
         public string AlbumTitle { get; set; }
 
         [Required(ErrorMessage = "A Review cannot be Empty")]

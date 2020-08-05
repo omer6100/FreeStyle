@@ -14,7 +14,9 @@
         <section id="img"></section>
         <hr />
         <section id="score-slider">
-            <h2 class="rating-avg"></h2>
+            <h2 class="rating-avg">
+                @String.Format("{0:F1}", Model.AvgScore)
+            </h2>
             <div class="progress">
                 <div class="progress-bar" id="score-progress"></div>
             </div>
@@ -35,8 +37,8 @@
         {
             <section>
                 <h4>Admin: </h4>
-                @Html.ActionLink("Edit ", "Edit", "Artist", new { id = Model.Id }, new {@class="btn btn-outline-warning"})
-                @Html.ActionLink("Delete", "Delete", "Artist", new { id = Model.Id }, new{@class="btn btn-outline-danger"})
+                @Html.ActionLink("Edit ", "Edit", "Artist", new { id = Model.Id }, new {@class="btn btn-outline-warning btn-block"})
+                @Html.ActionLink("Delete", "Delete", "Artist", new { id = Model.Id }, new{@class="btn btn-outline-danger btn-block"})
             </section>
         }
         
@@ -92,29 +94,17 @@
     </script>
     <script defer async src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC6perw931as-fOkiSIsmVYyfeIwLyyur4&callback=initMap"></script>
     <script>
-        $(".rating-avg").append((Math.round(@Model.AvgScore * 100) / 100).toFixed(1));
-    </script>
-    <script>
         var scorePercent = @Model.AvgScore * 10;
         $("#score-progress").attr("style", "width:" + scorePercent + "%");
-    </script>
-    <script>
-        $({ Counter: 0 }).animate({
-                Counter: $(".rating-avg").text()
-            },
-            {
-                duration: 1000,
-                easing: 'swing',
-                step: function() {
-                    $(".rating-avg").text(this.Counter.toFixed(1));
-                }
-            });
     </script>
     <script>
         $(document).ready(function () {
             var artistName = "@Model.Name";
             getArtistInfo(artistName);
             getVideo(artistName);
+
+            animateScore();
+            embedTweet();
         });
     </script>
     <script type="text/javascript">
@@ -142,13 +132,6 @@
             });
         });
     </script>
-    <script>
-        var twitter = "<a href='https://twitter.com/share?ref_src=twsrc%5Etfw' class='twitter-share-button' data-size='large' data-text='Check out this page on Freestyle - a Music Reviewing Site' data-show-count='false'>Tweet</a>" +
-            "<script async src='https://platform.twitter.com/widgets.js' charset='utf-8'>" +
-            "</scr" +
-            "ipt>";
 
-        $(".share").html(twitter);
-    </script>
 }
 

@@ -32,7 +32,7 @@
 
             <div class="form-actions no-color">
                 <input type="submit" value="Delete" class="btn btn-danger" /> |
-                @Html.ActionLink("Back to List", "Index", new { @class = "btn btn-secondary" })
+                @Html.ActionLink("Back to @"+ Model.Username + "'s Page", "Details",new{id=Model.Id}, new { @class = "btn btn-secondary" })
             </div>
         }
     </div>

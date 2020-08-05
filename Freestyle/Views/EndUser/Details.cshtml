@@ -36,8 +36,8 @@
         {
             <section>
                 <h4>Admin: </h4>
-                @Html.ActionLink("Update ", "Update", "EndUser", new { id = Model.Id }, new { @class = "btn btn-outline-warning" })
-                @Html.ActionLink("Delete", "Delete", "EndUser", new { id = Model.Id }, new { @class = "btn btn-outline-danger" })
+                @Html.ActionLink("Update ", "Update", "EndUser", new { id = Model.Id }, new { @class = "btn btn-outline-warning btn-block" })
+                @Html.ActionLink("Delete", "Delete", "EndUser", new { id = Model.Id }, new { @class = "btn btn-outline-danger btn-block" })
             </section>
         }
     </div>
@@ -76,25 +76,9 @@
             $(".rating-avg").append((Math.round(avg * 100) / 100).toFixed(1));
             var scorePercent = avg * 10;
             $("#score-progress").attr("style", "width:" + scorePercent + "%");
-            $({ Counter: 0 }).animate({
-                    Counter: $(".rating-avg").text()
-                },
-                {
-                    duration: 1000,
-                    easing: 'swing',
-                    step: function() {
-                        $(".rating-avg").text(this.Counter.toFixed(1));
-                    }
-                });
+            animateScore();
+            embedTweet();
         });
-    </script>
-    <script>
-        var twitter = "<a href='https://twitter.com/share?ref_src=twsrc%5Etfw' class='twitter-share-button' data-size='large' data-text='Check out this page on Freestyle - a Music Reviewing Site' data-show-count='false'>Tweet</a>" +
-            "<script async src='https://platform.twitter.com/widgets.js' charset='utf-8'>" +
-            "</scr" +
-            "ipt>";
-
-        $(".share").html(twitter);
     </script>
 }
 

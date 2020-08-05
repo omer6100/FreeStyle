@@ -58,11 +58,12 @@ namespace Freestyle.Controllers
                     .ToList();
                 if (validInput.Count > 0)
                 {
+                    ModelState.AddModelError("Username", "Either the Username Or Email are Taken");
                     return View(endUser);
                 }
                 db.Users.Add(endUser);
                 db.SaveChanges();
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("Details", new{id=endUser.Id});
             }
 
             return View(endUser);
@@ -85,6 +86,7 @@ namespace Freestyle.Controllers
 
                 if (existingUser == null)
                 {
+                    ModelState.AddModelError("Password","Your Email or Password is Incorrect");
                     return View(endUser);
                 }
 

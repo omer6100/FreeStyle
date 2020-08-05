@@ -25,7 +25,7 @@
             <h4>Statistics</h4>
         </section>
         <section id="write-review">
-            <h4>@Html.ActionLink("Write a Review","Create","Review", new{albumId=Model.Id},null)</h4>
+            @Html.ActionLink("Write a Review","Create","Review", new{albumId=Model.Id},new{@class="btn btn-outline-primary btn-lg btn-block"})
             
         </section>
         <section>
@@ -36,8 +36,8 @@
         {
             <section>
                 <h4>Admin: </h4>
-                @Html.ActionLink("Edit ", "Edit", "Album", new { id = Model.Id }, new {@class="btn btn-outline-warning"})
-                @Html.ActionLink("Delete", "Delete", "Album", new { id = Model.Id }, new{@class="btn btn-outline-danger"})
+                @Html.ActionLink("Edit ", "Edit", "Album", new { id = Model.Id }, new {@class="btn btn-outline-warning btn-block"})
+                @Html.ActionLink("Delete", "Delete", "Album", new { id = Model.Id }, new{@class="btn btn-outline-danger btn-block"})
             </section>
         }
     </div>
@@ -79,18 +79,7 @@
 
 @section Scripts
 {
-    <script>
-        $({ Counter: 0 }).animate({
-                Counter: $(".rating-avg").text()
-            },
-            {
-                duration: 1000,
-                easing: 'swing',
-                step: function() {
-                    $(".rating-avg").text(this.Counter.toFixed(1));
-                }
-            });
-    </script>
+
     <script>
         var scorePercent = @Model.AvgScore * 10;
         $("#score-progress").attr("style", "width:" + scorePercent + "%");
@@ -102,17 +91,10 @@
             getAlbumInfo(title, artistName);
 
             getVideo(title + " " + artistName);
+            animateScore();
+            embedTweet();
         });
     </script>
-    <script>
-        var twitter = "<a href='https://twitter.com/share?ref_src=twsrc%5Etfw' class='twitter-share-button' data-size='large' data-text='Check out this page on Freestyle - a Music Reviewing Site' data-show-count='false'>Tweet</a>" +
-            "<script async src='https://platform.twitter.com/widgets.js' charset='utf-8'>" +
-            "</scr" +
-            "ipt>";
-
-        $(".share").html(twitter);
-    </script>
-    
     <script type="text/javascript">
         $(document).ready(function() {
             $('#review-table').DataTable({
@@ -123,7 +105,7 @@
                     { "targets": 2, "type": "num" },
                     { "targets": 3, "orderable": false }
                 ]
-    
+
             });
         });
     </script>

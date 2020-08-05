@@ -43,8 +43,8 @@
             @Html.HiddenFor(model => model.PageViews)
 
             <div class="form-actions no-color">
-                <input type="submit" value="Delete" class="btn btn-danger" /> |
-                @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-secondary" })
+                <input type="submit" value="Delete" class="btn btn-danger" />
+                @Html.ActionLink("Back to " + Model.Name + "'s Page" , "Details", new{id=Model.Id}, new { @class = "btn btn-secondary" })
             </div>
         }
     </div>
