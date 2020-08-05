@@ -1,4 +1,5 @@
-﻿@model Freestyle.Models.Artist
+﻿@using Microsoft.Ajax.Utilities
+@model Freestyle.Models.Artist
 
 @{
                 /**/
@@ -30,7 +31,15 @@
             <h4>Share on Social</h4>
             <div class="share"></div>
         </section>
-
+        @if (Session["Role"].IfNotNull(role => role.Equals("Admin")))
+        {
+            <section>
+                <h4>Admin: </h4>
+                @Html.ActionLink("Edit ", "Edit", "Artist", new { id = Model.Id }, new {@class="btn btn-outline-warning"})
+                @Html.ActionLink("Delete", "Delete", "Artist", new { id = Model.Id }, new{@class="btn btn-outline-danger"})
+            </section>
+        }
+        
     </div>
     <div class="col-md-8">
         <section id="title">
@@ -66,7 +75,7 @@
         function initMap() {
 
             var options = {
-                zoom: 4,
+                zoom: 3,
                 center: { lat: 0, lng: 0 }
             };
             var map = new google.maps.Map(document.getElementById("google-map"), options);

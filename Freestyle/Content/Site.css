@@ -37,6 +37,17 @@ section {
 .rating-avg {
     font-size: 64px;
     text-align: center;
+    color: #593196;
+    text-shadow: 1px 5px black;
+    transition-property: font-size, text-shadow;
+    transition-duration: 2s;
+    transition-timing-function: ease-in-out;
+}
+
+.rating-avg:hover
+{
+    font-size:128px;
+    text-shadow: 2px 10px black;
 }
 
 #album-art, #profile-pic, #review-art {

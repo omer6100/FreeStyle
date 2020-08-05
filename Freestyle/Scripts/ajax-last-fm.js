@@ -18,7 +18,7 @@ function getAlbumInfo(title, artist) {
             }, util);
             
 
-            $("#totalDuration").append("<tr class=table-secondary><td>Total Duration</td>" +
+            $("#totalDuration").append("<tr class=table-secondary><td><b>Total Duration<b></td>" +
                 "<td>" +
                 "<b>"+
                 secondsToTime(util.sum) +

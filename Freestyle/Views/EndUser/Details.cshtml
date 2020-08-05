@@ -1,4 +1,5 @@
-﻿@model Freestyle.Models.EndUser
+﻿@using Microsoft.Ajax.Utilities
+@model Freestyle.Models.EndUser
 
 @{
     ViewBag.Title = "@" + Model.Username;
@@ -22,6 +23,23 @@
             <h4>Share on Social</h4>
             <div class="share"></div>
         </section>
+        @if (Session["UserId"].IfNotNull(uid => uid.Equals(Model.Id)))
+        {
+            <section>
+                <h4>Owner: </h4>
+                @Html.ActionLink("Update ", "Update", "EndUser", new { id = Model.Id }, new { @class = "btn btn-outline-warning" })
+                @Html.ActionLink("Delete", "Delete", "EndUser", new { id = Model.Id }, new { @class = "btn btn-outline-danger" })
+            </section>
+        }
+
+        @if (Session["Role"].IfNotNull(role => role.Equals("Admin")))
+        {
+            <section>
+                <h4>Admin: </h4>
+                @Html.ActionLink("Update ", "Update", "EndUser", new { id = Model.Id }, new { @class = "btn btn-outline-warning" })
+                @Html.ActionLink("Delete", "Delete", "EndUser", new { id = Model.Id }, new { @class = "btn btn-outline-danger" })
+            </section>
+        }
     </div>
     <div class="col-md-8">
         <section id="title">

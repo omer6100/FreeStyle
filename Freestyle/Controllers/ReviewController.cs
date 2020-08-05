@@ -138,17 +138,17 @@ namespace Freestyle.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            if (Session["Authorized"] == null || Session["Role"].IfNotNull(role => role.Equals("User")) && Session["UserId"].IfNotNull(uid => !uid.Equals(id)))
-            {
-                return RedirectToAction("Details", new {id});
-            }
-
             
             Review review = db.Reviews.Find(id);
             if (review == null)
             {
                 return HttpNotFound();
             }
+            if (Session["Authorized"] == null || Session["Role"].IfNotNull(role => role.Equals("User")) && Session["UserId"].IfNotNull(uid => !uid.Equals(id)))
+            {
+                return RedirectToAction("Details", new { id });
+            }
+
             return View(review);
         }
 
@@ -199,16 +199,18 @@ namespace Freestyle.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            if (Session["Authorized"] == null || Session["Role"].IfNotNull(role => role.Equals("User")) && Session["UserId"].IfNotNull(uid => !uid.Equals(id)))
-            {
-                return RedirectToAction("Details", new { id = id });
-            }
+           
 
             Review review = db.Reviews.Find(id);
             if (review == null)
             {
                 return HttpNotFound();
             }
+            if (Session["Authorized"] == null || (Session["Role"].IfNotNull(role => role.Equals("User")) && Session["UserId"].IfNotNull(uid => !uid.Equals(review.UserId))))
+            {
+                return RedirectToAction("Details", new {id });
+            }
+            
             return View(review);
         }
 

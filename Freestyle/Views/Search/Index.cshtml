@@ -34,7 +34,7 @@
                 </label>
                 <div class="col-md-10">
                     @Html.EditorFor(model => model.primaryName, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.primaryName, "", new { @class = "text-danger" })
+                    @Html.ValidationMessageFor(model => model.primaryName, null, new { @class = "text-danger" })
                 </div>
             </div>
 
@@ -44,7 +44,7 @@
                 </label>
                 <div class="col-md-10">
                     @Html.EditorFor(model => model.secondaryName, new { htmlAttributes = new { @class = "form-control", id = "s-name-input" } })
-                    @Html.ValidationMessageFor(model => model.secondaryName, "", new { @class = "text-danger" })
+                    @Html.ValidationMessageFor(model => model.secondaryName, null, new { @class = "text-danger" })
                 </div>
             </div>
             
@@ -54,7 +54,7 @@
                 </label>
                 <div class="col-md-10">
                     @Html.EditorFor(model => model.GenreCountry, new { htmlAttributes = new { @class = "form-control", id = "g-c-input" } })
-                    @Html.ValidationMessageFor(model => model.GenreCountry, "", new { @class = "text-danger" })
+                    @Html.ValidationMessageFor(model => model.GenreCountry, null, new { @class = "text-danger" })
                 </div>
             </div>
 
@@ -65,11 +65,11 @@
                         <div class="form-inline">
                             <div class="col-md-3">
                                 @Html.EditorFor(model => model.ScoreLowerBound, new { htmlAttributes = new { @class = "form-control", placeholder = "Starting from..." } })
-                                @Html.ValidationMessageFor(model => model.ScoreLowerBound, "", new { @class = "text-danger" })
+                                @Html.ValidationMessageFor(model => model.ScoreLowerBound, null, new { @class = "text-danger" })
                             </div>
                             <div class="col-md-3">
                                 @Html.EditorFor(model => model.ScoreUpperBound, new { htmlAttributes = new { @class = "form-control", placeholder = "Up to..." } })
-                                @Html.ValidationMessageFor(model => model.ScoreUpperBound, "", new { @class = "text-danger" })
+                                @Html.ValidationMessageFor(model => model.ScoreUpperBound, null, new { @class = "text-danger" })
                             </div>
                         </div>
                     </div>
