@@ -187,5 +187,11 @@ namespace Freestyle.Controllers
         {
             return PartialView("Tables/ArtistTablePartialView", db.Artists.AsEnumerable());
         }
+
+        public ActionResult SearchResult()
+        {
+            var list = TempData["results2"];
+            return View((IEnumerable<Artist>)list);
+        }
     }
 }

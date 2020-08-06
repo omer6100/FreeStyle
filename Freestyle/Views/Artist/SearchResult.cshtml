@@ -1,0 +1,28 @@
+﻿@model IEnumerable<Freestyle.Models.Artist>
+
+@{
+    ViewBag.Title = "Artist Search Results";
+}
+
+<section>
+    <h2>Search Results</h2>
+    @Html.Partial("Tables/ArtistTablePartialView", Model)
+</section>
+
+@section Scripts{
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#artists-table').DataTable({
+                "language": {
+                    "zeroRecords": 'No Matching Records Found.<br>Would You Like To @Html.ActionLink("Add a New Artist", "Create")?'
+                },
+                "columnDefs": [
+                    { "targets": 2, "type": "date" },
+                    { "targets": [4, 5], "type": "num" },
+                    { "targets": 6, "orderable": false }
+                ]
+
+            });
+        });
+    </script>
+    }
