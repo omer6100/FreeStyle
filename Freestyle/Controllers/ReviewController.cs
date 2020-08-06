@@ -267,7 +267,7 @@ namespace Freestyle.Controllers
         }
         public ActionResult SearchResult()
         {
-            var list = TempData["results"];
+            var list = TempData["results3"];
             return View((IEnumerable<Review>)list);
         }
     }
