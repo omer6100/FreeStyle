@@ -1,0 +1,28 @@
+﻿@model IEnumerable<Freestyle.Models.Album>
+
+@{
+    ViewBag.Title = "Album Search Results";
+}
+
+<section>
+    <h2>Search Results</h2>
+    @Html.Partial("Tables/AlbumTablePartialView", Model)
+</section>
+
+@section Scripts{
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#albums-table').DataTable({
+                "language": {
+                    "zeroRecords": 'No Matching Records Found.<br>Would You Like To @Html.ActionLink("Add a New Album", "Create")?'
+                },
+                "columnDefs": [
+                    { "targets": 2, "type": "date" },
+                    { "targets": [4, 5], "type": "num" },
+                    { "targets": 6, "orderable": false }
+                ]
+
+            });
+        });
+    </script>
+    }

@@ -213,5 +213,10 @@ namespace Freestyle.Controllers
             }
             base.Dispose(disposing);
         }
+        public ActionResult SearchResult()
+        {
+            var list = TempData["results"];
+            return View((IEnumerable<Album>)list);
+        }
     }
 }
