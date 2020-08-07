@@ -191,6 +191,18 @@
     <Compile Include="Migrations\202008062309579_nullableScoreBounds.designer.cs">
       <DependentUpon>202008062309579_nullableScoreBounds.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202008071842066_test.cs" />
+    <Compile Include="Migrations\202008071842066_test.designer.cs">
+      <DependentUpon>202008071842066_test.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202008071907492_test2.cs" />
+    <Compile Include="Migrations\202008071907492_test2.designer.cs">
+      <DependentUpon>202008071907492_test2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202008071910563_test3.cs" />
+    <Compile Include="Migrations\202008071910563_test3.designer.cs">
+      <DependentUpon>202008071910563_test3.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Album.cs" />
     <Compile Include="Models\Artist.cs" />
@@ -201,6 +213,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\circle-cropped.png" />
+    <Content Include="Content\logo-removebg-preview.png" />
+    <Content Include="Content\logo.jpg" />
     <Content Include="Content\review_0.jpg" />
     <Content Include="Content\review_1.jpg" />
     <Content Include="Content\review_2.jpg" />
@@ -321,6 +335,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202008062309579_nullableScoreBounds.resx">
       <DependentUpon>202008062309579_nullableScoreBounds.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202008071842066_test.resx">
+      <DependentUpon>202008071842066_test.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202008071907492_test2.resx">
+      <DependentUpon>202008071907492_test2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202008071910563_test3.resx">
+      <DependentUpon>202008071910563_test3.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

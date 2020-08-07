@@ -64,7 +64,7 @@ namespace Freestyle.Controllers
         {
             if (ModelState.IsValid)
             {
-                var existingArtist = db.Artists.Where(a => a.Name == artist.Name && a.OriginCountry == artist.OriginCountry)
+                var existingArtist = db.Artists.Where(a => a.Name == artist.Name)
                     .Select(a => new {a.Id}).SingleOrDefault();
                 if (existingArtist == null)
                 {
@@ -86,16 +86,16 @@ namespace Freestyle.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-
-            if (Session["Role"] == null || Session["Role"].IfNotNull(role => role.Equals("User")))
-            {
-                return RedirectToAction("Index", "Home");
-            }
             Artist artist = db.Artists.Find(id);
             if (artist == null)
             {
                 return HttpNotFound();
             }
+            if (Session["Role"] == null || Session["Role"].IfNotNull(role => role.Equals("User")))
+            {
+                return RedirectToAction("Details", new{id=artist.Id});
+            }
+            
             return View(artist);
         }
 
@@ -108,6 +108,7 @@ namespace Freestyle.Controllers
         {
             if (ModelState.IsValid)
             {
+                artist.PageViews = artist.PageViews < 0 ? 0 : artist.PageViews;
                 db.Entry(artist).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Details", new { id = artist.Id });
@@ -123,16 +124,16 @@ namespace Freestyle.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-
-            if (Session["Role"] == null || Session["Role"].IfNotNull(role => role.Equals("User")))
-            {
-                return RedirectToAction("Index", "Home");
-            }
             Artist artist = db.Artists.Find(id);
             if (artist == null)
             {
                 return HttpNotFound();
             }
+            if (Session["Role"] == null || Session["Role"].IfNotNull(role => role.Equals("User")))
+            {
+                return RedirectToAction("Details", new{id=artist.Id});
+            }
+           
             return View(artist);
         }
 

@@ -25,7 +25,7 @@
                     @{
                         string val = null;
                         Model.AlbumTitle.IfNotNull(at => val = at);
-                        @Html.EditorFor(model => model.AlbumTitle, new { htmlAttributes = new { @class = "form-control", value = val } })
+                        @Html.EditorFor(model => model.AlbumTitle, new { htmlAttributes = new { @class = "form-control", value = val, placeholder="Required" } })
                     }
                     @Html.ValidationMessageFor(model => model.AlbumTitle, null, new { @class = "text-danger" })
                 </div>
@@ -34,7 +34,7 @@
             <div class="form-group">
                 @Html.LabelFor(model => model.Text, new { @class = "control-label col-md-2 font-weight-bold" })
                 <div class="col-md-10">
-                    @Html.EditorFor(model => model.Text, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.EditorFor(model => model.Text, new { htmlAttributes = new { @class = "form-control", placeholder="Required" } })
                     @Html.ValidationMessageFor(model => model.Text, null, new { @class = "text-danger" })
                 </div>
             </div>
@@ -42,7 +42,7 @@
             <div class="form-group">
                 @Html.LabelFor(model => model.Score, new { @class = "control-label col-md-2 font-weight-bold" })
                 <div class="col-md-10">
-                    @Html.EditorFor(model => model.Score, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.EditorFor(model => model.Score, new { htmlAttributes = new { @class = "form-control", placeholder="Required",id="score-input"  } })
                     @Html.ValidationMessageFor(model => model.Score, null, new { @class = "text-danger" })
                 </div>
             </div>
@@ -57,6 +57,12 @@
     }
 </section>
 
-<div>
-    
-</div>
+@section Scripts
+{
+    <script>
+        $(document).ready(function() {
+                $("#score-input").attr("value", "");
+            }
+        );
+    </script>
+}

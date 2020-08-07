@@ -16,7 +16,7 @@ namespace Freestyle.Models
         [Required(ErrorMessage = "Artist's Name is Required")]
         public string Name { get; set; }
 
-        [Required(ErrorMessage = "Artist's Country of Origin is required")]
+        [Required(ErrorMessage = "Artist's Origin Country is Required")]
         [DisplayName("Origin Country")]
         public string OriginCountry { get; set; }
 

@@ -140,8 +140,7 @@ namespace Freestyle.Controllers
                 }
                 else
                 {
-                    int? albumId =existingAlbum.Id;
-                    return RedirectToAction("Details", new { id = albumId });
+                    return RedirectToAction("Details", new { id = existingAlbum.Id });
                 }
             }
 
@@ -155,17 +154,17 @@ namespace Freestyle.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-
-            if (Session["Role"] == null || Session["Role"].IfNotNull(role=>role.Equals("User")))
-            {
-                return RedirectToAction("Index", "Home");
-            }
-
             Album album = db.Albums.Find(id);
             if (album == null)
             {
                 return HttpNotFound();
             }
+            if (Session["Role"] == null || Session["Role"].IfNotNull(role=>role.Equals("User")))
+            {
+                return RedirectToAction("Details", new{id=album.Id});
+            }
+
+            
             return View(album);
         }
 
@@ -178,9 +177,10 @@ namespace Freestyle.Controllers
         {
             if (ModelState.IsValid)
             {
+                album.PageViews =  album.PageViews < 0 ? 0 : album.PageViews;
                 db.Entry(album).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Details", new{id=album.Id});
             }
             return View(album);
         }
@@ -192,16 +192,14 @@ namespace Freestyle.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-
-            if (Session["Role"] == null || Session["Role"].IfNotNull(role => role.Equals("User")))
-            {
-                return RedirectToAction("Index", "Home");
-            }
-
             Album album = db.Albums.Find(id);
             if (album == null)
             {
                 return HttpNotFound();
+            }
+            if (Session["Role"] == null || Session["Role"].IfNotNull(role => role.Equals("User")))
+            {
+                return RedirectToAction("Details", new {id=album.Id});
             }
             return View(album);
         }

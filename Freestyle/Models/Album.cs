@@ -14,7 +14,7 @@ namespace Freestyle.Models
         public int Id { get; set; }
 
         [DisplayName("Album Title")]
-        [Required(ErrorMessage = "Album title is Required")]
+        [Required(ErrorMessage = "Album Title is Required")]
         public string Title { get; set; }
 
         [DisplayName("Artist's Name")]

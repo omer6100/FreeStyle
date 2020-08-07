@@ -86,3 +86,9 @@ section {
     display: block;
     border-style: solid;
 }
+
+#navbar-logo {
+    border-color: white;
+    border-radius: 100%;
+    border-style: solid;
+}

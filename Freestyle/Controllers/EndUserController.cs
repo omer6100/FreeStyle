@@ -127,18 +127,19 @@ namespace Freestyle.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-
-            if (Session["Role"] == null || !Session["UserId"].IfNotNull(userId => userId.Equals(id)))
-            {
-                return RedirectToAction("Index", "Home");
-            }
-
-
             EndUser endUser = db.Users.Find(id);
+
             if (endUser == null)
             {
                 return HttpNotFound();
             }
+
+
+            if (Session["Role"] == null || !Session["UserId"].IfNotNull(userId => userId.Equals(id) || userId.Equals(1)))
+            {
+                return RedirectToAction("Details", new{id=endUser.Id});
+            }
+
             return View(endUser);
         }
 
@@ -165,15 +166,18 @@ namespace Freestyle.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            if (Session["Role"] == null || !Session["UserId"].IfNotNull(userId => userId.Equals(id)))
-            {
-                return RedirectToAction("Index", "Home");
-            }
             EndUser endUser = db.Users.Find(id);
             if (endUser == null)
             {
                 return HttpNotFound();
             }
+
+
+            if (Session["Role"] == null || !Session["UserId"].IfNotNull(userId => userId.Equals(id) || userId.Equals(1)))
+            {
+                return RedirectToAction("Details", new{id=endUser.Id});
+            }
+            
             return View(endUser);
         }
 

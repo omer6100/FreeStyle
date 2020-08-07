@@ -18,17 +18,17 @@
             <div class="form-group">
                 @Html.LabelFor(model => model.Name, new { @class = "control-label col-md-2 font-weight-bold" })
                 <div class="col-md-10">
-                    @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control", placeholder="Required" } })
                     @Html.ValidationMessageFor(model => model.Name, null, new { @class = "text-danger" })
                 </div>
             </div>
             <div class="form-group">
                 @Html.LabelFor(model => model.OriginCountry, new { @class = "control-label col-md-2 font-weight-bold" })
                 <div class="col-md-10">
-                    @Html.EditorFor(model => model.OriginCountry, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.EditorFor(model => model.OriginCountry, new { htmlAttributes = new { @class = "form-control", placeholder="Required" } })
                     @Html.ValidationMessageFor(model => model.OriginCountry, null, new { @class = "text-danger" })
                 </div>
-            </div>
+            </div>c
 
             <div class="form-group">
                 <div class="col-md-offset-2 col-md-10">
