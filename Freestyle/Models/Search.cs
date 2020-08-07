@@ -15,11 +15,10 @@ namespace Freestyle.Models
         public string secondaryName { get; set; } // for album (the artist); for review (username); 
 
         [Range(0, 10)]
-        public double ScoreLowerBound { get; set; }
-
+        public double? ScoreLowerBound { get; set; }
 
         [Range(0,10)]
-        public double ScoreUpperBound { get; set; }
+        public double? ScoreUpperBound { get; set; }
 
         public string GenreCountry { get; set; } 
 

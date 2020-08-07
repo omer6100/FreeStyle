@@ -66,3 +66,7 @@ section {
     margin-right: auto;
     border-style: solid;
 }
+
+.advanced-item {
+    display: none;
+}

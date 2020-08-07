@@ -57,6 +57,9 @@ namespace Freestyle.Controllers
 
                         }
 
+                        search.ScoreLowerBound = search.ScoreLowerBound == null ? 0 : search.ScoreLowerBound;
+                        search.ScoreUpperBound = search.ScoreLowerBound == null ? 10 : search.ScoreUpperBound;
+
                         if (search.ScoreLowerBound > search.ScoreUpperBound)
                         {
                             ModelState.AddModelError("ScoreLowerBound", "Invalid Range");

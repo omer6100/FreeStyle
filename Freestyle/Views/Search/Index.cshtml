@@ -38,37 +38,37 @@
                 </div>
             </div>
 
-            <div class="form-group" id="s-name">
+            <div class="form-group advanced-item" id="s-name">
                 <label for="secondaryName" class="col-md-2" id="secondary-name">
                     <b>By Artist:</b>
                 </label>
                 <div class="col-md-10">
-                    @Html.EditorFor(model => model.secondaryName, new { htmlAttributes = new { @class = "form-control", id = "s-name-input" } })
+                    @Html.EditorFor(model => model.secondaryName, new { htmlAttributes = new { @class = "form-control", id = "s-name-input"} })
                     @Html.ValidationMessageFor(model => model.secondaryName, null, new { @class = "text-danger" })
                 </div>
             </div>
             
-            <div class="form-group" id="g-c">
+            <div class="form-group advanced-item" id="g-c">
                 <label for="GenreCountry" class="col-md-2" id="genre-country">
                     <b>Genre:</b>
                 </label>
                 <div class="col-md-10">
-                    @Html.EditorFor(model => model.GenreCountry, new { htmlAttributes = new { @class = "form-control", id = "g-c-input" } })
+                    @Html.EditorFor(model => model.GenreCountry, new { htmlAttributes = new { @class = "form-control", id = "g-c-input"} })
                     @Html.ValidationMessageFor(model => model.GenreCountry, null, new { @class = "text-danger" })
                 </div>
             </div>
 
-            <div class="form-group">
-                <h6><b class="col-md-2">Score Range: </b></h6>
+            <div class="form-group advanced-item">
+                <h6 ><b class="col-md-2">Score Range: </b></h6>
                 <div class="row">
                     <div class="col-md-10">
                         <div class="form-inline">
                             <div class="col-md-3">
-                                @Html.EditorFor(model => model.ScoreLowerBound, new { htmlAttributes = new { @class = "form-control", placeholder = "Starting from..." } })
+                                @Html.EditorFor(model => model.ScoreLowerBound, new { htmlAttributes = new { @class = "form-control ", placeholder = "Starting from..."} })
                                 @Html.ValidationMessageFor(model => model.ScoreLowerBound, null, new { @class = "text-danger" })
                             </div>
                             <div class="col-md-3">
-                                @Html.EditorFor(model => model.ScoreUpperBound, new { htmlAttributes = new { @class = "form-control", placeholder = "Up to..." } })
+                                @Html.EditorFor(model => model.ScoreUpperBound, new { htmlAttributes = new { @class = "form-control", placeholder = "Up to..."} })
                                 @Html.ValidationMessageFor(model => model.ScoreUpperBound, null, new { @class = "text-danger" })
                             </div>
                         </div>
@@ -80,6 +80,9 @@
             <div class="form-group">
                 <div class="col-md-offset-2 col-md-10">
                     <input type="submit" value="Search" class="btn btn-primary" />
+                    <button type="button" class="btn btn-secondary" id="advanced-seacrh-btn">
+                        <span id="btn-val">Go To Advanced Search</span>
+                    </button>
                 </div>
             </div>
         </div>
@@ -92,53 +95,72 @@
         $(document).ready(function() {
             $("select#type").change(function() {
                 var selectedType = $(this).children("option:selected").val();
-                switch (selectedType) {
-                case "Album":
-                    $("#primary-name").html("<b>Album Title:</b>");
+                var isAdvanced = $("#btn-val").html() === "Go To Normal Search";
 
-                    if ($("#s-name").is(":hidden")) {
-                        $("#s-name").show();
+                if (isAdvanced) {
+                    switch (selectedType) {
+                    case "Album":
+                        $("#primary-name").html("<b>Album Title:</b>");
+                        if ($("#s-name").is(":hidden")) {
+                            $("#s-name").toggle();
+                        }
+                        $("#secondary-name").html("<b>By Artist:</b>");
+                        if ($("#g-c").is(":hidden")) {
+                            $("#g-c").toggle();
+                        }
+                        $("#genre-country").html("<b>Genre:</b>");
+                        break;
+                    case "Artist":
+                        $("#primary-name").html("<b>Artist's Name:</b>");
+                        if (!$("#s-name").is(":hidden")) {
+                            $("#s-name-input").val(null);
+                            $("#s-name").toggle();
+                        }
+                        if ($("#g-c").is(":hidden")) {
+                            $("#g-c").toggle();
+                        }
+                        $("#genre-country").html("<b>Origin Country:</b>");
+                        break;
+                    case "Review":
+                        $("#primary-name").html("<b>Album Title:</b>");
+                        if ($("#s-name").is(":hidden")) {
+                            $("#s-name").show();
+                        }
+                        $("#secondary-name").html("<b>Written By:</b>");
+                        if (!$("#g-c").is(":hidden")) {
+                            $("#g-c-input").val(null);
+                            $("#g-c").toggle();
+                        }
+                        break;
+                    default:
                     }
-                    $("#secondary-name").html("<b>By Artist:</b>");
-
-                    if ($("#g-c").is(":hidden")) {
-                        $("#g-c").show();
+                } else {
+                    switch (selectedType) {
+                    case "Album":
+                    case "Review":
+                        $("#primary-name").html("<b>Album Title:</b>");
+                        break;
+                    case "Artist":
+                        $("#primary-name").html("<b>Artist's Name:</b>");
+                        break;
+                    default:
                     }
-                    $("#genre-country").html("<b>Genre:</b>");
-                    break;
-
-                case "Artist":
-                    $("#primary-name").html("<b>Artist's Name:</b>");
-
-                    if ($("#g-c").is(":hidden")) {
-                        $("#g-c").show();
-                    }
-                    $("#genre-country").html("<b>Origin Country:</b>");
-
-                    if ($("#s-name").is(":visible")) {
-                        $("#s-name-input").val(null);
-                        $("#s-name").hide();
-                    }
-                    break;
-                case "Review":
-                    $("#primary-name").html("<b>Album's Title:</b>");
-
-                    if ($("#s-name").is(":hidden")) {
-                        $("#s-name").show();
-                    }
-                    $("#secondary-name").html("<b>Written By:</b>");
-
-                    if ($("#g-c").is(":visible")) {
-                        $("#g-c-input").val(null);
-                        $("#g-c").hide();
-                    }
-
-                    break;
-
-
-                default:
                 }
             });
+        });
+    </script>
+    <script>
+        $("#advanced-seacrh-btn").click(function() {
+
+
+            if ($("#btn-val").html() === "Go To Normal Search") {
+                $("#btn-val").html("Go To Advanced Search");
+                $(".advanced-item").hide();
+            } else {
+                $("#btn-val").html("Go To Normal Search");
+                $(".advanced-item").show();
+            }
+            
         });
     </script>
 }
