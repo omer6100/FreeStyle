@@ -212,6 +212,8 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\datatables.css" />
     <Content Include="Content\profile_pic.jpg" />
+    <Content Include="d3.js" />
+    <Content Include="d3.min.js" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -219,6 +221,10 @@
     <Content Include="Scripts\ajax-last-fm.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="API.md" />
+    <Content Include="CHANGES.md" />
+    <Content Include="LICENSE" />
+    <Content Include="README.md" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\datatables.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
