@@ -1,12 +1,36 @@
-﻿@{
-    ViewBag.Title = "Home Page";
+﻿@using Freestyle.Models
+@using Microsoft.Ajax.Utilities
+@{
+                /**/
+
+                ViewBag.Title = "Home Page";
 }
 
-<section >
+@{
+    if (Session["Authorized"].IfNotNull(a => a.Equals(true))
+        && ((List<Album>)Session["Last Album Visits"]).Count > 0
+        && ((List<Artist>)Session["Last Artist Visits"]).Count > 0)
+    {
+        <section>
+            <h2>Based on Your Activity, You Might Also Like</h2>
+            <div class="row">
+                <div class="col-md-6">
+                    @Html.Action("GetRecommended", "Album")
+                </div>
+                <div class="col-md-6">
+                    @Html.Action("GetRecommended", "Artist")
+                </div>
+            </div>
+        </section>
+        <hr />
+    }
+}
+
+<section>
     <h2>Most Popular Albums</h2>
     @Html.Action("GetAlbumsPartial", "Album")
 </section>
-<hr/>
+<hr />
 <section>
     <h2>Best Reviewed Artists</h2>
     @Html.Action("GetArtistsPartial", "Artist")
@@ -22,7 +46,7 @@
     <script type="text/javascript">
         $(document).ready(function() {
             $('#albums-table').DataTable({
-                
+
                 "order":[4, 'desc'],
                 "language": {
                     "zeroRecords": 'No Matching Records Found.<br>Would You Like To @Html.ActionLink("Create a New Album", "Create", "Album")?'
@@ -36,7 +60,7 @@
             });
 
             $("#artist-table").DataTable({
-               
+
                 "order": [2, 'desc'],
                 "language": {
                     "zeroRecords": 'No Matching Records Found.<br>Would You Like To @Html.ActionLink("Add a New Artist", "Create", "Artist")?'
@@ -48,7 +72,7 @@
             });
 
             $('#review-table').DataTable({
-                
+
                 "language": {
                     "zeroRecords": 'No Matching Records Found.'
                 },
@@ -56,7 +80,7 @@
                     { "targets": 2, "type": "num" },
                     { "targets": 3, "orderable": false }
                 ]
-    
+
             });
         });
     </script>

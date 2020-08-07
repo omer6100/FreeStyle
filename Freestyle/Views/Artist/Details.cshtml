@@ -15,7 +15,7 @@
         <hr />
         <section id="score-slider">
             <h2 class="rating-avg">
-                @String.Format("{0:F1}", Model.AvgScore)
+                @String.Format("{0:0.#}", Model.AvgScore)
             </h2>
             <div class="progress">
                 <div class="progress-bar" id="score-progress"></div>
@@ -98,7 +98,7 @@
         $("#score-progress").attr("style", "width:" + scorePercent + "%");
     </script>
     <script>
-        $(document).ready(function () {
+        $(document).ready(function() {
             var artistName = "@Model.Name";
             getArtistInfo(artistName);
             getVideo("music by " + artistName);
@@ -111,11 +111,11 @@
         $(document).ready(function() {
             $('#albums-table').DataTable({
                 "language": {
-                    "zeroRecords": 'No Matching Records Found.<br>Would You Like To @Html.ActionLink("Create a New Album", "Create")?'
+                    "zeroRecords": 'No Matching Records Found.<br>Would You Like To @Html.ActionLink("Create a New Album", "Create", "Album", new{artistId=Model.Id}, null)?'
                 },
                 "columnDefs": [
                     { "targets": 2, "type": "date" },
-                    { "targets" : [5,4], "type": "num"},
+                    { "targets": [5, 4], "type": "num" },
                     { "targets": 6, "orderable": false }
                 ]
 
@@ -127,9 +127,9 @@
                 "columnDefs": [
                     { "targets": 2, "type": "num" },
                     { "targets": 3, "orderable": false }
-                ]
+            ]
 
-            });
+        });
         });
     </script>
 

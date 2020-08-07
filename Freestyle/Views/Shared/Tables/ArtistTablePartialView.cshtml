@@ -31,7 +31,7 @@
                     @Html.DisplayFor(modelItem => item.OriginCountry)
                 </td>
                 <td>
-                    @String.Format("{0:F1}", item.AvgScore)
+                    @String.Format("{0:0.#}", item.AvgScore)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.PageViews)

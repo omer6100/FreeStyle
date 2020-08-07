@@ -15,7 +15,7 @@
         <hr />
         <section id="score-slider">
             <h2 class="rating-avg">
-                @String.Format("{0:F1}", Model.AvgScore)
+                @String.Format("{0:0.#}", Model.AvgScore)
             </h2>
             <div class="progress">
                 <div class="progress-bar" id="score-progress"></div>

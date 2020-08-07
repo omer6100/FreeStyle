@@ -63,6 +63,12 @@ namespace Freestyle.Controllers
                 }
                 db.Users.Add(endUser);
                 db.SaveChanges();
+                Session["UserId"] = endUser.Id;
+                Session["Role"] = endUser.Id == 1 ? "Admin" : "User";
+                Session["Username"] = endUser.Username;
+                Session["Authorized"] = true;
+                Session["Last Album Visits"] = new List<Album>(10);
+                Session["Last Artist Visits"] = new List<Artist>(10);
                 return RedirectToAction("Details", new{id=endUser.Id});
             }
 
@@ -94,6 +100,8 @@ namespace Freestyle.Controllers
                 Session["Role"] = existingUser.Id == 1 ? "Admin" : "User";
                 Session["Username"] = existingUser.Username;
                 Session["Authorized"] = true;
+                Session["Last Album Visits"] = new List<Album>(10);
+                Session["Last Artist Visits"] = new List<Artist>(10);
                 return RedirectToAction("Index", "Home");
             }
 
@@ -107,7 +115,8 @@ namespace Freestyle.Controllers
             Session["Role"] = "Guest";
             Session["Username"] = null;
             Session["Authorized"] = false;
-
+            Session["Last Album Visits"] = null;
+            Session["Last Artist Visits"] = null;
             return RedirectToAction("Index", "Home");
         }
 

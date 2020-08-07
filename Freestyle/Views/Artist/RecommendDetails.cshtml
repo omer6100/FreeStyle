@@ -1,0 +1,24 @@
+﻿@model Freestyle.Models.Artist
+
+<section>
+    <h4>
+        @Html.ActionLink(Model.Name, "Details", new { id = Model.Id }, new { @class = "font-weight-bold" })
+    </h4>
+    <section id="rec-artist-img"></section>
+</section>
+
+<script>
+    $(document).ready(function () {
+        $.getJSON("https://ws.audioscrobbler.com/2.0/?method=artist.gettopalbums&artist=" + "@Model.Name" + "&api_key=" + LastFmKey + "&autocorrect=1&limit=10&format=json",
+            function (json) {
+                var i = Math.floor(Math.random() * 10) % 10;
+                var src = json.topalbums.album[i].image[3]["#text"];
+                var alt = name + "Picture";
+
+                $("#rec-artist-img").html("<img class='index-album-art' alt = " + alt + " src = " + src + ">");
+
+            });
+
+    });
+</script>
+

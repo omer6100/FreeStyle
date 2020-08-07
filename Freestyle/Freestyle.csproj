@@ -286,6 +286,8 @@
     <Content Include="Views\Album\SearchResult.cshtml" />
     <Content Include="Views\Artist\SearchResult.cshtml" />
     <Content Include="Views\Review\SearchResult.cshtml" />
+    <Content Include="Views\Album\RecommendDetails.cshtml" />
+    <Content Include="Views\Artist\RecommendDetails.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

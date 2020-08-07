@@ -44,7 +44,7 @@
                     @item.PageViews
                 </td>
                 <td>
-                    @String.Format("{0:F1}", item.AvgScore)
+                    @String.Format("{0:0.#}", item.AvgScore)
                 </td>
                 <td >
                     @Html.ActionLink("Write a Review", "Create", "Review", new{albumId = item.Id}, null)

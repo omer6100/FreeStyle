@@ -9,8 +9,9 @@ function getAlbumInfo(title, artist) {
             var src = json.album.image[4]["#text"];
             var util = {sum:0};
 
+            var summary = json.album.wiki != null ? json.album.wiki.summary : "The Synopsis for this Album is Unavailable on Last.Fm";
             $("#img").html("<img id='album-art' alt = " + alt + " src = " + src + ">");
-            $("#bio").html(json.album.wiki.summary);
+            $("#bio").html(summary);
 
             json.album.tracks.track.forEach(function(song){
                 this.sum += Number(song.duration);

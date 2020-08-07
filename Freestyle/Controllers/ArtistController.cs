@@ -36,6 +36,16 @@ namespace Freestyle.Controllers
             }
             artist.PageViews++;
             db.SaveChanges();
+
+            if (Session["Last Artist Visits"] != null)
+            {
+                var list = ((List<Artist>) Session["Last Artist Visits"]);
+                if (list.Count == list.Capacity)
+                {
+                    list.RemoveAt(list.Count - 1);
+                }
+                list.Insert(0, artist);
+            }
             return View(artist);
         }
 
@@ -193,6 +203,28 @@ namespace Freestyle.Controllers
         {
             var list = TempData["results2"];
             return View((IEnumerable<Artist>)list);
+        }
+
+        public ActionResult GetRecommended()
+        {
+            if (Session["Last Artist Visits"] != null)
+            {
+                var visits = ((List<Artist>)Session["Last Artist Visits"]).AsQueryable();
+                var country = visits.GroupBy(artist => artist.OriginCountry)
+                    .OrderByDescending(group => group.Count())
+                    .First().Key;
+
+                var recommendedArtist = db.Artists.Where(artist => artist.OriginCountry == country).OrderBy(album => Guid.NewGuid())
+                    .First();
+
+                return PartialView("RecommendDetails", new Artist
+                {
+                    Id = recommendedArtist.Id,
+                    Name = recommendedArtist.Name
+                });
+            }
+
+            return null;
         }
     }
 }

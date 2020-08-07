@@ -32,6 +32,30 @@ namespace Freestyle.Controllers
             return PartialView("Tables/AlbumTablePartialView", GetAlbums());
         }
 
+        public ActionResult GetRecommended()
+        {
+            if (Session["Last Album Visits"] != null)
+            {
+                var visits = ((List<Album>)Session["Last Album Visits"]).AsQueryable();
+                var genre = visits.GroupBy(album => album.Genre)
+                    .OrderByDescending(group => group.Count())
+                    .First().Key;
+
+                var recommendedAlbum = db.Albums.Where(album => album.Genre == genre).OrderBy(album => Guid.NewGuid())
+                    .First();
+
+                return PartialView("RecommendDetails", new Album
+                {
+                    Id = recommendedAlbum.Id,
+                    Artist = recommendedAlbum.Artist,
+                    ArtistId = recommendedAlbum.ArtistId,
+                    Title = recommendedAlbum.Title
+                });
+            }
+
+            return null;
+        }
+
         // GET: Album/Details/5
         public ActionResult Details(int? id)
         {
@@ -47,13 +71,32 @@ namespace Freestyle.Controllers
 
             album.PageViews++;
             db.SaveChanges();
+
+            if (Session["Last Album Visits"] != null)
+            {
+                var list = ((List<Album>)Session["Last Album Visits"]);
+                if (list.Count == list.Capacity)
+                {
+                    list.RemoveAt(list.Count - 1);
+                }
+                list.Insert(0, album);
+            }
             return View(album);
 
         }
 
-        public ActionResult Create()
+        public ActionResult Create(int? artistId)
         {
-            return View();
+            var name = "";
+            if (artistId != null)
+            {
+                var artist = db.Artists.FirstOrDefault(a => a.Id == artistId);
+                if (artist != null)
+                {
+                    name = artist.Name;
+                }
+            }
+            return View(new Album { Artist = name, ReleaseDate = new DateTime(1970, 1, 1) });
         }
 
         // POST: Album/Create

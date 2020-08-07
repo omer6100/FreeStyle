@@ -81,3 +81,8 @@ section {
     border-radius: 1px;
     border-style: solid;
 }
+
+.index-album-art {
+    display: block;
+    border-style: solid;
+}

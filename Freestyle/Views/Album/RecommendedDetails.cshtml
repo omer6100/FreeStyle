@@ -1,0 +1,25 @@
+﻿@model Freestyle.Models.Album
+
+
+<section>
+    <h4>
+        @Html.ActionLink(Model.Title, "Details", new { id = Model.Id }, new { @class = "font-weight-bold" }) by
+        @Html.ActionLink(Model.Artist, "Details", "Artist", new { id = Model.ArtistId }, new { @class = "font-weight-bold" })
+    </h4>
+    <section id="rec-album-img"></section>
+</section>
+
+<script>
+    $(document).ready(function() {
+        $.getJSON(
+            "https://ws.audioscrobbler.com/2.0/?method=album.getinfo&api_key=" + LastFmKey + "&artist=" + "@Model.Artist" + "&album=" + "@Model.Title" + "&autocorrect=1&format=json",
+            function(json) {
+                var alt = json.album.name.split(" ").join("") + "AlbumArt";
+                var src = json.album.image[4]["#text"];
+
+                $("#rec-album-img").html("<img id='index-album-art' alt = " + alt + " src = " + src + ">");
+            });
+    });
+</script>
+
+
