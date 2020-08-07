@@ -70,3 +70,14 @@ section {
 .advanced-item {
     display: none;
 }
+
+.navbar-logo {
+    border-radius: 100%;
+    border-style: solid;
+}
+
+#custom-nav-link {
+    color: white;
+    border-radius: 1px;
+    border-style: solid;
+}

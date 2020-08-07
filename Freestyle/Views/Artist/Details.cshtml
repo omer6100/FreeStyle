@@ -101,7 +101,7 @@
         $(document).ready(function () {
             var artistName = "@Model.Name";
             getArtistInfo(artistName);
-            getVideo(artistName);
+            getVideo("music by " + artistName);
 
             animateScore();
             embedTweet();

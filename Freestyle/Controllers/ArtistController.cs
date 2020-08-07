@@ -137,6 +137,7 @@ namespace Freestyle.Controllers
             if (albums.ToList().Count == 0)
             {
                 db.Artists.Remove(artist);
+                db.SaveChanges();
                 return RedirectToAction("Index");
             }
 

@@ -30,8 +30,6 @@ namespace Freestyle.Controllers
 
             if (ModelState.IsValid)
             {
-
-
                 switch (search.type)
                 {
                     case "Album":
@@ -45,7 +43,6 @@ namespace Freestyle.Controllers
                             }
                             
                         }
-
                         if (search.secondaryName != null)
                         {
                             var artist = db.Artists.Where(a => a.Name == search.secondaryName).FirstOrDefault();
@@ -58,7 +55,7 @@ namespace Freestyle.Controllers
                         }
 
                         search.ScoreLowerBound = search.ScoreLowerBound == null ? 0 : search.ScoreLowerBound;
-                        search.ScoreUpperBound = search.ScoreLowerBound == null ? 10 : search.ScoreUpperBound;
+                        search.ScoreUpperBound = search.ScoreUpperBound == null ? 10 : search.ScoreUpperBound;
 
                         if (search.ScoreLowerBound > search.ScoreUpperBound)
                         {
@@ -66,6 +63,7 @@ namespace Freestyle.Controllers
                             return View(search);
                         }
 
+                        search.primaryName  = search.primaryName == null ? "" : search.primaryName;
                         var genre = search.GenreCountry != null ? search.GenreCountry : "";
                         var artistName = search.secondaryName == null ? "" : search.secondaryName;
 
@@ -89,8 +87,8 @@ namespace Freestyle.Controllers
 
 
                         var results = (from element in query
-                                       where
-                                            element.Artist.Contains(artistName)//#Critical Difference! (contain sides was opposite) 
+                                       where element.Title.Contains(search.primaryName)
+                                         && element.Artist.Contains(artistName)//#Critical Difference! (contain sides was opposite) 
                                          && search.ScoreLowerBound <= element.AvgScore
                                          && element.AvgScore <= search.ScoreUpperBound
                                          && element.Genre.Contains(genre)
@@ -126,20 +124,22 @@ namespace Freestyle.Controllers
 
                         TempData["results"] = resultsAsAlbums;
                         break;
+                    
                     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                     case "Artist":
                         if (search.primaryName != null)
                         {
-                            var artist = db.Artists.Where(a => a.Name == search.primaryName).FirstOrDefault();
-                            if (artist == null)
+                            var artist = db.Artists.FirstOrDefault(a => a.Name == search.primaryName);
+
+                            if (artist != null)
                             {
-                                ModelState.AddModelError("primaryName", "You cannot search for an artist that does not exist");
-                                return View(search);
+                                return RedirectToAction("Details", "Artist", new {id = artist.Id});
                             }
 
                         }
 
-                        
+                        search.ScoreLowerBound = search.ScoreLowerBound == null ? 0 : search.ScoreLowerBound;
+                        search.ScoreUpperBound = search.ScoreUpperBound == null ? 10 : search.ScoreUpperBound;
 
                         if (search.ScoreLowerBound > search.ScoreUpperBound)
                         {
@@ -148,9 +148,9 @@ namespace Freestyle.Controllers
                         }
 
                         var originCountry = search.GenreCountry != null ? search.GenreCountry : "";//#name changed
-                        var artistName2 = search.primaryName == null ? "" : search.primaryName;
+                        var name = search.primaryName == null ? "" : search.primaryName;
 
-                        var query2 = db.Albums.Join(db.Artists,
+                        var artistQuery = db.Albums.Join(db.Artists,
                                                     album => album.ArtistId,
                                                     artist => artist.Id,
                                                     (album, artist) => new
@@ -170,9 +170,9 @@ namespace Freestyle.Controllers
                                                     });
 
 
-                        var results2 = (from element in query2
+                        var artistResults = (from element in artistQuery
                                        where
-                                            element.Name.Contains(artistName2)
+                                            element.Name.Contains(name)
                                          && search.ScoreLowerBound <= element.AvgScoreArtist
                                          && element.AvgScoreArtist <= search.ScoreUpperBound
                                          && element.OriginCountry.Contains(originCountry)
@@ -184,19 +184,19 @@ namespace Freestyle.Controllers
                                            Name = element.Name,
                                            OriginCountry = element.OriginCountry,
                                            PageViews = element.PageViewsAlbum,
-                                           AvgScoreArtist = element.AvgScoreArtist     
+                                           AvgScore = element.AvgScoreArtist     
                                        }).ToList();
 
 
                         var resultsAsArtist = new List<Artist>();
-                        results2.ForEach(anon => {
+                        artistResults.ForEach(anon => {
                             var a = new Artist
                             {
                                 Id = anon.Id,  
                                 Name = anon.Name,
                                 OriginCountry=anon.OriginCountry,
                                 PageViews = anon.PageViews,
-                                AvgScore = anon.AvgScoreArtist
+                                AvgScore = anon.AvgScore
 
                             };
                             resultsAsArtist.Add(a);
@@ -227,31 +227,35 @@ namespace Freestyle.Controllers
 
                         }
 
+                        search.ScoreLowerBound = search.ScoreLowerBound == null ? 0 : search.ScoreLowerBound;
+                        search.ScoreUpperBound = search.ScoreUpperBound == null ? 10 : search.ScoreUpperBound;
+
                         if (search.ScoreLowerBound > search.ScoreUpperBound)
                         {
                             ModelState.AddModelError("ScoreLowerBound", "Invalid Range");
                             return View(search);
                         }
 
-                        var WrittenBy___ = search.secondaryName != null ? search.secondaryName : "";//#name changed
+                        //search.primaryName = search.primaryName == null ? "" : search.primaryName;
+                        var writtenBy = search.secondaryName != null ? search.secondaryName : "";//#name changed
                         var albumTitle = search.primaryName == null ? "" : search.primaryName;
 
-                        var query3 = db.Reviews.GroupBy(review=>review.Username);
+                        var reviewQuery = db.Reviews.GroupBy(review=>review.Username);
 
 
-                        var results3 = new List<Review>();
-                        query3.Where(element => element.Key.Contains(WrittenBy___)).ForEach(group=>
+                        var reviewResults = new List<Review>();
+                        reviewQuery.Where(element => element.Key.Contains(writtenBy)).ForEach(group=>
                         {
                             var relavent = group.Where(
 
-                                 element =>
+                                 element => 
                                    element.AlbumTitle.Contains(albumTitle)
                                 && search.ScoreLowerBound <= element.Score
                                 && element.Score <= search.ScoreUpperBound);
                             
                             relavent.ForEach(entity =>
                             {
-                                results3.Add(new Review
+                                reviewResults.Add(new Review
                                 {
                                     Score = entity.Score,
                                     Id = entity.Id,
@@ -264,38 +268,7 @@ namespace Freestyle.Controllers
                             });
                         });
 
-
-                        //   element.Name.Contains(albumTitle)
-                        //&& search.ScoreLowerBound <= element.AvgScoreArtist
-                        //&& element.AvgScoreArtist <= search.ScoreUpperBound
-                        //&& element.OriginCountry.Contains(WrittenBy___)
-
-                        //                select new
-                        //                {
-                        //                    //#different items were selected => the ones that matches the Artitst's model
-                        //                    Id = element.ArtistId,
-                        //                    Name = element.Name,
-                        //                    OriginCountry = element.OriginCountry,
-                        //                    PageViews = element.PageViewsAlbum,
-                        //                    AvgScoreArtist = element.AvgScoreArtist
-                        //                }).ToList();
-
-
-                        //var resultsAsReview = new List<Artist>();
-                        //results3.ForEach(anon => {
-                        //    var a = new Artist
-                        //    {
-                        //        Id = anon.Id,
-                        //        Name = anon.Name,
-                        //        OriginCountry = anon.OriginCountry,
-                        //        PageViews = anon.PageViews,
-                        //        AvgScore = anon.AvgScoreArtist
-
-                        //    };
-                        //    resultsAsReview.Add(a);
-                        //});
-
-                        TempData["results3"] = results3;
+                        TempData["results3"] = reviewResults;
                         break;
                     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                     default:

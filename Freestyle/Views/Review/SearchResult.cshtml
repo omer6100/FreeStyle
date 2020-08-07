@@ -12,16 +12,16 @@
 @section Scripts{
     <script type="text/javascript">
         $(document).ready(function() {
-            $('#reviews-table').DataTable({
+            $('#review-table').DataTable({
+                
                 "language": {
-                    "zeroRecords": 'No Matching Records Found.<br>Would You Like To @Html.ActionLink("Add a New Review", "Create")?'
+                    "zeroRecords": 'No Matching Records Found.<br>Would You Like To @Html.ActionLink("Write Your Own Review", "Create")?'
                 },
                 "columnDefs": [
-                    { "targets": 2, "type": "date" },
-                    { "targets": [4, 5], "type": "num" },
-                    { "targets": 6, "orderable": false }
+                    { "targets": 2, "type": "num" },
+                    { "targets": 3, "orderable": false }
                 ]
-
+    
             });
         });
     </script>

@@ -100,7 +100,8 @@ function embedTweet() {
         "<script async src='https://platform.twitter.com/widgets.js' charset='utf-8'>" +
         "</scr" +
         "ipt>";
+    var facebook = "<iframe src='https://www.facebook.com/plugins/share_button.php?href=https%3A%2F%2Flocalhost%3A50024&layout=button&size=large&width=77&height=28&appId' width ='77' height='28' style='border:none;overflow:hidden' scrolling='no' frameborder='0' allowTransparency='true' allow='encrypted-media'></iframe>";
 
-    $(".share").html(twitter);
+    $(".share").html(twitter +" " +facebook);
 }
 

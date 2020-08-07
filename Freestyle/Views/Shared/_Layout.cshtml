@@ -18,7 +18,10 @@
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary" id="navbar">
-    <a class="navbar-brand" href="~/">Freestyle</a>
+    <a class="navbar-brand" href="~/">
+        <img src="~/Content/circle-cropped.png" alt="brand" id="navbar-logo" height="30" width="30" />
+        Freestyle
+    </a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
@@ -26,22 +29,24 @@
     <div class="collapse navbar-collapse" id="navbarColor01">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item">
-                @Html.ActionLink("Albums", "Index", "Album", null, new { @class = "nav-link" })
+                @Html.ActionLink("Albums", "Index", "Album", null, new { @class = "nav-link font-weight-bold" })
             </li>
             <li class="nav-item">
-                @Html.ActionLink("Artists", "Index", "Artist", null, new { @class = "nav-link" })
+                @Html.ActionLink("Artists", "Index", "Artist", null, new { @class = "nav-link font-weight-bold" })
             </li>
             <li class="nav-item">
-                @Html.ActionLink("Reviews", "Index", "Review", null, new { @class = "nav-link" })
+                @Html.ActionLink("Reviews", "Index", "Review", null, new { @class = "nav-link font-weight-bold" })
             </li>
             <li class="nav-item">
-                @Html.ActionLink("Users", "Index", "EndUser", null, new { @class = "nav-link" })
+                @Html.ActionLink("Users", "Index", "EndUser", null, new { @class = "nav-link font-weight-bold" })
             </li>
             <li class="nav-item">
-                @Html.ActionLink("AdvancedSearch", "Index", "Search", null, new { @class = "nav-link" })
+                @Html.ActionLink("Search", "Index", "Search", null, new { @class = "nav-link font-weight-bold" })
             </li>
         </ul>
-
+        <ul class="nav navbar-nav navbar-right">
+            
+        </ul>
         @if (Session["Authorized"].IfNotNull(s=>s.Equals(true)))
         {
             @Html.Partial("User/UserPartialNav");

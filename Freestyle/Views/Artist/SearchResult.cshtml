@@ -11,18 +11,16 @@
 
 @section Scripts{
     <script type="text/javascript">
-        $(document).ready(function() {
-            $('#artists-table').DataTable({
-                "language": {
-                    "zeroRecords": 'No Matching Records Found.<br>Would You Like To @Html.ActionLink("Add a New Artist", "Create")?'
-                },
-                "columnDefs": [
-                    { "targets": 2, "type": "date" },
-                    { "targets": [4, 5], "type": "num" },
-                    { "targets": 6, "orderable": false }
-                ]
-
-            });
+        $("#artist-table").DataTable({
+               
+            "order": [2, 'desc'],
+            "language": {
+                "zeroRecords": 'No Matching Records Found.<br>Would You Like To @Html.ActionLink("Add a New Artist", "Create", "Artist")?'
+            },
+            "columnDefs": [
+                { "targets": [2, 3], "type": "num" },
+                { "targets": 4, "orderable": false }
+            ]
         });
     </script>
     }
