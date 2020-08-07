@@ -42,9 +42,9 @@ namespace Freestyle
                                     orderby album.AvgScore descending 
                                     select album).FirstOrDefault();
                 var message = "Hi There Freestyle Fans! Its Time to Update You on our Highest Rated Albums and Artists. " +
-                              "This great "+topAlbum.Genre+" Album " + " from " + topAlbum.Artist+ ", "  + topAlbum.Title  + ", reigns supreme with an Average Score of " +
+                              "This great "+topAlbum.Genre+" Album from " + topAlbum.Artist+ ", "  + topAlbum.Title  + ", reigns supreme with an Average Score of " +
                                 string.Format("{0:0.#}", topAlbum.AvgScore * 1.0) + "! Also, our top rated Artist hails from " + topArtist.OriginCountry + 
-                              ", with an outstanding Average Score of " + string.Format("{0:0.#}", topArtist.AvgScore * 1.0) +", its the fantastic " + topArtist.Name + "!";
+                              ", with an outstanding Average Score of " + string.Format("{0:0.#}", topArtist.AvgScore * 1.0) +", it's the fantastic " + topArtist.Name + "!";
 
 
                 var values = new Dictionary<string, string>
