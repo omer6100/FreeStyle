@@ -134,6 +134,8 @@ namespace Freestyle.Controllers
         {
             if (ModelState.IsValid)
             {
+
+
                 artist.PageViews = artist.PageViews < 0 ? 0 : artist.PageViews;
                 db.Entry(artist).State = EntityState.Modified;
                 db.SaveChanges();

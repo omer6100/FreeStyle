@@ -1,2 +1,1 @@
-﻿select *
-from EndUser
+﻿update Review set ReviewCreationTime = '2020-08-07'

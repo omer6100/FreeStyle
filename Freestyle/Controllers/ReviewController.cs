@@ -166,7 +166,11 @@ namespace Freestyle.Controllers
         {
             if (ModelState.IsValid)
             {
-                
+                if (review.ReviewCreationTime > DateTime.Now)
+                {
+                    ModelState.AddModelError("ReviewCreationTime", "Invalid date");
+                    return View(review);
+                }
                 //int oldScore = db.Entry(review).Entity.Score;
                 int oldScore = db.Reviews.FirstOrDefault(r => r.Id == review.Id).Score;
                 
