@@ -1,11 +1,29 @@
-﻿@model Freestyle.Models.Artist
+﻿@using Freestyle.Models
+@model Freestyle.Models.Artist
 
 <section>
+    <div class="row">
+        <div class="col-md-7">
+            <section id="rec-artist-img"></section>
+        </div>
+        <div class="col-md-3 col-md-offset-2">
+            <section>
+                @Html.ActionLink("Go to Artist", "Details", "Artist", new { id = Model.Id }, new { @class = "btn btn-outline-primary btn-lg btn-block" })
+                @Html.ActionLink("Similar Artists", "Index", "Search",
+                    new Search
+                    {
+                        type = "Artist", GenreCountry  = Model.OriginCountry, ScoreLowerBound = Model.AvgScore - 2 < 0 ? 0 : Model.AvgScore-2,
+                        ScoreUpperBound = (Model.AvgScore + 2 > 10 || Model.AvgScore == 0) ? 10 : Model.AvgScore + 2
+                    },
+                    new { @class = "btn btn-outline-primary btn-lg btn-block" })
+            </section> 
+        </div>
+    </div>
     <h4>
-        @Html.ActionLink(Model.Name, "Details", new { id = Model.Id }, new { @class = "font-weight-bold" })
+        @Model.Name
     </h4>
-    <section id="rec-artist-img"></section>
 </section>
+
 
 <script>
     $(document).ready(function () {
@@ -15,7 +33,7 @@
                 var src = json.topalbums.album[i].image[3]["#text"];
                 var alt = name + "Picture";
 
-                $("#rec-artist-img").html("<img class='index-album-art' alt = " + alt + " src = " + src + ">");
+                $("#rec-artist-img").html("<img class='index-album-art' alt = " + alt + " src = " + src + " style = 'height:100%; width: 100%; object-fit: contain'>");
 
             });
 

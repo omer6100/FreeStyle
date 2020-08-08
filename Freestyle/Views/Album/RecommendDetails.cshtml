@@ -1,12 +1,30 @@
-﻿@model Freestyle.Models.Album
+﻿@using Freestyle.Models
+@model Freestyle.Models.Album
 
 
 <section>
+    <div class="row">
+        <div class="col-md-7">
+            <section id="rec-album-img"></section>
+        </div>
+        <div class="col-md-3 col-md-offset-2">
+            <section>
+                @Html.ActionLink("Go to Album", "Details", "Album", new { id = Model.Id }, new { @class = "btn btn-outline-primary btn-lg btn-block" })
+                @Html.ActionLink("Go to Artist", "Details", "Artist", new { id = Model.ArtistId }, new { @class = "btn btn-outline-primary btn-lg btn-block" })
+                @Html.ActionLink("Write a Review", "Create", "Review", new { albumId = Model.Id }, new { @class = "btn btn-outline-primary btn-lg btn-block" })
+                @Html.ActionLink("Similar Albums", "Index", "Search",
+                    new Search
+                    {
+                        type = "Album", GenreCountry  = Model.Genre, ScoreLowerBound = Model.AvgScore - 2 < 0 ? 0 : Model.AvgScore-2,
+                        ScoreUpperBound = (Model.AvgScore + 2 > 10 || Model.AvgScore ==0 ) ? 10 : Model.AvgScore + 2
+                    },
+                    new { @class = "btn btn-outline-primary btn-lg btn-block" })
+            </section> 
+        </div>
+    </div>
     <h4>
-        @Html.ActionLink(Model.Title, "Details", new { id = Model.Id }, new { @class = "font-weight-bold" }) by
-        @Html.ActionLink(Model.Artist, "Details", "Artist", new { id = Model.ArtistId }, new { @class = "font-weight-bold" })
+        @Model.Title by @Model.Artist
     </h4>
-    <section id="rec-album-img"></section>
 </section>
 
 <script>
@@ -17,7 +35,7 @@
                 var alt = json.album.name.split(" ").join("") + "AlbumArt";
                 var src = json.album.image[4]["#text"];
 
-                $("#rec-album-img").html("<img class='index-album-art' alt = " + alt + " src = " + src + ">");
+                $("#rec-album-img").html("<img class='index-album-art' alt = " + alt + " src = " + src + " style = 'height:100%; width: 100%; object-fit: contain'>");
             });
     });
 </script>
