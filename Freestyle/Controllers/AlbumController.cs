@@ -53,7 +53,9 @@ namespace Freestyle.Controllers
                     Id = recommendedAlbum.Id,
                     Artist = recommendedAlbum.Artist,
                     ArtistId = recommendedAlbum.ArtistId,
-                    Title = recommendedAlbum.Title
+                    Title = recommendedAlbum.Title,
+                    ReleaseDate = recommendedAlbum.ReleaseDate,
+                    Genre = recommendedAlbum.Genre
                 });
             }
 

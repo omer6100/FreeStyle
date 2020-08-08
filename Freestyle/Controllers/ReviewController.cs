@@ -162,11 +162,11 @@ namespace Freestyle.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,UserId,Username,AlbumId,AlbumTitle,Text,Score")] Review review)
+        public ActionResult Edit([Bind(Include = "Id,UserId,Username,AlbumId,AlbumTitle,Text,Score, ReviewCreationTime")] Review review)
         {
             if (ModelState.IsValid)
             {
-                //
+                
                 //int oldScore = db.Entry(review).Entity.Score;
                 int oldScore = db.Reviews.FirstOrDefault(r => r.Id == review.Id).Score;
                 

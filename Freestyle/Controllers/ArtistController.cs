@@ -251,7 +251,9 @@ namespace Freestyle.Controllers
                 return PartialView("RecommendDetails", new Artist
                 {
                     Id = recommendedArtist.Id,
-                    Name = recommendedArtist.Name
+                    Name = recommendedArtist.Name,
+                    OriginCountry=recommendedArtist.OriginCountry,
+                    AvgScore=recommendedArtist.AvgScore
                 });
             }
 

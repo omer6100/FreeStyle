@@ -58,7 +58,9 @@
             </div>
         </div>
         <div class="form-group advanced-item advanced-all">
-            <h6><b class="col-md-2" id="date-range-label">Release Date: </b></h6>
+            <div class="col-md-2" id="date-range-label">
+                <h6><b>Release Date Range:</b></h6>
+            </div>
             <div class="row">
                 <div class="col-md-10">
                     <div class="form-inline">
@@ -147,16 +149,21 @@
                         $("#primary-name").html("<b>Album Title:</b>");
                         $("#secondary-name").html("<b>By Artist:</b>");
                         $("#genre-country").html("<b>Genre:</b>");
+                        $("#date-range-label").html("<h6><b>Release Date Range:</b></h6>");
                         $(".advanced-album").show();
                         break;
                     case "Review":
                         $("#primary-name").html("<b>Album Title:</b>");
                         $("#secondary-name").html("<b>Written By:</b>");
+                            $("#date-range-label").html("<h6><b>Creation Time Range:</b></h6>");
                         break;
                     case "Artist":
                         $("#primary-name").html("<b>Artist's Name:</b>");
                         $("#genre-country").html("<b>Origin Country:</b>");
-                        $(".advanced-artist").show();
+                        
+                            
+                            $("#date-range-label").html("<h6><b>Years Active:</b></h6>");
+                            $(".advanced-artist").show();
                             break;
                     default:
                         break;
@@ -181,17 +188,20 @@
                     case "Album":
                         $("#primary-name").html("<b>Album Title:</b>");
                         $("#secondary-name").html("<b>By Artist:</b>");
-                        $("#genre-country").html("<b>Genre:</b>");
+                            $("#genre-country").html("<b>Genre:</b>");
+                            $("#date-range-label").html("<h6><b>Release Date Range:</b></h6>");
                         $(".advanced-album").show();
                         break;
                     case "Artist":
                         $("#primary-name").html("<b>Artist's Name:</b>");
-                        $("#genre-country").html("<b>Origin Country:</b>");
+                            $("#genre-country").html("<b>Origin Country:</b>");
+                            $("#date-range-label").html("<h6><b>Years Active:</b></h6>");
                         $(".advanced-artist").show();
                         break;
                     case "Review":
                         $("#primary-name").html("<b>Album Title:</b>");
-                        $("#secondary-name").html("<b>Written By:</b>");
+                            $("#secondary-name").html("<b>Written By:</b>");
+                            $("#date-range-label").html("<h6><b>Creation Time Range:</b></h6>");
                         $(".advanced-review").show();
                         break;
                     default:
