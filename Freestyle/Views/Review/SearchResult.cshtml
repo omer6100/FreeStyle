@@ -2,6 +2,7 @@
 
 @{
     ViewBag.Title = "Review Search Results";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <section>
@@ -13,7 +14,7 @@
     <script type="text/javascript">
         $(document).ready(function() {
             $('#review-table').DataTable({
-                
+
                 "language": {
                     "zeroRecords": 'No Matching Records Found.<br>Would You Like To @Html.ActionLink("Write Your Own Review", "Create")?'
                 },
@@ -21,8 +22,8 @@
                     { "targets": 2, "type": "num" },
                     { "targets": 3, "orderable": false }
                 ]
-    
+
             });
         });
     </script>
-    }
+}

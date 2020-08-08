@@ -23,9 +23,12 @@ namespace Freestyle.Controllers
         {
             return View();
         }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Index([Bind(Include = "type,primaryName,secondaryName,ScoreLowerBound,GenreCountry,ScoreUpperBound")] Search search)
+        public ActionResult Index(
+            [Bind(Include = "type,primaryName,secondaryName,ScoreLowerBound,GenreCountry,ScoreUpperBound")]
+            Search search)
         {
 
             if (ModelState.IsValid)
@@ -39,16 +42,18 @@ namespace Freestyle.Controllers
                             var album = db.Albums.Where(a => a.Title == search.primaryName).FirstOrDefault();
                             if (album != null)
                             {
-                                return RedirectToAction("Details", "Album", new { id = album.Id });
+                                return RedirectToAction("Details", "Album", new {id = album.Id});
                             }
-                            
+
                         }
+
                         if (search.secondaryName != null)
                         {
                             var artist = db.Artists.Where(a => a.Name == search.secondaryName).FirstOrDefault();
                             if (artist == null)
                             {
-                                ModelState.AddModelError("secondaryName", "You cannot search for an artist that does not exist");
+                                ModelState.AddModelError("secondaryName",
+                                    "You cannot search for an artist that does not exist");
                                 return View(search);
                             }
 
@@ -63,51 +68,53 @@ namespace Freestyle.Controllers
                             return View(search);
                         }
 
-                        search.primaryName  = search.primaryName == null ? "" : search.primaryName;
+                        search.primaryName = search.primaryName == null ? "" : search.primaryName;
                         var genre = search.GenreCountry != null ? search.GenreCountry : "";
                         var artistName = search.secondaryName == null ? "" : search.secondaryName;
 
                         var query = db.Albums.Join(db.Artists,
-                                                    album => album.ArtistId,
-                                                    artist => artist.Id,
-                                                    (album, artist) => new
-                                                    {
-                                                        Id = album.Id,
-                                                        Artist = album.Artist,
-                                                        Title = album.Title,
-                                                        ArtistId = artist.Id,
-                                                        ReleaseDate = album.ReleaseDate,
-                                                        AvgScore = album.AvgScore,
-                                                        Genre = album.Genre,
-                                                        PageViewsAlbum = album.PageViews,
-                                                        PageViewsArtist = artist.PageViews,
-                                                        OriginCountry = artist.OriginCountry,
-                                                        AvgScoreArtist = artist.AvgScore
-                                                    });
+                            album => album.ArtistId,
+                            artist => artist.Id,
+                            (album, artist) => new
+                            {
+                                Id = album.Id,
+                                Artist = album.Artist,
+                                Title = album.Title,
+                                ArtistId = artist.Id,
+                                ReleaseDate = album.ReleaseDate,
+                                AvgScore = album.AvgScore,
+                                Genre = album.Genre,
+                                PageViewsAlbum = album.PageViews,
+                                PageViewsArtist = artist.PageViews,
+                                OriginCountry = artist.OriginCountry,
+                                AvgScoreArtist = artist.AvgScore
+                            });
 
 
                         var results = (from element in query
-                                       where element.Title.Contains(search.primaryName)
-                                         && element.Artist.Contains(artistName)//#Critical Difference! (contain sides was opposite) 
-                                         && search.ScoreLowerBound <= element.AvgScore
-                                         && element.AvgScore <= search.ScoreUpperBound
-                                         && element.Genre.Contains(genre)
-                                         
-                                       select new
-                                       {
-                                           Id = element.Id,
-                                           Artist = element.Artist,
-                                           Title = element.Title,
-                                           ReleaseDate = element.ReleaseDate,
-                                           Genre = element.Genre,
-                                           PageViews = element.PageViewsAlbum,
-                                           AvgScore = element.AvgScore,
-                                           ArtistId = element.ArtistId
-                                       }).ToList();
-     
+                            where element.Title.Contains(search.primaryName)
+                                  && element.Artist
+                                      .Contains(artistName) //#Critical Difference! (contain sides was opposite) 
+                                  && search.ScoreLowerBound <= element.AvgScore
+                                  && element.AvgScore <= search.ScoreUpperBound
+                                  && element.Genre.Contains(genre)
+
+                            select new
+                            {
+                                Id = element.Id,
+                                Artist = element.Artist,
+                                Title = element.Title,
+                                ReleaseDate = element.ReleaseDate,
+                                Genre = element.Genre,
+                                PageViews = element.PageViewsAlbum,
+                                AvgScore = element.AvgScore,
+                                ArtistId = element.ArtistId
+                            }).Distinct().ToList();
+
 
                         var resultsAsAlbums = new List<Album>();
-                        results.ForEach(anon => {
+                        results.ForEach(anon =>
+                        {
                             var a = new Album
                             {
                                 Id = anon.Id,
@@ -124,7 +131,7 @@ namespace Freestyle.Controllers
 
                         TempData["results"] = resultsAsAlbums;
                         break;
-                    
+
                     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                     case "Artist":
                         if (search.primaryName != null)
@@ -147,54 +154,55 @@ namespace Freestyle.Controllers
                             return View(search);
                         }
 
-                        var originCountry = search.GenreCountry != null ? search.GenreCountry : "";//#name changed
+                        var originCountry = search.GenreCountry != null ? search.GenreCountry : ""; //#name changed
                         var name = search.primaryName == null ? "" : search.primaryName;
 
                         var artistQuery = db.Albums.Join(db.Artists,
-                                                    album => album.ArtistId,
-                                                    artist => artist.Id,
-                                                    (album, artist) => new
-                                                    {
-                                                        //#different names
-                                                        AlbumId = album.Id,//
-                                                        Name = album.Artist,//
-                                                        AlbumTitle = album.Title,//
-                                                        ArtistId = artist.Id,
-                                                        ReleaseDate = album.ReleaseDate,
-                                                        AlbumAvgScore = album.AvgScore,//
-                                                        Genre = album.Genre,
-                                                        PageViewsAlbum = album.PageViews,
-                                                        PageViewsArtist = artist.PageViews,
-                                                        OriginCountry = artist.OriginCountry,
-                                                        AvgScoreArtist = artist.AvgScore
-                                                    });
+                            album => album.ArtistId,
+                            artist => artist.Id,
+                            (album, artist) => new
+                            {
+                                //#different names
+                                AlbumId = album.Id, //
+                                Name = album.Artist, //
+                                AlbumTitle = album.Title, //
+                                ArtistId = artist.Id,
+                                ReleaseDate = album.ReleaseDate,
+                                AlbumAvgScore = album.AvgScore, //
+                                Genre = album.Genre,
+                                PageViewsAlbum = album.PageViews,
+                                PageViewsArtist = artist.PageViews,
+                                OriginCountry = artist.OriginCountry,
+                                AvgScoreArtist = artist.AvgScore
+                            });
 
 
                         var artistResults = (from element in artistQuery
-                                       where
-                                            element.Name.Contains(name)
-                                         && search.ScoreLowerBound <= element.AvgScoreArtist
-                                         && element.AvgScoreArtist <= search.ScoreUpperBound
-                                         && element.OriginCountry.Contains(originCountry)
+                            where
+                                element.Name.Contains(name)
+                                && search.ScoreLowerBound <= element.AvgScoreArtist
+                                && element.AvgScoreArtist <= search.ScoreUpperBound
+                                && element.OriginCountry.Contains(originCountry)
 
-                                       select new
-                                       {
-                                           //#different items were selected => the ones that matches the Artitst's model
-                                           Id = element.ArtistId,
-                                           Name = element.Name,
-                                           OriginCountry = element.OriginCountry,
-                                           PageViews = element.PageViewsAlbum,
-                                           AvgScore = element.AvgScoreArtist     
-                                       }).ToList();
+                            select new
+                            {
+                                //#different items were selected => the ones that matches the Artitst's model
+                                Id = element.ArtistId,
+                                Name = element.Name,
+                                OriginCountry = element.OriginCountry,
+                                PageViews = element.PageViewsArtist,
+                                AvgScore = element.AvgScoreArtist
+                            }).Distinct().ToList();
 
 
                         var resultsAsArtist = new List<Artist>();
-                        artistResults.ForEach(anon => {
+                        artistResults.ForEach(anon =>
+                        {
                             var a = new Artist
                             {
-                                Id = anon.Id,  
+                                Id = anon.Id,
                                 Name = anon.Name,
-                                OriginCountry=anon.OriginCountry,
+                                OriginCountry = anon.OriginCountry,
                                 PageViews = anon.PageViews,
                                 AvgScore = anon.AvgScore
 
@@ -207,21 +215,29 @@ namespace Freestyle.Controllers
 
                     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                     case "Review":
+
                         if (search.primaryName != null)
                         {
                             var album = db.Albums.Where(a => a.Title == search.primaryName).FirstOrDefault();
                             if (album != null)
                             {
-                                return RedirectToAction("GetReviewsByAlbum", "Review", new { id = album.Id });
+                                var reviews = db.Reviews.Where(r => r.AlbumId == album.Id).AsEnumerable();
+                                TempData["results3"] = reviews;
+                                return RedirectToAction("SearchResult", search.type);
                             }
 
+                            //return RedirectToAction("GetReviewsByAlbum", "Review", new { id = album.Id });
                         }
+
+
                         if (search.secondaryName != null)
                         {
-                            var writtenBy___ = db.Reviews.Where(usr => usr.Username == search.secondaryName).FirstOrDefault();
+                            var writtenBy___ = db.Reviews.Where(usr => usr.Username == search.secondaryName)
+                                .FirstOrDefault();
                             if (writtenBy___ == null)
                             {
-                                ModelState.AddModelError("secondaryName", "You cannot search for an user name that does not exist");
+                                ModelState.AddModelError("secondaryName",
+                                    "You cannot search for an user name that does not exist");
                                 return View(search);
                             }
 
@@ -237,22 +253,22 @@ namespace Freestyle.Controllers
                         }
 
                         //search.primaryName = search.primaryName == null ? "" : search.primaryName;
-                        var writtenBy = search.secondaryName != null ? search.secondaryName : "";//#name changed
+                        var writtenBy = search.secondaryName != null ? search.secondaryName : ""; //#name changed
                         var albumTitle = search.primaryName == null ? "" : search.primaryName;
 
-                        var reviewQuery = db.Reviews.GroupBy(review=>review.Username);
+                        var reviewQuery = db.Reviews.GroupBy(review => review.Username);
 
 
                         var reviewResults = new List<Review>();
-                        reviewQuery.Where(element => element.Key.Contains(writtenBy)).ForEach(group=>
+                        reviewQuery.Where(element => element.Key.Contains(writtenBy)).ForEach(group =>
                         {
                             var relavent = group.Where(
 
-                                 element => 
-                                   element.AlbumTitle.Contains(albumTitle)
-                                && search.ScoreLowerBound <= element.Score
-                                && element.Score <= search.ScoreUpperBound);
-                            
+                                element =>
+                                    element.AlbumTitle.Contains(albumTitle)
+                                    && search.ScoreLowerBound <= element.Score
+                                    && element.Score <= search.ScoreUpperBound);
+
                             relavent.ForEach(entity =>
                             {
                                 reviewResults.Add(new Review
@@ -264,12 +280,13 @@ namespace Freestyle.Controllers
                                     UserId = entity.UserId,
                                     Username = entity.Username,
                                     Text = entity.Text
-                                }); 
+                                });
                             });
                         });
 
                         TempData["results3"] = reviewResults;
                         break;
+
                     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                     default:
                         break;
@@ -278,9 +295,9 @@ namespace Freestyle.Controllers
                 db.SaveChanges();
                 return RedirectToAction("SearchResult", search.type);
             }
-
             return View(search);
         }
+
         // GET: Search/Details/5
         public ActionResult Details(string id)
         {

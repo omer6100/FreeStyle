@@ -90,7 +90,7 @@ function animateScore() {
             duration: 1000,
             easing: 'swing',
             step: function () {
-                $(".rating-avg").text(this.Counter.toFixed(1));
+                $(".rating-avg").text((Math.round(this.Counter * 10.0)/10.0) + "");
             }
         });
     $(".rating-avg").html(rtg);

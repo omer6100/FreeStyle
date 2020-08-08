@@ -73,10 +73,11 @@
             if (isNaN(avg)) {
                 avg = 0;
             }
-            $(".rating-avg").append((Math.round(avg * 100) / 100).toFixed(1));
+            $(".rating-avg").html(""+(Math.round(avg * 10.0) / 10.0));
             var scorePercent = avg * 10;
             $("#score-progress").attr("style", "width:" + scorePercent + "%");
             animateScore();
+            $(".rating-avg").html(""+ (Math.round(avg * 10.0) / 10.0));
             embedTweet();
         });
     </script>

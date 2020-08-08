@@ -15,7 +15,7 @@
         <hr />
         <section id="score-slider">
             <h2 class="rating-avg">
-                @String.Format("{0:0.#}", Model.AvgScore)
+                
             </h2>
             <div class="progress">
                 <div class="progress-bar" id="score-progress"></div>
@@ -88,10 +88,13 @@
         $(document).ready(function() {
             var title = "@Model.Title";
             var artistName = "@Model.Artist";
+            var avgScore = Math.round(@Model.AvgScore * 10.0) / 10.0;
+            $(".rating-avg").html(avgScore);
             getAlbumInfo(title, artistName);
 
             getVideo(title + " by  " + artistName);
             animateScore();
+            $(".rating-avg").html(avgScore); // just in case
             embedTweet();
         });
     </script>

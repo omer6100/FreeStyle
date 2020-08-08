@@ -60,7 +60,11 @@
         $(document).ready(function() {
             var num = @Model.Id % 3;
             $("#img").html("<img id='review-art' src ='/Content/review_" + num + ".jpg'/>");
+
+            var score = Math.round(@Model.Score * 10.0) / 10.0;
+            $(".rating-avg").html("" + score);
             animateScore();
+            $(".rating-avg").html("" + score);
             embedTweet();
         });
     </script>
