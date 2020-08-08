@@ -171,42 +171,6 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202008041339471_yos.cs" />
-    <Compile Include="Migrations\202008041339471_yos.designer.cs">
-      <DependentUpon>202008041339471_yos.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202008041628420_yos1.cs" />
-    <Compile Include="Migrations\202008041628420_yos1.designer.cs">
-      <DependentUpon>202008041628420_yos1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202008042041328_saveModelChanges.cs" />
-    <Compile Include="Migrations\202008042041328_saveModelChanges.designer.cs">
-      <DependentUpon>202008042041328_saveModelChanges.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202008051836380_changes.cs" />
-    <Compile Include="Migrations\202008051836380_changes.designer.cs">
-      <DependentUpon>202008051836380_changes.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202008062309579_nullableScoreBounds.cs" />
-    <Compile Include="Migrations\202008062309579_nullableScoreBounds.designer.cs">
-      <DependentUpon>202008062309579_nullableScoreBounds.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202008071842066_test.cs" />
-    <Compile Include="Migrations\202008071842066_test.designer.cs">
-      <DependentUpon>202008071842066_test.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202008071907492_test2.cs" />
-    <Compile Include="Migrations\202008071907492_test2.designer.cs">
-      <DependentUpon>202008071907492_test2.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202008071910563_test3.cs" />
-    <Compile Include="Migrations\202008071910563_test3.designer.cs">
-      <DependentUpon>202008071910563_test3.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202008081049105_datetime.cs" />
-    <Compile Include="Migrations\202008081049105_datetime.designer.cs">
-      <DependentUpon>202008081049105_datetime.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Album.cs" />
     <Compile Include="Models\Artist.cs" />
@@ -323,35 +287,6 @@
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.3.1.min.map" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\202008041339471_yos.resx">
-      <DependentUpon>202008041339471_yos.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202008041628420_yos1.resx">
-      <DependentUpon>202008041628420_yos1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202008042041328_saveModelChanges.resx">
-      <DependentUpon>202008042041328_saveModelChanges.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202008051836380_changes.resx">
-      <DependentUpon>202008051836380_changes.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202008062309579_nullableScoreBounds.resx">
-      <DependentUpon>202008062309579_nullableScoreBounds.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202008071842066_test.resx">
-      <DependentUpon>202008071842066_test.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202008071907492_test2.resx">
-      <DependentUpon>202008071907492_test2.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202008071910563_test3.resx">
-      <DependentUpon>202008071910563_test3.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202008081049105_datetime.resx">
-      <DependentUpon>202008081049105_datetime.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

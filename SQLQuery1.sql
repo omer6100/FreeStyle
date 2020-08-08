@@ -1,3 +1,16 @@
-﻿using FreestyleDB2
-SELECT *
-FROM EndUser
+﻿SET IDENTITY_INSERT [dbo].[Album] ON
+INSERT INTO [dbo].[Album] ([Id], [Title], [ReleaseDate], [Artist], [ArtistId], [avgScore], [PageViews], [Genre]) VALUES (2, N'Ye', N'2018-07-01 00:00:00', N'Kanye West', 1, 8, 0, N'Rap')
+INSERT INTO [dbo].[Album] ([Id], [Title], [ReleaseDate], [Artist], [ArtistId], [avgScore], [PageViews], [Genre]) VALUES (3, N'Is This It', N'2001-07-30 00:00:00', N'The Strokes', 3, 9, 0, N'Alternative')
+INSERT INTO [dbo].[Album] ([Id], [Title], [ReleaseDate], [Artist], [ArtistId], [avgScore], [PageViews], [Genre]) VALUES (4, N'Fragile', N'1971-11-12 00:00:00', N'Yes', 2, 9.3, 0, N'Rock')
+INSERT INTO [dbo].[Album] ([Id], [Title], [ReleaseDate], [Artist], [ArtistId], [avgScore], [PageViews], [Genre]) VALUES (5, N'Discovery', N'2001-01-22 00:00:00', N'Daft Punk', 4, 10, 0, N'Electronic')
+INSERT INTO [dbo].[Album] ([Id], [Title], [ReleaseDate], [Artist], [ArtistId], [avgScore], [PageViews], [Genre]) VALUES (35, N'Wish You Were Here', N'1975-09-12 00:00:00', N'Pink Floyd', 18, 0, 2, N'Rock')
+INSERT INTO [dbo].[Album] ([Id], [Title], [ReleaseDate], [Artist], [ArtistId], [avgScore], [PageViews], [Genre]) VALUES (36, N'Charli', N'2019-09-13 00:00:00', N'Charli XCX', 19, 9.5, 35, N'Pop')
+INSERT INTO [dbo].[Album] ([Id], [Title], [ReleaseDate], [Artist], [ArtistId], [avgScore], [PageViews], [Genre]) VALUES (39, N'Goo', N'1990-03-21 00:00:00', N'Sonic Youth', 20, 0, 5, N'Alternative')
+INSERT INTO [dbo].[Album] ([Id], [Title], [ReleaseDate], [Artist], [ArtistId], [avgScore], [PageViews], [Genre]) VALUES (40, N'The New Abnormal', N'2020-04-10 00:00:00', N'The Strokes', 3, 9, 2, N'Alternative')
+INSERT INTO [dbo].[Album] ([Id], [Title], [ReleaseDate], [Artist], [ArtistId], [avgScore], [PageViews], [Genre]) VALUES (41, N'Jesus is King', N'2019-10-25 00:00:00', N'Kanye West', 1, 5, 11, N'Gospel')
+INSERT INTO [dbo].[Album] ([Id], [Title], [ReleaseDate], [Artist], [ArtistId], [avgScore], [PageViews], [Genre]) VALUES (42, N'Please Please Me', N'1963-03-22 00:00:00', N'The Beatles', 21, 0, 1, N'Rock')
+INSERT INTO [dbo].[Album] ([Id], [Title], [ReleaseDate], [Artist], [ArtistId], [avgScore], [PageViews], [Genre]) VALUES (43, N'Future Nostalgia', N'2020-03-27 00:00:00', N'Dua Lipa', 5, 7, 1, N'Pop')
+INSERT INTO [dbo].[Album] ([Id], [Title], [ReleaseDate], [Artist], [ArtistId], [avgScore], [PageViews], [Genre]) VALUES (1039, N'Trans-Europe Express', N'1997-04-01 00:00:00', N'Kraftwerk', 23, 9, 7, N'Electronic')
+INSERT INTO [dbo].[Album] ([Id], [Title], [ReleaseDate], [Artist], [ArtistId], [avgScore], [PageViews], [Genre]) VALUES (1042, N'Autobahn', N'1974-11-01 00:00:00', N'Kraftwerk', 23, 0, 3, N'Electronic')
+INSERT INTO [dbo].[Album] ([Id], [Title], [ReleaseDate], [Artist], [ArtistId], [avgScore], [PageViews], [Genre]) VALUES (1043, N'Paranoid', N'1970-09-18 00:00:00', N'Black Sabbath', 24, 0, 1, N'Metal')
+SET IDENTITY_INSERT [dbo].[Album] OFF

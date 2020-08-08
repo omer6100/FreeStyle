@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Script.Serialization;
 using Freestyle.Contexts;
 using Freestyle.Models;
 using Microsoft.Ajax.Utilities;
@@ -19,6 +20,9 @@ namespace Freestyle.Controllers
         // GET: Album
         public ActionResult Index()
         {
+            var albumQuery = db.Albums.GroupBy(alb => alb.Title, sc => sc.AvgScore, (alb, sc) => new { title = alb, score = sc });
+            ViewBag.albums = new JavaScriptSerializer().Serialize(albumQuery);
+
             return View(db.Albums.ToList().OrderBy(a=>a.Title));
         }
 
