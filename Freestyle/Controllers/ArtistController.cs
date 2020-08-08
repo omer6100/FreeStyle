@@ -6,7 +6,9 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Script.Serialization;
 using Freestyle.Contexts;
+using Freestyle.Migrations;
 using Freestyle.Models;
 using Microsoft.Ajax.Utilities;
 
@@ -46,6 +48,15 @@ namespace Freestyle.Controllers
                 }
                 list.Insert(0, artist);
             }
+
+            //graph x->album names y->scores
+
+            var albumQuery = db.Albums.Where(a=>a.ArtistId==id).GroupBy(alb => alb.Title, sc => sc.AvgScore, (alb, sc) => new { title = alb, score = sc });
+            //var albumQuery = db.Albums.GroupBy(alb => alb.Title, sc => sc.AvgScore, (alb, sc) => new { title = alb, score = sc });
+            ViewBag.albums = new JavaScriptSerializer().Serialize(albumQuery);
+            //
+
+
             return View(artist);
         }
 
