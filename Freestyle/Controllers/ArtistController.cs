@@ -50,14 +50,29 @@ namespace Freestyle.Controllers
             }
 
             //graph x->album names y->scores
+            var albumQuery = db.Albums.Where(a=>a.ArtistId==id)
+                .GroupBy(alb => alb.Title, sc => sc.AvgScore, (alb, sc) =>  new {title = alb, score = sc});
 
-            var albumQuery = db.Albums.Where(a=>a.ArtistId==id).GroupBy(alb => alb.Title, sc => sc.AvgScore, (alb, sc) => new { title = alb, score = sc });
-            //var albumQuery = db.Albums.GroupBy(alb => alb.Title, sc => sc.AvgScore, (alb, sc) => new { title = alb, score = sc });
+            //var albumQuery = db.Albums.GroupBy(alb => alb.Title, sc => sc.AvgScore, (alb, sc) => new { title = alb, score = sc 
             ViewBag.albums = new JavaScriptSerializer().Serialize(albumQuery);
-            //
-
+            
 
             return View(artist);
+        }
+
+        private string Acronimize(string str)
+        {
+            var v = "";
+            var arr=  str.Split(' ');
+            if (arr.Length == 1)
+            {
+                v = arr[0];
+            }
+            else
+            {
+                arr.ForEach(s => v += s[0]);
+            }
+            return v;
         }
 
         // GET: Artists/Create
