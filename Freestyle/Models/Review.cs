@@ -32,5 +32,8 @@ namespace Freestyle.Models
         [Required(ErrorMessage = "Please Enter a Score")]
         [Range(0, 10, ErrorMessage = "Please Enter a Score from 1-10")]
         public int Score { get; set; }
+
+        [DisplayName("Written on")]
+        public DateTime ReviewCreationTime { get; set; }
     }
 } 

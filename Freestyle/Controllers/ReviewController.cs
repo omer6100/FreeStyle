@@ -121,6 +121,7 @@ namespace Freestyle.Controllers
                     review.UserId = int.Parse(Session["UserId"].IfNotNull(uid => uid.ToString()));
                     review.Username = Session["Username"].ToString();
                     review.AlbumId = album.Id;
+                    review.ReviewCreationTime = DateTime.Now;
                         
                     db.Reviews.Add(review);
                     db.SaveChanges();

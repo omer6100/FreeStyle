@@ -64,13 +64,21 @@ namespace Freestyle.Controllers
 
                         if (search.ScoreLowerBound > search.ScoreUpperBound)
                         {
-                            ModelState.AddModelError("ScoreLowerBound", "Invalid Range");
+                            ModelState.AddModelError("ScoreLowerBound", "Invalid Score Range");
                             return View(search);
                         }
 
                         search.primaryName = search.primaryName == null ? "" : search.primaryName;
                         var genre = search.GenreCountry != null ? search.GenreCountry : "";
                         var artistName = search.secondaryName == null ? "" : search.secondaryName;
+                        search.DateLowerBound = search.DateLowerBound == null ? new DateTime(0, 1, 1) : search.DateLowerBound;
+                        search.DateUpperBound= search.DateUpperBound == null ? DateTime.Now : search.DateUpperBound;
+
+                        if (search.DateUpperBound < search.DateLowerBound)
+                        {
+                            ModelState.AddModelError("DateLowerBound", "Invalid Date Range");
+                            return View(search);
+                        }
 
                         var query = db.Albums.Join(db.Artists,
                             album => album.ArtistId,
@@ -93,12 +101,12 @@ namespace Freestyle.Controllers
 
                         var results = (from element in query
                             where element.Title.Contains(search.primaryName)
-                                  && element.Artist
-                                      .Contains(artistName) //#Critical Difference! (contain sides was opposite) 
+                                  && element.Artist.Contains(artistName) //#Critical Difference! (contain sides was opposite) 
                                   && search.ScoreLowerBound <= element.AvgScore
                                   && element.AvgScore <= search.ScoreUpperBound
                                   && element.Genre.Contains(genre)
-
+                                  && search.DateLowerBound <= element.ReleaseDate
+                                  && element.ReleaseDate <= search.DateUpperBound
                             select new
                             {
                                 Id = element.Id,
@@ -154,6 +162,15 @@ namespace Freestyle.Controllers
                             return View(search);
                         }
 
+                        search.DateLowerBound = search.DateLowerBound == null ? new DateTime(0, 1, 1) : search.DateLowerBound;
+                        search.DateUpperBound = search.DateUpperBound == null ? DateTime.Now : search.DateUpperBound;
+
+                        if (search.DateUpperBound.Ticks < search.DateLowerBound.Ticks)
+                        {
+                            ModelState.AddModelError("DateLowerBound", "Invalid Date Range");
+                            return View(search);
+                        }
+
                         var originCountry = search.GenreCountry != null ? search.GenreCountry : ""; //#name changed
                         var name = search.primaryName == null ? "" : search.primaryName;
 
@@ -183,8 +200,10 @@ namespace Freestyle.Controllers
                                 && search.ScoreLowerBound <= element.AvgScoreArtist
                                 && element.AvgScoreArtist <= search.ScoreUpperBound
                                 && element.OriginCountry.Contains(originCountry)
+                                && search.DateLowerBound <= element.ReleaseDate
+                                && element.ReleaseDate <= search.DateUpperBound
 
-                            select new
+                                             select new
                             {
                                 //#different items were selected => the ones that matches the Artitst's model
                                 Id = element.ArtistId,
@@ -252,6 +271,15 @@ namespace Freestyle.Controllers
                             return View(search);
                         }
 
+                        search.DateLowerBound = search.DateLowerBound == null ? new DateTime(0, 1, 1) : search.DateLowerBound;
+                        search.DateUpperBound = search.DateUpperBound == null ? DateTime.Now : search.DateUpperBound;
+
+                        if (search.DateUpperBound.Ticks < search.DateLowerBound.Ticks)
+                        {
+                            ModelState.AddModelError("DateLowerBound", "Invalid Date Range");
+                            return View(search);
+                        }
+
                         //search.primaryName = search.primaryName == null ? "" : search.primaryName;
                         var writtenBy = search.secondaryName != null ? search.secondaryName : ""; //#name changed
                         var albumTitle = search.primaryName == null ? "" : search.primaryName;
@@ -267,7 +295,10 @@ namespace Freestyle.Controllers
                                 element =>
                                     element.AlbumTitle.Contains(albumTitle)
                                     && search.ScoreLowerBound <= element.Score
-                                    && element.Score <= search.ScoreUpperBound);
+                                    && element.Score <= search.ScoreUpperBound
+                                    && search.DateLowerBound<=element.ReviewCreationTime
+                                    && element.ReviewCreationTime <= search.DateUpperBound);
+                                    
 
                             relavent.ForEach(entity =>
                             {

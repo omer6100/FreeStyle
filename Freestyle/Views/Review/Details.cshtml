@@ -46,6 +46,7 @@
                 @Html.ActionLink("@" + Model.Username, "Details", "EndUser", new { id = Model.UserId }, null)'s Review of
                 @Html.ActionLink(Model.AlbumTitle, "Details", "Album", new { id = Model.AlbumId }, null)
             </h1>
+            <h4>Written On @Model.ReviewCreationTime.ToString("D")</h4>
         </section>
         <hr />
         <h3>Review</h3>

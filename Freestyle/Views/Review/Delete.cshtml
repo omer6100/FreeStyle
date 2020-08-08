@@ -36,6 +36,10 @@
             <b>@Html.DisplayNameFor(model => model.Score):</b> @Html.DisplayFor(model => model.Score)
         </h6>
         <br />
+        <h6>
+            <b>@Html.DisplayNameFor(model => model.ReviewCreationTime):</b> @Model.ReviewCreationTime.ToString("yyyy-MM-dd")
+        </h6>
+        <br />
 
         @using (Html.BeginForm())
         {
@@ -48,6 +52,8 @@
             @Html.HiddenFor(model => model.AlbumTitle)
             @Html.HiddenFor(model => model.Text)
             @Html.HiddenFor(model => model.Score)
+            @Html.HiddenFor(model => model.ReviewCreationTime)
+           
 
             <div class="form-actions no-color">
                 <input type="submit" value="Delete" class="btn btn-danger" /> 

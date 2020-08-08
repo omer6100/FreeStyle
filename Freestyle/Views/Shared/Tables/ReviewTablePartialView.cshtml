@@ -13,6 +13,9 @@
                     @Html.DisplayNameFor(model => model.Username)
                 </th>
                 <th>
+                    @Html.DisplayNameFor(model=>model.ReviewCreationTime)
+                </th>
+                <th>
                     @Html.DisplayNameFor(model => model.Score)
                 </th>
                 <th>
@@ -23,38 +26,41 @@
 
         @foreach (var item in Model)
         {
-            <tr>
-                <td>
-                    @Html.ActionLink(item.AlbumTitle, "Details", "Album", new { id = item.AlbumId }, null)
-                </td>
-                <td>
-                    @Html.ActionLink(item.Username, "Details", "EndUser", new { id = item.UserId }, null)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Score)
-                </td>
-                <td>
-                    @Html.ActionLink("Read the Review ", "Details", "Review", new { id = item.Id }, null)
-                    <div id="owner-actions">
-                        @if (Session["UserId"].IfNotNull(uid => uid.Equals(item.UserId)))
-                        {
-                            <b>Owner: </b>
-                            @Html.ActionLink("Edit ", "Edit", "Review", new { id = item.Id }, null)
-                            @Html.ActionLink("Delete", "Delete", "Review", new { id = item.Id }, null)
-                        }
-                    </div>
-                    
-                    <div class="admin-actions">
-                        @if (Session["Role"].IfNotNull(role => role.Equals("Admin")))
-                        {
-                            <b>Admin: </b>
-                            @Html.ActionLink("Edit ", "Edit", "Review", new { id = item.Id }, null)
-                            @Html.ActionLink("Delete", "Delete", "Review", new { id = item.Id }, null)
-                        }
-                    </div>
-                    
-                </td>
-            </tr>
+        <tr>
+            <td>
+                @Html.ActionLink(item.AlbumTitle, "Details", "Album", new { id = item.AlbumId }, null)
+            </td>
+            <td>
+                @Html.ActionLink(item.Username, "Details", "EndUser", new { id = item.UserId }, null)
+            </td>
+            <th>
+                @item.ReviewCreationTime.ToString("yyyy-MM-dd")
+            </th>
+            <td>
+                @Html.DisplayFor(modelItem => item.Score)
+            </td>
+            <td>
+                @Html.ActionLink("Read the Review ", "Details", "Review", new { id = item.Id }, null)
+                <div id="owner-actions">
+                    @if (Session["UserId"].IfNotNull(uid => uid.Equals(item.UserId)))
+                    {
+                        <b>Owner: </b>
+                        @Html.ActionLink("Edit ", "Edit", "Review", new { id = item.Id }, null)
+                        @Html.ActionLink("Delete", "Delete", "Review", new { id = item.Id }, null)
+                    }
+                </div>
+
+                <div class="admin-actions">
+                    @if (Session["Role"].IfNotNull(role => role.Equals("Admin")))
+                    {
+                        <b>Admin: </b>
+                        @Html.ActionLink("Edit ", "Edit", "Review", new { id = item.Id }, null)
+                        @Html.ActionLink("Delete", "Delete", "Review", new { id = item.Id }, null)
+                    }
+                </div>
+
+            </td>
+        </tr>
         }
 
     </table>

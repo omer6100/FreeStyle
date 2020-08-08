@@ -203,6 +203,10 @@
     <Compile Include="Migrations\202008071910563_test3.designer.cs">
       <DependentUpon>202008071910563_test3.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202008081049105_datetime.cs" />
+    <Compile Include="Migrations\202008081049105_datetime.designer.cs">
+      <DependentUpon>202008081049105_datetime.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Album.cs" />
     <Compile Include="Models\Artist.cs" />
@@ -344,6 +348,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202008071910563_test3.resx">
       <DependentUpon>202008071910563_test3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202008081049105_datetime.resx">
+      <DependentUpon>202008081049105_datetime.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

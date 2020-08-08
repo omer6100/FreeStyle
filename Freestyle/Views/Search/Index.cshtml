@@ -11,81 +11,97 @@
     {
         @Html.AntiForgeryToken()
 
-        <div class="form-horizontal">
-            <hr />
-            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
-            <div class="form-group">
-                <label for="type" class="col-md-2">
-                    <b>Search For:</b>
-                </label>
-                <div class="col-md-10">
-                    <select class="form-control" id="type" name="type">
-                        <option value="Album" selected>Albums</option>
-                        <option value="Artist">Artists</option>
-                        <option value="Review">Reviews</option>
-                    </select>
-                </div>
+        <div class="form-group">
+            <label for="type" class="col-md-2">
+                <b>Search For:</b>
+            </label>
+            <div class="col-md-10">
+                <select class="form-control" id="type" name="type">
+                    <option value="Album" selected>Albums</option>
+                    <option value="Artist">Artists</option>
+                    <option value="Review">Reviews</option>
+                </select>
             </div>
+        </div>
 
-            <div class="form-group">
-                <label for="primaryName" class="col-md-2" id="primary-name">
-                    <b>Album Title:</b>
-                </label>
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.primaryName, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.primaryName, null, new { @class = "text-danger" })
-                </div>
+        <div class="form-group">
+            <label for="primaryName" class="col-md-2" id="primary-name">
+                <b>Album Title:</b>
+            </label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.primaryName, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.primaryName, null, new { @class = "text-danger" })
             </div>
+        </div>
 
-            <div class="form-group advanced-item advanced-album advanced-review" id="s-name">
-                <label for="secondaryName" class="col-md-2" id="secondary-name">
-                    <b>By Artist:</b>
-                </label>
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.secondaryName, new { htmlAttributes = new { @class = "form-control advanced-input", id = "s-name-input"} })
-                    @Html.ValidationMessageFor(model => model.secondaryName, null, new { @class = "text-danger" })
-                </div>
+        <div class="form-group advanced-item advanced-album advanced-review" id="s-name">
+            <label for="secondaryName" class="col-md-2" id="secondary-name">
+                <b>By Artist:</b>
+            </label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.secondaryName, new { htmlAttributes = new { @class = "form-control advanced-input", id = "s-name-input" } })
+                @Html.ValidationMessageFor(model => model.secondaryName, null, new { @class = "text-danger" })
             </div>
-            
-            <div class="form-group advanced-item advanced-artist advanced-album" id="g-c">
-                <label for="GenreCountry" class="col-md-2" id="genre-country">
-                    <b>Genre:</b>
-                </label>
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.GenreCountry, new { htmlAttributes = new { @class = "form-control advanced-input", id = "g-c-input"} })
-                    @Html.ValidationMessageFor(model => model.GenreCountry, null, new { @class = "text-danger" })
-                </div>
-            </div>
+        </div>
 
-            <div class="form-group advanced-item advanced-all">
-                <h6 ><b class="col-md-2">Score Range: </b></h6>
-                <div class="row">
-                    <div class="col-md-10">
-                        <div class="form-inline">
-                            <div class="col-md-3">
-                                @Html.EditorFor(model => model.ScoreLowerBound, new { htmlAttributes = new { @class = "form-control advanced-input", placeholder = "Starting from..."} })
-                                @Html.ValidationMessageFor(model => model.ScoreLowerBound, null, new { @class = "text-danger" })
-                            </div>
-                            <div class="col-md-3">
-                                @Html.EditorFor(model => model.ScoreUpperBound, new { htmlAttributes = new { @class = "form-control advanced-input", placeholder = "Up to..."} })
-                                @Html.ValidationMessageFor(model => model.ScoreUpperBound, null, new { @class = "text-danger" })
-                            </div>
+        <div class="form-group advanced-item advanced-artist advanced-album" id="g-c">
+            <label for="GenreCountry" class="col-md-2" id="genre-country">
+                <b>Genre:</b>
+            </label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.GenreCountry, new { htmlAttributes = new { @class = "form-control advanced-input", id = "g-c-input" } })
+                @Html.ValidationMessageFor(model => model.GenreCountry, null, new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group advanced-item advanced-all">
+            <h6><b class="col-md-2" id="date-range-label">Release Date: </b></h6>
+            <div class="row">
+                <div class="col-md-10">
+                    <div class="form-inline">
+                        <div class="col-md-3">
+                            @Html.EditorFor(model => model.DateLowerBound, new { htmlAttributes = new { @class = "form-control advanced-input", placeholder = "Starting from..." } })
+                            @Html.ValidationMessageFor(model => model.DateLowerBound, null, new { @class = "text-danger" })
+                        </div>
+                        <div class="col-md-3">
+                            @Html.EditorFor(model => model.DateUpperBound, new { htmlAttributes = new { @class = "form-control advanced-input", placeholder = "Up to..." } })
+                            @Html.ValidationMessageFor(model => model.DateUpperBound, null, new { @class = "text-danger" })
                         </div>
                     </div>
                 </div>
             </div>
-
-
-            <div class="form-group">
-                <div class="col-md-offset-2 col-md-10">
-                    <input type="submit" value="Search" class="btn btn-primary" />
-                    <button type="button" class="btn btn-secondary" id="advanced-search-btn">
-                        <span id="btn-val">Go To Advanced Search</span>
-                    </button>
+        </div>
+        <div class="form-group advanced-item advanced-all">
+            <h6><b class="col-md-2">Score Range: </b></h6>
+            <div class="row">
+                <div class="col-md-10">
+                    <div class="form-inline">
+                        <div class="col-md-3">
+                            @Html.EditorFor(model => model.ScoreLowerBound, new { htmlAttributes = new { @class = "form-control advanced-input", placeholder = "Starting from..." } })
+                            @Html.ValidationMessageFor(model => model.ScoreLowerBound, null, new { @class = "text-danger" })
+                        </div>
+                        <div class="col-md-3">
+                            @Html.EditorFor(model => model.ScoreUpperBound, new { htmlAttributes = new { @class = "form-control advanced-input", placeholder = "Up to..." } })
+                            @Html.ValidationMessageFor(model => model.ScoreUpperBound, null, new { @class = "text-danger" })
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
+
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Search" class="btn btn-primary" />
+                <button type="button" class="btn btn-secondary" id="advanced-search-btn">
+                    <span id="btn-val">Go To Advanced Search</span>
+                </button>
+            </div>
+        </div>
+    </div>
     }
 </section>
 
