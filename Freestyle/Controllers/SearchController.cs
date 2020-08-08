@@ -27,9 +27,10 @@ namespace Freestyle.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Index(
-            [Bind(Include = "type,primaryName,secondaryName,ScoreLowerBound,GenreCountry,ScoreUpperBound")]
+            [Bind(Include = "type,primaryName,secondaryName,ScoreLowerBound,GenreCountry,ScoreUpperBound,DateLowerBound,DateUpperBound")]
             Search search)
         {
+            
 
             if (ModelState.IsValid)
             {
@@ -71,7 +72,8 @@ namespace Freestyle.Controllers
                         search.primaryName = search.primaryName == null ? "" : search.primaryName;
                         var genre = search.GenreCountry != null ? search.GenreCountry : "";
                         var artistName = search.secondaryName == null ? "" : search.secondaryName;
-                        search.DateLowerBound = search.DateLowerBound == null ? new DateTime(0, 1, 1) : search.DateLowerBound;
+                        
+                        search.DateLowerBound = search.DateLowerBound == null ? DateTime.MinValue : search.DateLowerBound;
                         search.DateUpperBound= search.DateUpperBound == null ? DateTime.Now : search.DateUpperBound;
 
                         if (search.DateUpperBound < search.DateLowerBound)
@@ -162,10 +164,10 @@ namespace Freestyle.Controllers
                             return View(search);
                         }
 
-                        search.DateLowerBound = search.DateLowerBound == null ? new DateTime(0, 1, 1) : search.DateLowerBound;
+                        search.DateLowerBound = search.DateLowerBound == null ? DateTime.MinValue : search.DateLowerBound;
                         search.DateUpperBound = search.DateUpperBound == null ? DateTime.Now : search.DateUpperBound;
 
-                        if (search.DateUpperBound.Ticks < search.DateLowerBound.Ticks)
+                        if (search.DateUpperBound < search.DateLowerBound)
                         {
                             ModelState.AddModelError("DateLowerBound", "Invalid Date Range");
                             return View(search);
@@ -271,10 +273,10 @@ namespace Freestyle.Controllers
                             return View(search);
                         }
 
-                        search.DateLowerBound = search.DateLowerBound == null ? new DateTime(0, 1, 1) : search.DateLowerBound;
+                        search.DateLowerBound = search.DateLowerBound == null ? DateTime.MinValue : search.DateLowerBound;
                         search.DateUpperBound = search.DateUpperBound == null ? DateTime.Now : search.DateUpperBound;
 
-                        if (search.DateUpperBound.Ticks < search.DateLowerBound.Ticks)
+                        if (search.DateUpperBound < search.DateLowerBound)
                         {
                             ModelState.AddModelError("DateLowerBound", "Invalid Date Range");
                             return View(search);
@@ -304,6 +306,7 @@ namespace Freestyle.Controllers
                             {
                                 reviewResults.Add(new Review
                                 {
+                                    ReviewCreationTime = entity.ReviewCreationTime,
                                     Score = entity.Score,
                                     Id = entity.Id,
                                     AlbumTitle = entity.AlbumTitle,

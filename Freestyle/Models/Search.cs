@@ -19,7 +19,7 @@ namespace Freestyle.Models
 
         public string GenreCountry { get; set; }
 
-        public DateTime DateLowerBound { get; set; }
-        public DateTime DateUpperBound { get; set; }
+        public DateTime? DateLowerBound { get; set; }
+        public DateTime? DateUpperBound { get; set; }
     }
 }

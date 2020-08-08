@@ -202,8 +202,12 @@ namespace Freestyle.Controllers
 
         public ActionResult SearchResult()
         {
-            var list = TempData["results2"];
-            return View((IEnumerable<Artist>)list);
+            List<Artist> list = (List<Artist>)TempData["results2"];
+            if (list == null)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+            return View(list.AsEnumerable());
         }
 
         public ActionResult GetRecommended()

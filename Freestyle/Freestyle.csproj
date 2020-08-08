@@ -171,6 +171,14 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202008081228554_yos.cs" />
+    <Compile Include="Migrations\202008081228554_yos.designer.cs">
+      <DependentUpon>202008081228554_yos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202008081258145_yos1.cs" />
+    <Compile Include="Migrations\202008081258145_yos1.designer.cs">
+      <DependentUpon>202008081258145_yos1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Album.cs" />
     <Compile Include="Models\Artist.cs" />
@@ -287,6 +295,14 @@
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.3.1.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\202008081228554_yos.resx">
+      <DependentUpon>202008081228554_yos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202008081258145_yos1.resx">
+      <DependentUpon>202008081258145_yos1.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -117,6 +117,12 @@ namespace Freestyle.Controllers
 
                 if (existingAlbum == null)
                 {
+                    if (album.ReleaseDate > DateTime.Now)
+                    {
+                        ModelState.AddModelError("ReleaseDate", "You can't Create an Album That isn't Released Yet");
+                        return View(album);
+                    }
+
                     var existingArtist = db.Artists.Where(a => a.Name == album.Artist).
                         Select(a => new {a.Id}).SingleOrDefault();
 
@@ -260,8 +266,12 @@ namespace Freestyle.Controllers
         }
         public ActionResult SearchResult()
         {
-            var list = TempData["results"];
-            return View((IEnumerable<Album>)list);
+            List<Album> list = (List<Album>)TempData["results"];
+            if(list == null)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+            return View(list.AsEnumerable());
         }
     }
 }

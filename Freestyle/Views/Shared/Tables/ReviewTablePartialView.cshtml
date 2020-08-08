@@ -33,9 +33,9 @@
             <td>
                 @Html.ActionLink(item.Username, "Details", "EndUser", new { id = item.UserId }, null)
             </td>
-            <th>
+            <td>
                 @item.ReviewCreationTime.ToString("yyyy-MM-dd")
-            </th>
+            </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Score)
             </td>
