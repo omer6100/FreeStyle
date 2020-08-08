@@ -86,8 +86,11 @@ namespace Freestyle.Controllers
                 list.Insert(0, album);
             }
             //graph : x-> reviewDate , y-> reviewScore
-            //var reviewScoreQuery = db.Reviews.GroupBy(r => r.ReviewCreationTime, sc => sc.Score, (r, sc) => new { date = r, score = sc });
-            //ViewBag.reviewScore = new JavaScriptSerializer().Serialize(reviewScoreQuery);
+            //rCount => rCount, (r, sc) => new { date = r, score = sc });
+            //var reviewQuery = db.Reviews.GroupBy(review => review.AlbumTitle, (album, x) => new { AlbumName = album, count = x.Count()});
+
+            var reviewScoreQuery = db.Reviews.Where(a => a.AlbumId == id).GroupBy(rScore => rScore.Score, (s, c) => new { reviewScore = s, count = c.Count() });
+            ViewBag.reviews = new JavaScriptSerializer().Serialize(reviewScoreQuery);
             //
             return View(album);
 
