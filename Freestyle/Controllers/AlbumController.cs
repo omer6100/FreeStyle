@@ -192,7 +192,7 @@ namespace Freestyle.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Title,Artist,ReleaseDate, Genre, PageViews")] Album album)
+        public ActionResult Edit([Bind(Include = "Id,Title,Artist,ReleaseDate, Genre, PageViews, ArtistId, AvgScore")] Album album)
         {
             if (ModelState.IsValid)
             {
