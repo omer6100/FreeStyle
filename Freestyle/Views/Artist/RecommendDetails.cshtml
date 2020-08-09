@@ -9,13 +9,23 @@
         <div class="col-md-3 col-md-offset-2">
             <section>
                 @Html.ActionLink("Go to Artist", "Details", "Artist", new { id = Model.Id }, new { @class = "btn btn-outline-primary btn-lg btn-block" })
-                @Html.ActionLink("Similar Artists", "Index", "Search",
+                @using (Html.BeginForm("Index", "Search",
                     new Search
                     {
-                        type = "Artist", GenreCountry  = Model.OriginCountry, ScoreLowerBound = Model.AvgScore - 2 < 0 ? 0 : Model.AvgScore-2,
-                        ScoreUpperBound = (Model.AvgScore + 2 > 10 || Model.AvgScore == 0) ? 10 : Model.AvgScore + 2
-                    },
-                    new { @class = "btn btn-outline-primary btn-lg btn-block" })
+                        type = "Artist",
+                        GenreCountry = Model.OriginCountry.Split(',')[1].Trim(),
+                        ScoreLowerBound = Model.AvgScore - 4 < 0 ? 0 : Model.AvgScore - 4,
+                        ScoreUpperBound = (Model.AvgScore + 4 > 10 || Model.AvgScore == 0) ? 10 : Model.AvgScore + 4
+                    }, FormMethod.Post))
+                {
+                    @Html.AntiForgeryToken()
+                    <section>
+                        <div class="form-group">
+                            <input type="submit" value="More Like" class="btn btn-outline-primary btn-lg btn-block" />
+                        </div>
+                    </section>
+
+                }
             </section> 
         </div>
     </div>

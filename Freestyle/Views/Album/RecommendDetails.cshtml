@@ -12,17 +12,26 @@
                 @Html.ActionLink("Go to Album", "Details", "Album", new { id = Model.Id }, new { @class = "btn btn-outline-primary btn-lg btn-block" })
                 @Html.ActionLink("Go to Artist", "Details", "Artist", new { id = Model.ArtistId }, new { @class = "btn btn-outline-primary btn-lg btn-block" })
                 @Html.ActionLink("Write a Review", "Create", "Review", new { albumId = Model.Id }, new { @class = "btn btn-outline-primary btn-lg btn-block" })
-                @Html.ActionLink("Similar Albums", "Index", "Search",
+                @using (Html.BeginForm("Index", "Search",
                     new Search
                     {
-                        type = "Album", GenreCountry  = Model.Genre,
-                        ScoreLowerBound = Model.AvgScore - 2 < 0 ? 0 : Model.AvgScore-2,
-                        ScoreUpperBound = (Model.AvgScore + 2 > 10 || Model.AvgScore ==0 ) ? 10 : Model.AvgScore + 2,
-                        DateLowerBound = Model.ReleaseDate - new TimeSpan(365*2, 0,0,0),
-                        DateUpperBound = Model.ReleaseDate + new TimeSpan(365 * 2, 0, 0, 0) > DateTime.Now ? DateTime.Now : Model.ReleaseDate + new TimeSpan(365 * 2, 0, 0, 0)
-                    },
-                    new { @class = "btn btn-outline-primary btn-lg btn-block" })
-            </section> 
+                        type = "Album",
+                        GenreCountry = Model.Genre,
+                        ScoreLowerBound = Model.AvgScore - 3 < 0 ? 0 : Model.AvgScore - 3,
+                        ScoreUpperBound = (Model.AvgScore + 3 > 10 || Model.AvgScore == 0) ? 10 : Model.AvgScore + 3,
+                        DateLowerBound = Model.ReleaseDate - new TimeSpan(365 * 4, 0, 0, 0),
+                        DateUpperBound = Model.ReleaseDate + new TimeSpan(365 * 4, 0, 0, 0) > DateTime.Now ? DateTime.Now : Model.ReleaseDate + new TimeSpan(365 * 4, 0, 0, 0)
+                    }, FormMethod.Post))
+                {
+                    @Html.AntiForgeryToken();
+                    <section>
+                        <div class="form-group">
+                            <input type="submit" value="More Like" class="btn btn-outline-primary btn-lg btn-block" />
+                        </div>
+                    </section>
+
+                }
+            </section>
         </div>
     </div>
     <h4>
