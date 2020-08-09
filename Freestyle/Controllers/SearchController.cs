@@ -242,7 +242,7 @@ namespace Freestyle.Controllers
                             var album = db.Albums.Where(a => a.Title == search.primaryName).FirstOrDefault();
                             if (album != null)
                             {
-                                var reviews = db.Reviews.Where(r => r.AlbumId == album.Id).AsEnumerable();
+                                var reviews = db.Reviews.Where(r => r.AlbumId == album.Id).ToList();
                                 TempData["results3"] = reviews;
                                 return RedirectToAction("SearchResult", search.type);
                             }
