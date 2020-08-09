@@ -7,7 +7,9 @@
 <section>
     <h2>Search Results</h2>
     @Html.Partial("Tables/AlbumTablePartialView", Model)
+    @Html.ActionLink("Back To Search", "Index", "Search",null,  new { @class = "btn btn-primary btn-lg btn-block" })
 </section>
+
 
 @section Scripts{
     <script type="text/javascript">

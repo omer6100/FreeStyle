@@ -74,6 +74,10 @@ namespace Freestyle.Controllers
         // GET: Reviews/Create
         public ActionResult Create(int? albumId)
         {
+            if (Session["Authorized"] == null || Session["Authorized"].IfNotNull(a => a.Equals(false)))
+            {
+                return RedirectToAction("SignIn", "EndUser");
+            }
             if (albumId != null)
             {
                 var albumTitle = "temp";
@@ -83,7 +87,6 @@ namespace Freestyle.Controllers
             return View(new Review { AlbumTitle = null });
         }
 
-        
         // POST: Reviews/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
@@ -149,7 +152,7 @@ namespace Freestyle.Controllers
             {
                 return HttpNotFound();
             }
-            if (Session["Authorized"] == null || Session["Role"].IfNotNull(role => role.Equals("User")) && Session["UserId"].IfNotNull(uid => !uid.Equals(id)))
+            if (Session["Authorized"] == null || (Session["Role"].IfNotNull(role => role.Equals("User")) && Session["UserId"].IfNotNull(uid => !uid.Equals(review.UserId))))
             {
                 return RedirectToAction("Details", new { id });
             }

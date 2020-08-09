@@ -46,7 +46,7 @@
     <div class="col-md-8">
         <section id="title">
             <h1>
-                @Html.ActionLink(@Model.Name, "Details", "Artist", @Model.Id, null)
+                @Html.ActionLink(@Model.Name, "Details", "Artist", @Model.Id, new{id="artist-name"})
             </h1>
             <h5>From @Model.OriginCountry</h5>
         </section>
@@ -76,7 +76,7 @@
         function initMap() {
 
             var options = {
-                zoom: 3,
+                zoom: 5,
                 center: { lat: 0, lng: 0 }
             };
             var map = new google.maps.Map(document.getElementById("google-map"), options);
@@ -98,16 +98,18 @@
     </script>
     <script>
         $(document).ready(function() {
-            var artistName = "@Model.Name";
+            var artistName = $("#artist-name").html();
             var avgScore = Math.round(@Model.AvgScore * 10.0) / 10.0;
             $(".rating-avg").html("" + avgScore);
 
             getArtistInfo(artistName);
-            getVideo("music by " + artistName);
+            //getVideo("music by " + artistName);
 
             animateScore();
             $(".rating-avg").html("" + avgScore);
             embedTweet();
+            $("#create-album-btn").attr("href", "/Album/Create?artistId=@Model.Id");
+            $("#create-review-btn").hide();
         });
     </script>
     <script type="text/javascript">
@@ -187,18 +189,6 @@
         data[i]["title"] = v;
     }
 
-//    for (item in data) {
-//        var v ="";
-//        var arr = item["title"].toString().split(" ");
-//        if (arr.length > 1) {
-//            arr.forEach(function(str) {
-//                v += str[0];
-//            });
-//        } else {
-//            v = arr[0];
-//        }
-//        item.title = v;
-//    }
 
     xScale.domain(data.map(function(d) {
         return d.title;

@@ -1,2 +1,1 @@
-﻿select *
-from EndUser
+﻿select * from Album

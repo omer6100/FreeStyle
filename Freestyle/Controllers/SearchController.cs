@@ -48,17 +48,17 @@ namespace Freestyle.Controllers
 
                         }
 
-                        if (search.secondaryName != null)
-                        {
-                            var artist = db.Artists.Where(a => a.Name == search.secondaryName).FirstOrDefault();
-                            if (artist == null)
-                            {
-                                ModelState.AddModelError("secondaryName",
-                                    "You cannot search for an artist that does not exist");
-                                return View(search);
-                            }
-
-                        }
+                        // if (search.secondaryName != null)
+                        // {
+                        //     var artist = db.Artists.Where(a => a.Name == search.secondaryName).FirstOrDefault();
+                        //     // if (artist == null)
+                        //     // {
+                        //     //     ModelState.AddModelError("secondaryName",
+                        //     //         "You cannot search for an artist that does not exist");
+                        //     //     return View(search);
+                        //     // }
+                        //
+                        // }
 
                         search.ScoreLowerBound = search.ScoreLowerBound == null ? 0 : search.ScoreLowerBound;
                         search.ScoreUpperBound = search.ScoreUpperBound == null ? 10 : search.ScoreUpperBound;

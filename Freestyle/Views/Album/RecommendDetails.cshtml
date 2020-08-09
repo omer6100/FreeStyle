@@ -26,14 +26,18 @@
         </div>
     </div>
     <h4>
-        @Model.Title by @Model.Artist
-    </h4>
+        <span id="rec-album-title">@Model.Title</span> by <span id="rec-album-artist-name">@Model.Artist</span>
+</h4>
 </section>
 
 <script>
     $(document).ready(function() {
+
+        var title = $("#rec-album-title").html();
+        var artistName = $("#rec-album-artist-name").html();
+        var url = encodeURI("https://ws.audioscrobbler.com/2.0/?method=album.getinfo&api_key=" + LastFmKey + "&artist=" + artistName + "&album=" + title + "&autocorrect=1&format=json");
         $.getJSON(
-            "https://ws.audioscrobbler.com/2.0/?method=album.getinfo&api_key=" + LastFmKey + "&artist=" + "@Model.Artist" + "&album=" + "@Model.Title" + "&autocorrect=1&format=json",
+           url,
             function(json) {
                 var alt = json.album.name.split(" ").join("") + "AlbumArt";
                 var src = json.album.image[4]["#text"];

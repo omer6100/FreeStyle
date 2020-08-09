@@ -44,8 +44,8 @@
     <div class="col-md-8">
         <section id="title">
             <h1>
-                @Html.ActionLink(@Model.Title, "Details", "Album", new { id = @Model.Id }, null) by
-                @Html.ActionLink(@Model.Artist, "Details", "Artist", new { id = @Model.ArtistId }, null)
+                @Html.ActionLink(@Model.Title, "Details", "Album", new { id = @Model.Id }, new{id="album-title"}) by
+                @Html.ActionLink(@Model.Artist, "Details", "Artist", new { id = @Model.ArtistId }, new{id="artist-name"})
             </h1>
             <h5>@Model.Genre Album, Released on @Model.ReleaseDate.ToString("D")</h5>
         </section>
@@ -96,23 +96,24 @@
     </script>
     <script>
         $(document).ready(function() {
-            var title = "@Model.Title";
-            var artistName = "@Model.Artist";
+            var title = $("#album-title").html();
+            var artistName = $("#artist-name").html();
             var avgScore = Math.round(@Model.AvgScore * 10.0) / 10.0;
             $(".rating-avg").html(avgScore);
             getAlbumInfo(title, artistName);
 
-            getVideo(title + " by  " + artistName);
+            //getVideo(title + " by  " + artistName);
             animateScore();
             $(".rating-avg").html(avgScore); // just in case
             embedTweet();
+            $("#create-review-btn").attr("href", "/Review/Create?albumId=@Model.Id");
         });
     </script>
     <script type="text/javascript">
         $(document).ready(function() {
             $('#review-table').DataTable({
                 "language": {
-                    "zeroRecords": 'No Matching Records Found.'
+                    "zeroRecords": 'No Matching Records Found.<br>Would You Like to @Html.ActionLink("Write Your Own Review","Create", "Review",new{albumId=Model.Id},null)?'
                 },
                 "columnDefs": [
                     { "targets": 2, "type": "date" },

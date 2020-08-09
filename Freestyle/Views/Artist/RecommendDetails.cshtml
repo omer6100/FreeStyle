@@ -20,14 +20,16 @@
         </div>
     </div>
     <h4>
-        @Model.Name
+        <span id="rec-artist-name">@Model.Name</span>
     </h4>
 </section>
 
 
 <script>
     $(document).ready(function () {
-        $.getJSON("https://ws.audioscrobbler.com/2.0/?method=artist.gettopalbums&artist=" + "@Model.Name" + "&api_key=" + LastFmKey + "&autocorrect=1&limit=10&format=json",
+        var artistName = $("#rec-artist-name").html();
+        var url = encodeURI("https://ws.audioscrobbler.com/2.0/?method=artist.gettopalbums&artist=" + artistName+ "&api_key=" + LastFmKey + "&autocorrect=1&limit=10&format=json");
+        $.getJSON(url,
             function (json) {
                 var i = Math.floor(Math.random() * 10) % 10;
                 var src = json.topalbums.album[i].image[3]["#text"];

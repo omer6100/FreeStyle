@@ -130,7 +130,7 @@ namespace Freestyle.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Name,OriginCountry,PageViews")] Artist artist)
+        public ActionResult Edit([Bind(Include = "Id,Name,OriginCountry,PageViews, AvgScore")] Artist artist)
         {
             if (ModelState.IsValid)
             {

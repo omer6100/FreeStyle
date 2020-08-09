@@ -24,6 +24,7 @@
         </section>
         @if (Session["UserId"].IfNotNull(uid => uid.Equals(Model.UserId)))
         {
+        <hr />
             <section>
                 <h4>Owner: </h4>
                 @Html.ActionLink("Edit ", "Edit", "Review", new {id = Model.Id}, new {@class = "btn btn-outline-warning btn-block"})
@@ -33,6 +34,7 @@
 
         @if (Session["Role"].IfNotNull(role => role.Equals("Admin")))
         {
+            <hr/>
             <section>
                 <h4>Admin: </h4>
                 @Html.ActionLink("Edit ", "Edit", "Review", new { id = Model.Id }, new { @class = "btn btn-outline-warning btn-block" })

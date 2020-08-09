@@ -2,9 +2,11 @@
 var GoogleKey = "AIzaSyC6perw931as-fOkiSIsmVYyfeIwLyyur4";
 
 function getAlbumInfo(title, artist) {
+    var url = encodeURI("https://ws.audioscrobbler.com/2.0/?method=album.getinfo&api_key="
+        + LastFmKey + "&artist=" + artist + "&album=" + title + "&autocorrect=1&format=json");
+
     $.getJSON(
-        "https://ws.audioscrobbler.com/2.0/?method=album.getinfo&api_key=" + LastFmKey + "&artist=" + artist + "&album=" + title + "&autocorrect=1&format=json",
-        function(json) {
+        url, function (json) {
             var alt = json.album.name.split(" ").join("") + "AlbumArt";
             var src = json.album.image[4]["#text"];
             var util = {sum:0};
@@ -30,7 +32,13 @@ function getAlbumInfo(title, artist) {
 }
 
 function getArtistInfo(name) {
-    $.getJSON("https://ws.audioscrobbler.com/2.0/?method=artist.gettopalbums&artist=" + name + "&api_key="+ LastFmKey+"&autocorrect=1&limit=10&format=json",
+
+    var url = encodeURI("https://ws.audioscrobbler.com/2.0/?method=artist.gettopalbums&artist=" +
+        name +
+        "&api_key=" +
+        LastFmKey +
+        "&autocorrect=1&limit=10&format=json");
+    $.getJSON(url,
         function (json) {
             var i = Math.floor(Math.random() * 10) % 10;
             var src = json.topalbums.album[i].image[3]["#text"];
@@ -60,11 +68,12 @@ function strPadLeft(string, padding, length) {
 }
 
 function getVideo(keyword) {
-    
 
-    $.getJSON("https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=1&type=video&q=" +
+    var url = encodeURI("https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=1&type=video&q=" +
         keyword +
-        "&key=" + GoogleKey,
+        "&key=" +
+        GoogleKey);
+    $.getJSON(url,
         function(json) {
             var videoId = json.items[0].id.videoId;
             var embed = "https://www.youtube.com/embed/" + videoId;

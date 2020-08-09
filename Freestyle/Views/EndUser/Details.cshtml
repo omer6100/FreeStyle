@@ -25,15 +25,17 @@
         </section>
         @if (Session["UserId"].IfNotNull(uid => uid.Equals(Model.Id)))
         {
+            <hr/>
             <section>
                 <h4>Owner: </h4>
-                @Html.ActionLink("Update ", "Update", "EndUser", new { id = Model.Id }, new { @class = "btn btn-outline-warning" })
-                @Html.ActionLink("Delete", "Delete", "EndUser", new { id = Model.Id }, new { @class = "btn btn-outline-danger" })
+                @Html.ActionLink("Update ", "Update", "EndUser", new { id = Model.Id }, new { @class = "btn btn-outline-warning btn-block" })
+                @Html.ActionLink("Delete", "Delete", "EndUser", new { id = Model.Id }, new { @class = "btn btn-outline-danger btn-block" })
             </section>
         }
 
         @if (Session["Role"].IfNotNull(role => role.Equals("Admin")))
         {
+            <hr/>
             <section>
                 <h4>Admin: </h4>
                 @Html.ActionLink("Update ", "Update", "EndUser", new { id = Model.Id }, new { @class = "btn btn-outline-warning btn-block" })
@@ -61,7 +63,7 @@
         $(document).ready(function() {
             var table = $('#review-table').DataTable({
                 "language": {
-                    "zeroRecords": 'No Matching Records Found.'
+                    "zeroRecords": 'No Matching Records Found. @Html.ActionLink("Write Your Own Review", "Create", "Review")?'
                 },
                 "columnDefs": [
                     {"targets":2, "type":"date"},
@@ -70,7 +72,7 @@
                 ]
 
             });
-            var avg = table.column(2).data().average();
+            var avg = table.column(3).data().average();
             if (isNaN(avg)) {
                 avg = 0;
             }
@@ -80,6 +82,8 @@
             animateScore();
             $(".rating-avg").html(""+ (Math.round(avg * 10.0) / 10.0));
             embedTweet();
+            $("#create-review-btn").attr("href", "/Review/Create");
+
         });
     </script>
 }
